@@ -1,2 +1,8 @@
 <h1>All classrooms will appear here</h1>
 TODO: Only admins can access this
+<br />
+
+<% @classrooms.each do |classroom| %>
+<%= classroom.name %>
+<%= link_to "Go to classroom", classroom_path(classroom) %>
+<% end %>

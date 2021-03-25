@@ -1,0 +1,9 @@
+<%= form_for(@classroom) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :user_id %>
+  <%= f.text_field :user_id %>
+  <%= f.label :academic_year %>
+  <%= f.number_field :academic_year %>
+  <%= f.submit %>
+<% end %>
