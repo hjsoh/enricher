@@ -44,6 +44,13 @@ class ClassroomsController < ApplicationController
     redirect_to classrooms_path
   end
 
+  def roster
+    @classroom = Classroom.find(params[:id])
+    @enrollments = Enrollment.where(classroom_id: @classroom.id)
+    authorize @classroom
+    authorize @enrollments
+  end
+
   private
 
   def classroom_params

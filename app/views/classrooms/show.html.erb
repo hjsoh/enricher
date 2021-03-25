@@ -4,3 +4,4 @@
 <%= link_to "Edit this classroom", edit_classroom_path(@classroom) %>
 <%= link_to "Destroy this classroom", classroom_path(@classroom), method: :delete,
             data: { confirm: "Are you sure?" } %>
+<%= link_to "View the roster", roster_classroom_path(@classroom) %>

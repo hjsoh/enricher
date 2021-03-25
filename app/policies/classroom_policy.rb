@@ -32,4 +32,8 @@ class ClassroomPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def roster?
+    true
+  end
 end
