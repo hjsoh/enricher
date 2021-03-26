@@ -11,5 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :tickets, only: [ :show ]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  #API
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :classrooms, only: [ :index ]
+    end
+  end
 end
