@@ -478,6 +478,22 @@
       "relationship": "HasMany",
       "widget": null,
       "validations": []
+    }, {
+      "field": "parents",
+      "type": ["Number"],
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": "User.id",
+      "inverse_of": "students",
+      "relationship": "HasMany",
+      "widget": null,
+      "validations": []
     }],
     "segments": [],
     "actions": []
@@ -807,7 +823,7 @@
     }, {
       "field": "admin",
       "type": "Boolean",
-      "default_value": null,
+      "default_value": "false",
       "enums": null,
       "integration": null,
       "is_filterable": true,
