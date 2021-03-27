@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }
   validates :name, presence: true
 
+  has_many :guardianships
   has_many :students, through: :guardianships
   has_many :classrooms
 end
