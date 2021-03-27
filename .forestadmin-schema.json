@@ -775,7 +775,7 @@
     }, {
       "field": "admin",
       "type": "Boolean",
-      "default_value": null,
+      "default_value": "false",
       "enums": null,
       "integration": null,
       "is_filterable": true,
