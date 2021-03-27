@@ -7,7 +7,18 @@
 
 <h1>Here is the current enrollment of students</h1>
 <h1>Students</h1>
-<% @enrollments.each do |enrollment| %>
 
-  <%= enrollment.student.name %>
-<% end %>
+<%#= simple_form_for [ @classroom, @enrollments ] do |f| %>
+
+  <%#= f.association :students %>
+  <%#= f.button :submit %>
+  <%#= f.input :content %>
+  <%#= f.submit "Submit review", class: "btn btn-primary" %>
+<%# end %>
+
+<%# @enrollments.each do |enrollment| %>
+  <%#= simple_form_for enrollment do |f| %>
+    <%#= f.association :students %>
+    <%#= f.button :submit %>
+  <%# end %>
+<%# end %>

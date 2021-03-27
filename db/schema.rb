@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_095252) do
+ActiveRecord::Schema.define(version: 2021_03_25_121919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(version: 2021_03_25_095252) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.boolean "is_private"
+    t.string "status"
+    t.string "question"
+    t.bigint "user_id", null: false
+    t.bigint "classroom_id", null: false
+    t.string "category_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_tickets_on_classroom_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,4 +82,6 @@ ActiveRecord::Schema.define(version: 2021_03_25_095252) do
   add_foreign_key "enrollments", "students"
   add_foreign_key "guardianships", "students"
   add_foreign_key "guardianships", "users"
+  add_foreign_key "tickets", "classrooms"
+  add_foreign_key "tickets", "users"
 end
