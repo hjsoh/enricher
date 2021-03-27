@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'rails_admin', '~> 2.0'
+gem 'forest_liana'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
