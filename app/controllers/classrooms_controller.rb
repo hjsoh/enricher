@@ -22,6 +22,8 @@ class ClassroomsController < ApplicationController
   end
 
   def show
+    @classroom = Classroom.find(params[:id])
+    @message = Message.new()
   end
 
   def edit

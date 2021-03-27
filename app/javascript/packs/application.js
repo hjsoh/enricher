@@ -26,7 +26,7 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-import { initClassroomCable } from '../channels/classroom_channel';
+import { initClassroomCable } from '../channels/classroom_channel.js';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:

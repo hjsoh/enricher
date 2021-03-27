@@ -8,6 +8,7 @@ const initClassroomCable = () => {
     consumer.subscriptions.create({ channel: "ClassroomChannel", id: id }, {
       received(data) {
         console.log(data); // called when data is broadcast in the cable
+        
       },
     });
   }
