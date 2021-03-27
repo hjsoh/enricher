@@ -1,0 +1,8 @@
+<h1>Some new classroom view here</h1>
+
+<%= simple_form_for @classroom do |f| %>
+  <%= f.input :name, label: 'Name of classroom', error: 'Classroom name is mandatory, please specify one' %>
+  <%= f.input :academic_year, label: 'Academic year of classroom', error: 'Academic year is mandatory, please specify one' %>
+  <%= f.input :user_id, label: 'Teacher in charge of classroom', error: 'Teacher name is mandatory, please specify one' %>
+  <%= f.button :submit, "Create Classroom", class: "btn btn-primary"  %>
+<% end %>
