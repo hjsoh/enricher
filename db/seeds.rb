@@ -40,7 +40,7 @@ end
 puts "Finished 50 students"
 
 
-puts "Create 50 parents"
+puts "Creating 50 parents"
 
 50.times do
   parent = User.create!(
@@ -57,7 +57,7 @@ puts "Finished creating 50 parent accounts"
 puts "Linking students to parents"
 
 Student.all.each do |student|
-  (1..2).times do
+  (1..2).to_a.sample.times do
     student.parents << User.all.where(role:'parent').order('RANDOM()') #how does this link into guardianships?
   end
 end
@@ -84,7 +84,7 @@ puts "Create 60 classrooms attributed with teachers"
 puts "Linking student to classroom"
 
 Student.all.each do |student|
-  (1..2).times do
+  (1..2).to_a.sample.times do
     student.classrooms << Classroom.all.where(is_active:true).sample
   end
 end
@@ -97,13 +97,13 @@ puts "Seeding 100 tickets"
 100.times do
   ticket = Ticket.new(
     question: [
-      "How come your english so bad?"
-      "Why is my child so dumb?"
-      "Why is my child so short?"
-      "Why is my child so fat?"
-      "Why you dont like chinese kids?"
-      "Issit because I poor?"
-      "What is that cute girl's number?"
+      "How come your english so bad?",
+      "Why is my child so dumb?",
+      "Why is my child so short?",
+      "Why is my child so fat?",
+      "Why you dont like chinese kids?",
+      "Issit because I poor?",
+      "What is that cute girl's number?",
       "Why you so smelly?"
     ].sample,
     status: ['Not yet started', 'In progress', 'Completed'].sample,
@@ -112,6 +112,7 @@ puts "Seeding 100 tickets"
   )
   ticket.classroom = Classroom.all.where(is_active:true).sample
   ticket.user = User.all.where(role:'parent').sample
+  ticket.save!
 end
 
 puts "Successfully seeded 100 tickets"
