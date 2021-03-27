@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  mount ForestLiana::Engine => '/forest'
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # mount ForestLiana::Engine => '/forest'
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root to: 'pages#home'
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
+    resources :messages, only: :create
 
     member do
       get :roster

@@ -18,7 +18,12 @@ class ClassroomPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    # parent of student in this classroom can see
+    # teacher of this classroom can see
+    # raise
+    record.user == user || record.parents.any? { |parent| parent == user }
+    # raise
+    
   end
 
   def edit?
