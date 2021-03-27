@@ -1,0 +1,7 @@
+<h1>All tickets go here</h1>
+
+<% @tickets.each do |ticket| %>
+  <%= ticket.question %>
+  <%= ticket.category_name %>
+  <%= ticket.user.email %>
+<% end %>
