@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tickets, only: [ :show, :index ]
+  resources :tickets, only: [ :index, :show ]
 
   #API
   namespace :api, defaults: { format: :json } do
