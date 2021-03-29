@@ -29,6 +29,11 @@ class Api::V1::ClassroomsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    @classroom.destroy
+    head :no_content
+  end
+
   private
 
   def classroom_params
