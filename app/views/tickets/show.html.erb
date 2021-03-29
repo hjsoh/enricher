@@ -1,1 +1,18 @@
 <h1>This is the ticket you are looking for</h1>
+<%= @ticket.status %>
+<%= @ticket.question %>
+<h1>Parent:<%= @ticket.user_id %></h1>
+<h1>Teacher:<%= @ticket.classroom.user_id %></h1>
+
+<h1>Add a comment to the ticket</h1>
+
+<%= link_to 'Add a comment', new_ticket_comment_path(@ticket) %>
+
+<%#= render :partial => 'comments/new' %>
+
+<ul class="list-group">
+  <% @ticket.comments.each do |comment| %>
+    <li class="list-group-item"><%= comment.content %></li>
+    <li class="list-group-item"><%= comment.author_id %></li>
+  <% end %>
+</ul>

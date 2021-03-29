@@ -12,9 +12,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tickets, only: [ :index, :show ]
+  resources :tickets, only: [ :index, :show, :edit ] do
+    resources :comments, only: [ :new, :create ]
+  end
 
-  #API
+  patch "tickets/:id/done", to: "tickets#done"
+
+  #API for classroom
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :classrooms, only: [ :index, :show, :update, :create ]

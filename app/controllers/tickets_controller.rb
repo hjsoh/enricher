@@ -35,6 +35,15 @@ class TicketsController < ApplicationController
     authorize @ticket
   end
 
+  def done
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+
+    @ticket.update(ticket_params)
+
+    redirect_to ticket_path(@ticket)
+  end
+
   private
 
   def ticket_params
