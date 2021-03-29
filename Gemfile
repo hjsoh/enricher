@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Token for API
+gem 'simple_token_authentication'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -31,7 +33,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'rails_admin', '~> 2.0'
-gem 'forest_liana'
+# gem 'forest_liana'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

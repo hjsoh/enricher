@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #API
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :classrooms, only: [ :index, :show ]
+      resources :classrooms, only: [ :index, :show, :update ]
     end
   end
 end
