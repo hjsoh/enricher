@@ -1,7 +1,7 @@
 class Api::V1::ClassroomsController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: [ :index, :show ]
 
-  before_action :set_classroom, only: [ :show, :update ]
+  before_action :set_classroom, only: [ :show, :update, :destroy ]
 
   def index
     @classrooms = policy_scope(Classroom)
@@ -13,6 +13,17 @@ class Api::V1::ClassroomsController < Api::V1::BaseController
   def update
     if @classroom.update(classroom_params)
       render :show
+    else
+      render_error
+    end
+  end
+
+  def create
+    @classroom = Classroom.new(classroom_params)
+    @classroom.user = current_user
+    authorize @classroom
+    if @classroom.save
+      render :show, status: :created
     else
       render_error
     end

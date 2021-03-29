@@ -30,6 +30,11 @@ class TicketsController < ApplicationController
     redirect_to classroom_tickets_path(@classroom)
   end
 
+  def show
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+  end
+
   private
 
   def ticket_params
