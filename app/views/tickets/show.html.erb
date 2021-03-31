@@ -6,9 +6,12 @@
   <%= f.text_field :question %>
   <%= f.label :category_name %>
   <%= f.text_field :category_name %>
-  <%= f.text_field :status %>
+  <%= f.input :is_private, as: :radio_buttons %>
+  <%= f.input :status %>
   <%= f.submit "Submit ticket", class: "btn btn-primary" %>
 <% end %>
+
+<%= link_to "Delete this ticket", ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }  %>
 
 <%= @ticket.status %>
 <%= @ticket.question %>
@@ -27,3 +30,6 @@
     <li class="list-group-item"><%= comment.author.name %></li>
   <% end %>
 </ul>
+
+
+

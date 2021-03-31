@@ -15,6 +15,8 @@ class ClassroomsController < ApplicationController
   def create
     @classroom = Classroom.new(classroom_params)
     authorize @classroom
+
+    @classroom.user = current_user
     @classroom.is_active = true
 
     if @classroom.save

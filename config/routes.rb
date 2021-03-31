@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tickets, only: [ :index, :show, :edit, :destroy ] do
+  resources :tickets, only: [ :index, :show, :edit, :destroy, :update ] do
     resources :comments, only: [ :new, :create ]
   end
 

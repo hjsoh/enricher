@@ -18,21 +18,32 @@ class TicketsController < ApplicationController
 
     @ticket.is_private = true
     @ticket.status = "open"
+
     @ticket.user = current_user
     @ticket.classroom = @classroom
 
     authorize @ticket
-    authorize @classroom
 
 
     #need one for teacher, one for parent. doing for parent now
-    @ticket.save
-    redirect_to classroom_tickets_path(@classroom)
+    if @ticket.save
+      redirect_to classroom_tickets_path(@classroom)
+    else
+      render :new
+    end
   end
 
   def show
     @ticket = Ticket.find(params[:id])
     authorize @ticket
+  end
+
+  def update
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+    @ticket.update(ticket_params)
+
+    redirect_to ticket_path(@ticket)
   end
 
   def done

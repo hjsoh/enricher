@@ -580,7 +580,7 @@
     }, {
       "field": "is_private",
       "type": "Boolean",
-      "default_value": null,
+      "default_value": "false",
       "enums": null,
       "integration": null,
       "is_filterable": true,
@@ -895,7 +895,7 @@
     }, {
       "field": "admin",
       "type": "Boolean",
-      "default_value": null,
+      "default_value": "false",
       "enums": null,
       "integration": null,
       "is_filterable": true,
@@ -909,6 +909,21 @@
       "validations": []
     }, {
       "field": "authentication_token",
+      "type": "String",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "nickname",
       "type": "String",
       "default_value": null,
       "enums": null,

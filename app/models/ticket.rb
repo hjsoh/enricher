@@ -4,7 +4,7 @@ class Ticket < ApplicationRecord
 
   #teacher
   belongs_to :classroom
-  delegate :user, :to => :classroom, :allow_nil => true
+  # delegate :user, :to => :classroom, :allow_nil => true
 
   #own your comments!
   has_many :comments, dependent: :destroy
