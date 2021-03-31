@@ -251,7 +251,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "author_id",
+      "field": "author",
       "type": "Number",
       "default_value": null,
       "enums": null,
@@ -261,8 +261,9 @@
       "is_required": false,
       "is_sortable": true,
       "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
+      "reference": "User.id",
+      "inverse_of": "comments",
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }],

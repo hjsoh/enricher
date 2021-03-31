@@ -1,8 +1,19 @@
 <h1>This is the ticket you are looking for</h1>
+
+<%= simple_form_for [ @ticket ] do |f| %>
+
+  <%= f.label :question %>
+  <%= f.text_field :question %>
+  <%= f.label :category_name %>
+  <%= f.text_field :category_name %>
+  <%= f.text_field :status %>
+  <%= f.submit "Submit ticket", class: "btn btn-primary" %>
+<% end %>
+
 <%= @ticket.status %>
 <%= @ticket.question %>
-<h1>Parent:<%= @ticket.user_id %></h1>
-<h1>Teacher:<%= @ticket.classroom.user_id %></h1>
+<h1>Parent:<%= @ticket.user.name %></h1>
+<h1>Teacher:<%= @ticket.classroom.user.name %></h1>
 
 <h1>Add a comment to the ticket</h1>
 
@@ -13,6 +24,6 @@
 <ul class="list-group">
   <% @ticket.comments.each do |comment| %>
     <li class="list-group-item"><%= comment.content %></li>
-    <li class="list-group-item"><%= comment.author_id %></li>
+    <li class="list-group-item"><%= comment.author.name %></li>
   <% end %>
 </ul>
