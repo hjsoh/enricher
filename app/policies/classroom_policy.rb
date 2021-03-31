@@ -41,4 +41,14 @@ class ClassroomPolicy < ApplicationPolicy
   def roster?
     true
   end
+
+  def chatrooms?
+    # record == array of classrooms
+    # user == current_user
+    # only allow if all classrooms belongs to the current_user
+    # and the current_user is a teacher or the parent of the classroom
+    record.all? do |classroom|
+      classroom.user == user || classroom.parents.any? { |parent| parent == user }
+    end
+  end
 end

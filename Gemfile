@@ -34,7 +34,7 @@ gem 'devise'
 gem 'rails_admin', '~> 2.0'
 gem 'forest_liana'
 
-gem 'react-rails'
+
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
