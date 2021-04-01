@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :comments, :foreign_key => 'author_id'
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :omniauthable
 
 
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }

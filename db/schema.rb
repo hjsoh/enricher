@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "office_hour_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["office_hour_id"], name: "index_appointments_on_office_hour_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
     t.boolean "is_active"
@@ -62,6 +71,14 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "office_hours", force: :cascade do |t|
+    t.datetime "slot"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_office_hours_on_user_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.boolean "is_active"
     t.string "name"
@@ -92,9 +109,12 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
     t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "nickname"
     t.string "name"
     t.boolean "admin", default: false
+    t.string "access_token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
+    t.string "nickname"
     t.string "authentication_token", limit: 30
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
