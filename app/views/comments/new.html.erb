@@ -1,0 +1,4 @@
+<%= simple_form_for [ @ticket, @comment ] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit "Add a comment to the ticket!", class: "btn btn-primary" %>
+<% end %>
