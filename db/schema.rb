@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
     t.index ["user_id"], name: "index_guardianships_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "classroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_messages_on_classroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.boolean "is_active"
     t.string "name"
@@ -60,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.boolean "is_private"
+    t.boolean "is_private", default: false
     t.string "status"
     t.string "question"
     t.bigint "user_id", null: false
@@ -82,8 +92,9 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
     t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "nickname"
     t.string "name"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "authentication_token", limit: 30
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -97,6 +108,8 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
   add_foreign_key "enrollments", "students"
   add_foreign_key "guardianships", "students"
   add_foreign_key "guardianships", "users"
+  add_foreign_key "messages", "classrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "tickets", "classrooms"
   add_foreign_key "tickets", "users"
 end

@@ -1,12 +1,3 @@
-<h2>Classroom name: <%= @classroom.name %></h2>
-<p>Academic year: <%= @classroom.academic_year %></p>
-<p>Teacher in charge: <%= @classroom.user.name %></p>
-
-<%= link_to "Edit this classroom", edit_classroom_path(@classroom) %>
-<%= link_to "Destroy this classroom", classroom_path(@classroom), method: :delete,
-            data: { confirm: "Are you sure?" } %>
-<%= link_to "View the roster", roster_classroom_path(@classroom) %>
-
 <h1>#<%= @classroom.name %></h1>
 <div id="messages" data-classroom-id="<%= @classroom.id %>">
 
@@ -17,7 +8,6 @@
         <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
       </i>
       <p><%= message.content %></p>
-    
     </div>
   <% end %>
 
@@ -28,5 +18,4 @@
 <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
   <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
   <%= f.submit %>
- 
 <% end %>
