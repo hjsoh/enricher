@@ -1,9 +1,21 @@
 class User < ApplicationRecord
+  # Token
+  acts_as_token_authenticatable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  attr_accessor :email, :password, :password_confirmation
 
+  # for the parent ticket
+  attr_accessor :email, :password, :password_confirmation
   has_many :tickets
+
+
+  # for the teacher ticket
+  has_many :classrooms
+  has_many :tickets, :through => :classrooms
+
+  # for the comments
+  has_many :comments, :foreign_key => 'author_id'
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

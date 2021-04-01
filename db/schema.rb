@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_27_070906) do
+ActiveRecord::Schema.define(version: 2021_03_29_142236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2021_03_27_070906) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_classrooms_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.bigint "ticket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "author_id"
+    t.index ["ticket_id"], name: "index_comments_on_ticket_id"
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -86,11 +95,15 @@ ActiveRecord::Schema.define(version: 2021_03_27_070906) do
     t.string "nickname"
     t.string "name"
     t.boolean "admin", default: false
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "classrooms", "users"
+  add_foreign_key "comments", "tickets"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "enrollments", "classrooms"
   add_foreign_key "enrollments", "students"
   add_foreign_key "guardianships", "students"
