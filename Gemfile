@@ -7,6 +7,7 @@ ruby '2.6.3'
 gem 'faker'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem 'pundit'
+gem 'omniauth-google-oauth2'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -32,7 +33,7 @@ gem 'simple_token_authentication'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'rails_admin', '~> 2.0'
 gem 'forest_liana'
 gem "rails_admin_import", "~> 2.2"
