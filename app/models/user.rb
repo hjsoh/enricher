@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
 
   # for the teacher ticket
-  has_many :classrooms
+has_many :classrooms
   has_many :tickets, :through => :classrooms
 
   # for the comments
