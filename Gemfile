@@ -33,7 +33,7 @@ gem 'simple_token_authentication'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'rails_admin', '~> 2.0'
 gem "rails_admin_import", "~> 2.2"
 
