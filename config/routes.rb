@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   # mount ForestLiana::Engine => '/forest'
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
   devise_scope :user do
     root to: "devise/sessions#new"
   end
-  # root to: 'pages#home'
+
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
     resources :messages, only: :create
