@@ -34,7 +34,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'rails_admin', '~> 2.0'
-gem 'forest_liana'
 gem "rails_admin_import", "~> 2.2"
 
 gem 'autoprefixer-rails'
