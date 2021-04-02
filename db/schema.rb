@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_142236) do
+ActiveRecord::Schema.define(version: 2021_04_01_165609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "office_hours", force: :cascade do |t|
+    t.datetime "slot"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_office_hours_on_user_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.boolean "is_active"
     t.string "name"
@@ -110,6 +118,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_142236) do
   add_foreign_key "guardianships", "users"
   add_foreign_key "messages", "classrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "office_hours", "users"
   add_foreign_key "tickets", "classrooms"
   add_foreign_key "tickets", "users"
 end

@@ -1122,21 +1122,6 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "nickname",
-      "type": "String",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
       "field": "tickets",
       "type": ["Number"],
       "default_value": null,
@@ -1246,7 +1231,7 @@
   "meta": {
     "database_type": "postgresql",
     "liana": "forest-rails",
-    "liana_version": "6.1.1",
-    "orm_version": "6.0.3.5"
+    "liana_version": "6.2.0",
+    "orm_version": "6.0.3.6"
   }
 }
