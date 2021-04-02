@@ -22,7 +22,7 @@ puts "Create test account for teacher"
 teacher_test = User.create!(
   email: 'teacher_test@hotmail.com',
   password: '123456',
-  name: Faker::Name.name,
+  name: Faker::Name.unique.name,
   role: 'teacher'
   )
 
@@ -33,7 +33,7 @@ puts "Creating 50 students"
 
 50.times do
   student = Student.create!(
-    name: Faker::Name.name
+    name: Faker::Name.unique.name
   )
 end
 
@@ -42,11 +42,11 @@ puts "Finished 50 students"
 
 puts "Creating 50 parents"
 
-50.times do
+50.times do |index|
   parent = User.create!(
-    email: Faker::Internet.email,
+    email: "parent#{index + 1}@gmail.com",
     password: '123456',
-    name: Faker::Name.name,
+    name: Faker::Name.unique.name,
     role: 'parent'
   )
 end
