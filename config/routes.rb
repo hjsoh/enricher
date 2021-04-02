@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # mount ForestLiana::Engine => '/forest'
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }

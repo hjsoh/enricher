@@ -9,6 +9,8 @@ class User < ApplicationRecord
   # attr_accessor :email, :password, :password_confirmation
   has_many :tickets
   has_many :appointments
+  has_many :office_hours
+  has_many :teacher_appointments, through: :office_hours, source: :appointment
 
   # for the teacher ticket
   has_many :classrooms
