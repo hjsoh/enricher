@@ -2,7 +2,18 @@ class TicketsController < ApplicationController
   include Pundit
 
   def index
-    @tickets = policy_scope(Ticket).order(created_at: :desc)
+
+    if params[:query].present?
+      @tickets = Ticket.global_search(params[:query])
+      skip_policy_scope
+      # if @tickets.empty?
+      #   flash[:error] = "There are <b>#{@tickets.count}</b>".html_safe
+      # else
+      #   flash[:notice] = "There are <b>${@tickets.count}</b>".html_safe
+      # end
+    else
+      @tickets = policy_scope(Ticket).order(created_at: :desc)
+    end
   end
 
   def new
@@ -53,6 +64,13 @@ class TicketsController < ApplicationController
     @ticket.update(ticket_params)
 
     redirect_to ticket_path(@ticket)
+  end
+
+  def search
+    raise
+    @tickets = Ticket.where("created_at >= :created_at AND updated_at <= :updated_at",
+    {created_at: params[:created_at], updated_at: params[:updated_at]})
+    authorize @tickets
   end
 
   private
