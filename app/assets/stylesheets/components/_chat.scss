@@ -1,0 +1,17 @@
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+//   border-radius: 5px;
+//   padding: 10px;
+//   margin: 10px 0;
+display: grid;
+grid-template-columns: 1fr 2fr;
+}
+
+.chat {
+  border: 1px solid lighten($secondary, 40%);
+  background: lighten($secondary, 50%);
+  height: 50vh;
+  border-radius: 5px 5px 0 0;
+  overflow-y: auto;
+}

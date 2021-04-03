@@ -52,6 +52,13 @@ class ClassroomsController < ApplicationController
     authorize @enrollments
   end
 
+  def chatrooms
+    # find all classrooms by this user
+    @classrooms = Classroom.all
+    authorize(@classrooms)
+    @message = Message.new
+  end
+
   private
 
   def set_classroom
