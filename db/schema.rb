@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_03_29_142236) do
-=======
 ActiveRecord::Schema.define(version: 2021_04_03_022839) do
->>>>>>> f4329444b13c4f89ecc06aeb3076b9e2060a096e
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,8 +71,6 @@ ActiveRecord::Schema.define(version: 2021_04_03_022839) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-<<<<<<< HEAD
-=======
   create_table "office_hours", force: :cascade do |t|
     t.date "date"
     t.time "start_time"
@@ -87,7 +81,6 @@ ActiveRecord::Schema.define(version: 2021_04_03_022839) do
     t.index ["user_id"], name: "index_office_hours_on_user_id"
   end
 
->>>>>>> f4329444b13c4f89ecc06aeb3076b9e2060a096e
   create_table "students", force: :cascade do |t|
     t.boolean "is_active"
     t.string "name"
@@ -121,13 +114,10 @@ ActiveRecord::Schema.define(version: 2021_04_03_022839) do
     t.string "name"
     t.boolean "admin", default: false
     t.string "authentication_token", limit: 30
-<<<<<<< HEAD
     t.string "nickname"
-=======
     t.string "access_token"
     t.datetime "expires_at"
     t.string "refresh_token"
->>>>>>> f4329444b13c4f89ecc06aeb3076b9e2060a096e
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -144,6 +134,7 @@ ActiveRecord::Schema.define(version: 2021_04_03_022839) do
   add_foreign_key "guardianships", "users"
   add_foreign_key "messages", "classrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "office_hours", "users"
   add_foreign_key "tickets", "classrooms"
   add_foreign_key "tickets", "users"
 end
