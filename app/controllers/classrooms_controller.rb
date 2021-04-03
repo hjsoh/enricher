@@ -14,11 +14,16 @@ class ClassroomsController < ApplicationController
 
   def create
     @classroom = Classroom.new(classroom_params)
-    @classroom.is_active = true
-    @classroom.save
     authorize @classroom
 
-    redirect_to classroom_path(@classroom)
+    @classroom.user = current_user
+    @classroom.is_active = true
+
+    if @classroom.save
+      redirect_to classroom_path(@classroom)
+    else
+      render :new
+    end
   end
 
   def show

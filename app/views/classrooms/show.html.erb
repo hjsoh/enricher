@@ -1,7 +1,8 @@
-<h2><%= @classroom.name %></h2>
-<p><%= @classroom.academic_year %></p>
+<h2>Classroom name: <%= @classroom.name %></h2>
+<p>Academic year: <%= @classroom.academic_year %></p>
+<p>Teacher in charge: <%= @classroom.user.name %></p>
 
-<!-- <p><%= @classroom.user_id %></p>
+<p><%= @classroom.user_id %></p>
 <%= link_to "Edit this classroom", edit_classroom_path(@classroom) %>
 <%= link_to "Destroy this classroom", classroom_path(@classroom), method: :delete,
             data: { confirm: "Are you sure?" } %>
@@ -29,4 +30,4 @@
   <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
   <%= f.submit %>
  
-<% end %> -->
+<% end %>
