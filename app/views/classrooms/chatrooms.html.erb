@@ -14,21 +14,23 @@
 
     <div class="chat">
     <% @classrooms.each do |classroom| %>
+      <div class="chat-message-container"> 
       <%= render "messages", classroom: classroom, message: classroom.messages %>
   
       <%= simple_form_for [ classroom, @message ], remote: true do |f| %>
-        <div>
-          <div class="mb-3">
+        <div class="row">
+          <div class="col-10">
             <%= f.input :content, label: false, placeholder: "Message ##{classroom.name}" %>
           </div>
-          <div class="">
-            <%= f.submit "Send", class: 'btn btn-primary' %>
+          <div class="col-2">
+            <%= f.submit "Send", class: 'btn btn-primary chat-input' %>
           </div>
         </div>
+      </div>
       <% end %>
     <% end %>   
     </div>
-
+  </div>
   </div> 
 </div>
 
