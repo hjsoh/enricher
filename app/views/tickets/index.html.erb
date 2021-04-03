@@ -19,6 +19,8 @@
       <p class="card-text">Category:<%= ticket.category_name %></p>
       <p class="card-text">Name: <%= ticket.user.name %></p>
       <p class="card-text">Date: <%= ticket.created_at %></p>
+      <p class="card-text">Ticket privacy: <%= ticket.is_private %></p>
+      <%= link_to "Go to ticket", ticket_path(ticket) %>
     </div>
   </div>
 <% end %>

@@ -1,5 +1,7 @@
 <h1>This is the ticket you are looking for</h1>
 
+<%= link_to "Go back to all tickets", tickets_path %>
+
 <%= simple_form_for [ @ticket ] do |f| %>
 
   <%= f.label :question %>
@@ -13,8 +15,6 @@
 
 <%= link_to "Delete this ticket", ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }  %>
 
-<%= @ticket.status %>
-<%= @ticket.question %>
 <h1>Parent:<%= @ticket.user.name %></h1>
 <h1>Teacher:<%= @ticket.classroom.user.name %></h1>
 

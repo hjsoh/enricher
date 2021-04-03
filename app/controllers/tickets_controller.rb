@@ -6,11 +6,11 @@ class TicketsController < ApplicationController
     if params[:query].present?
       @tickets = Ticket.global_search(params[:query])
       skip_policy_scope
-      # if @tickets.empty?
-      #   flash[:error] = "There are <b>#{@tickets.count}</b>".html_safe
-      # else
-      #   flash[:notice] = "There are <b>${@tickets.count}</b>".html_safe
-      # end
+      if @tickets.empty?
+        flash[:error] = "There are #{@tickets.count} tickets".html_safe
+      else
+        flash[:notice] = "There are #{@tickets.count} tickets".html_safe
+      end
     else
       @tickets = policy_scope(Ticket).order(created_at: :desc)
     end
