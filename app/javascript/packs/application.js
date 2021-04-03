@@ -25,6 +25,9 @@ require("channels")
 // External imports
 import "bootstrap";
 
+// For flatpickr
+import { initFlatpickr } from "../plugins/flatpickr";
+
 // Internal imports, e.g:
 import { initClassroomCable } from '../channels/classroom_channel.js';
 
@@ -33,3 +36,6 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initClassroomCable();
 });
+
+//flatpickr
+initFlatpickr();
