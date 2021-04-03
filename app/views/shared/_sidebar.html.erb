@@ -22,9 +22,6 @@
     <li>
       <%= link_to 'Chatroom', chatrooms_path, class:"nav-link text-white" %>
     </li>
-    <li>
-      <%= link_to 'Settings', tickets_path, class:"nav-link text-white" %>
-    </li>
   </ul>
   <hr>
   <div class="dropdown">
@@ -32,8 +29,7 @@
       <%= current_user.name %>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a><%= link_to "Action", "#", class: "dropdown-item" %></a>
-      <a><%= link_to "Another action", "#", class: "dropdown-item" %></a>
+      <a><%= link_to 'Settings', tickets_path, class:"nav-link text-white" %></a>
       <a><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></a>
     </div>
   </div>
