@@ -32,7 +32,6 @@ class User < ApplicationRecord
   has_many :students, through: :guardianships
 
   # teachers r/s
-  has_many :classrooms
 
   def students_in_classrooms
     self.classrooms.students
