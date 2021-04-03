@@ -58,7 +58,7 @@ puts "Linking students to parents"
 
 Student.all.each do |student|
   (1..2).to_a.sample.times do
-    student.parents << User.all.where(role:'parent').order('RANDOM()') #how does this link into guardianships?
+    student.parents << User.all.where(role:'parent').sample #how does this link into guardianships?
   end
 end
 

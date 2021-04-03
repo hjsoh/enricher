@@ -2,12 +2,14 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home ]
 
   def home
-    if current_user
-      @banner = true
-      # render :home --> this now routes to _banner partial
+    if user_signed_in?
+      if current_user.role == 'parent'
+        render :parent
+      else
+        render :teacher
+      end
     else
-      @splash = true
-      # render :splash --> this now routes to _splash partial
+      redirect_to new_user_session_path
     end
   end
 end
