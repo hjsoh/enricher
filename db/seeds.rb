@@ -22,7 +22,7 @@ puts "Create test account for teacher"
 teacher_test = User.create!(
   email: 'teacher_test@hotmail.com',
   password: '123456',
-  name: Faker::Name.name,
+  name: Faker::Name.unique.name,
   role: 'teacher'
   )
 
@@ -33,7 +33,7 @@ puts "Creating 50 students"
 
 50.times do
   student = Student.create!(
-    name: Faker::Name.name
+    name: Faker::Name.unique.name
   )
 end
 
@@ -42,11 +42,11 @@ puts "Finished 50 students"
 
 puts "Creating 50 parents"
 
-50.times do
+50.times do |index|
   parent = User.create!(
-    email: Faker::Internet.email,
+    email: "parent#{index + 1}@gmail.com",
     password: '123456',
-    name: Faker::Name.name,
+    name: Faker::Name.unique.name,
     role: 'parent'
   )
 end
@@ -64,6 +64,19 @@ end
 
 puts "Finished linking students to parents"
 
+
+puts "Creating 50 teachers"
+
+50.times do |index|
+  parent = User.create!(
+    email: "teacher#{index + 1}@gmail.com",
+    password: '123456',
+    name: Faker::Name.unique.name,
+    role: 'teacher'
+  )
+end
+
+puts "Finished creating 50 teacher accounts"
 
 
 puts "Create 60 classrooms"
@@ -116,4 +129,35 @@ puts "Seeding 100 tickets"
 end
 
 puts "Successfully seeded 100 tickets"
+
+
+puts "Seeding 100 office hours"
+
+teachers = User.all.where(role:'teacher')
+
+teachers.each do |teacher|
+  oh = teacher.office_hours.build(
+    date: Faker::Date.between(from: '2020-01-01', to: '2021-03-31'),
+    start_time: '14:00',
+    end_time: '14:30'
+    )
+  oh.save!
+end
+
+puts "Successfully seeded 100 office hours"
+
+
+puts "Seeding 50 appointments"
+
+oh = OfficeHour.all.limit(50)
+
+oh.each do |element|
+  Appointment.create(
+    user: User.all.where(role:'parent').sample,
+    office_hour: element
+    )
+end
+
+puts "Successfully seeded 50 appointments"
+
 
