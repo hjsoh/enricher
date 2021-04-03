@@ -18,18 +18,21 @@
 <h1>Parent:<%= @ticket.user.name %></h1>
 <h1>Teacher:<%= @ticket.classroom.user.name %></h1>
 
-<h1>Add a comment to the ticket</h1>
+<div class="container">
+  <h1>Add a comment to the ticket</h1>
 
-<%= link_to 'Add a comment', new_ticket_comment_path(@ticket) %>
+  <%= link_to 'Add a comment', new_ticket_comment_path(@ticket) %>
 
-<%#= render :partial => 'comments/new' %>
+  <%#= render :partial => 'comments/new' %>
 
-<ul class="list-group">
-  <% @ticket.comments.each do |comment| %>
-    <li class="list-group-item"><%= comment.content %></li>
-    <li class="list-group-item"><%= comment.author.name %></li>
-  <% end %>
-</ul>
+  <ul class="list-group">
+    <% @ticket.comments.each do |comment| %>
+      <li class="list-group-item"><%= comment.content %></li>
+      <li class="list-group-item"><%= comment.author.name %></li>
+    <% end %>
+  </ul>
+</div>
+
 
 
 
