@@ -1,4 +1,5 @@
 class Ticket < ApplicationRecord
+  include PgSearch::Model
   #parent
   belongs_to :user
 
@@ -18,4 +19,15 @@ class Ticket < ApplicationRecord
   # def parent
   #   User.find_by_id(id: self.parent_id)
   # end
+
+
+  pg_search_scope :global_search,
+    against: [ :question, :category_name ],
+    associated_against: {
+          user: [ :name ]
+        },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
+
