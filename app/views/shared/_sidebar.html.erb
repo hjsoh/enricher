@@ -26,15 +26,14 @@
     </li>
   </ul>
   <hr>
-  <div class="dropdown text-wrap">
-    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle me-2">
-      <strong><%= current_user.name %></strong>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-      <li><%= link_to "Action", "#", class: "dropdown-item-active" %></li>
-      <li><%= link_to "Another action", "#", class: "dropdown-item" %></li>
-      <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
-    </ul>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= current_user.name %>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a><%= link_to "Action", "#", class: "dropdown-item" %></a>
+      <a><%= link_to "Another action", "#", class: "dropdown-item" %></a>
+      <a><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></a>
+    </div>
   </div>
 </div>

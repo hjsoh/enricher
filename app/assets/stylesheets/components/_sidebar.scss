@@ -1,15 +1,15 @@
-body {
-  display: flex;
-  flex-wrap: nowrap;
-  height: 100vh;
-  height: -webkit-fill-available;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-body > * {
-  flex-shrink: 0;
-  min-height: -webkit-fill-available;
-}
+// body {
+//   display: flex;
+//   flex-wrap: nowrap;
+//   height: 100vh;
+//   height: -webkit-fill-available;
+//   overflow-x: auto;
+//   overflow-y: hidden;
+// }
+// body > * {
+//   flex-shrink: 0;
+//   min-height: -webkit-fill-available;
+// }
 
 .bi {
   vertical-align: -.125em;
