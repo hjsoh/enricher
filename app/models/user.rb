@@ -7,6 +7,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
+  # teachers r/s
+  has_many :classrooms
+
   # for the parent ticket
   # attr_accessor :email, :password, :password_confirmation
   has_many :tickets
@@ -32,8 +35,7 @@ class User < ApplicationRecord
   has_many :guardianships
   has_many :students, through: :guardianships
 
-  # teachers r/s
-  has_many :classrooms
+
 
     # Called by Devise to enable/disable password presence validation
   def password_required?
