@@ -1,22 +1,25 @@
-<h1>This is the ticket you are looking for</h1>
+<div class="container">
+  <h1>This is the ticket you are looking for</h1>
 
-<%= link_to "Go back to all tickets", tickets_path %>
+  <%= link_to "Go back to all tickets", tickets_path %>
+</div>
 
-<%= simple_form_for [ @ticket ] do |f| %>
+<div class="container">
+  <h3>Parent:<%= @ticket.user.name %></h1>
+  <h3>Teacher:<%= @ticket.classroom.user.name %></h1>
+  <%= simple_form_for [ @ticket ] do |f| %>
 
-  <%= f.label :question %>
-  <%= f.text_field :question %>
-  <%= f.label :category_name %>
-  <%= f.text_field :category_name %>
-  <%= f.input :is_private, as: :radio_buttons %>
-  <%= f.input :status %>
-  <%= f.submit "Submit ticket", class: "btn btn-primary" %>
-<% end %>
+    <%= f.label :question %>
+    <%= f.text_field :question %>
+    <%= f.label :category_name %>
+    <%= f.text_field :category_name %>
+    <%= f.input :is_private, as: :radio_buttons %>
+    <%= f.input :status %>
+    <%= f.submit "Update ticket", class: "btn btn-primary" %>
+  <% end %>
 
-<%= link_to "Delete this ticket", ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }  %>
-
-<h1>Parent:<%= @ticket.user.name %></h1>
-<h1>Teacher:<%= @ticket.classroom.user.name %></h1>
+  <%= link_to "Delete this ticket", ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }  %>
+</div>
 
 <div class="container">
   <h1>Add a comment to the ticket</h1>
