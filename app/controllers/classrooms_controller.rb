@@ -51,6 +51,7 @@ class ClassroomsController < ApplicationController
     # find all classrooms by this user
     @classrooms = Classroom.all
     authorize(@classrooms)
+    @message = Message.new
   end
 
   private

@@ -1,1 +1,55 @@
 <h1>Chatrooms</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <% @classrooms.each do |c|%>
+      <div class="border">
+        <%= link_to c.name, classrooms_path %>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-8">
+     
+      
+ 
+    </div>
+    
+  </div>
+</div>
+<% @classrooms.each do |classroom| %>
+  <%= render "messages", classroom: classroom, message: classroom.messages %>
+
+  <%= simple_form_for [ classroom, @message ], remote: true do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message ##{classroom.name}" %>
+    <%= f.submit %>
+  
+  <% end %>
+<% end %>
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="flex-container">
+          <div class="flex-item">
+            <h1>Class 1</h1>
+          </div>
+          <div class="flex-item">
+            <h1>Class 2</h1>
+          </div>
+          <div class="flex-item">
+            <h1>Class 3</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class = "flex-item-grow">
+      
+    </div> 
+  </div>   
+</div> 
+</div> -->
+
