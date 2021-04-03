@@ -1,0 +1,34 @@
+<h1>Chatrooms</h1>
+
+<div class="container ">
+  <div>
+    <% @classrooms.each do |c|%>
+      <%= link_to c.name, classrooms_path %> 
+    <% end %>
+  </div>
+  
+  <div class="">       
+    <h4 class="">
+      Welcome to the Enri'cher Chat!
+    </h4> 
+
+    <div class="chat">
+    <% @classrooms.each do |classroom| %>
+      <%= render "messages", classroom: classroom, message: classroom.messages %>
+  
+      <%= simple_form_for [ classroom, @message ], remote: true do |f| %>
+        <div>
+          <div class="mb-3">
+            <%= f.input :content, label: false, placeholder: "Message ##{classroom.name}" %>
+          </div>
+          <div class="">
+            <%= f.submit "Send", class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>   
+    </div>
+
+  </div> 
+</div>
+

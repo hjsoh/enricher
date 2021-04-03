@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     end
   end
 
+
+  get 'chatrooms', to: 'classrooms#chatrooms'
+
   resources :tickets, only: [ :index, :show, :edit, :destroy, :update ] do
     resources :comments, only: [ :new, :create ]
   end

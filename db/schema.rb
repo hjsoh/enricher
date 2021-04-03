@@ -10,6 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+
 ActiveRecord::Schema.define(version: 2021_04_03_022839) do
 
   # These are extensions that must be enabled in order to support this database
@@ -111,7 +113,6 @@ ActiveRecord::Schema.define(version: 2021_04_03_022839) do
     t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "nickname"
     t.string "name"
     t.boolean "admin", default: false
     t.string "authentication_token", limit: 30
@@ -134,7 +135,6 @@ ActiveRecord::Schema.define(version: 2021_04_03_022839) do
   add_foreign_key "guardianships", "users"
   add_foreign_key "messages", "classrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "office_hours", "users"
   add_foreign_key "tickets", "classrooms"
   add_foreign_key "tickets", "users"
 end
