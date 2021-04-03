@@ -23,7 +23,7 @@ class ClassroomPolicy < ApplicationPolicy
     # raise
     record.user == user || record.parents.any? { |parent| parent == user }
     # raise
-    
+
   end
 
   def edit?
@@ -48,7 +48,8 @@ class ClassroomPolicy < ApplicationPolicy
     # only allow if all classrooms belongs to the current_user
     # and the current_user is a teacher or the parent of the classroom
     record.all? do |classroom|
-      classroom.user == user || classroom.parents.any? { |parent| parent == user }
+      true
+      # classroom.user == user || classroom.parents.any? { |parent| parent == user }
     end
   end
 end

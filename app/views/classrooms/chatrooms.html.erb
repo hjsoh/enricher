@@ -1,22 +1,23 @@
 <h1>Chatrooms</h1>
 
-<div class="container ">
+<div style="display: grid; grid-template-columns: 1fr 4fr;">
   <div>
     <% @classrooms.each do |c|%>
-      <%= link_to c.name, classrooms_path %> 
+      <%= link_to c.name, classrooms_path %>
+      <br>
     <% end %>
   </div>
-  
-  <div class="">       
-    <h4 class="">
+
+  <div>
+    <h4>
       Welcome to the Enri'cher Chat!
-    </h4> 
+    </h4>
 
     <div class="chat">
     <% @classrooms.each do |classroom| %>
-      <div class="chat-message-container"> 
+      <div class="chat-message-container">
       <%= render "messages", classroom: classroom, message: classroom.messages %>
-  
+
       <%= simple_form_for [ classroom, @message ], remote: true do |f| %>
         <div class="row">
           <div class="col-10">
@@ -28,9 +29,8 @@
         </div>
       </div>
       <% end %>
-    <% end %>   
+    <% end %>
     </div>
   </div>
-  </div> 
 </div>
 
