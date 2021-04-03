@@ -3,9 +3,26 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
+  # root to: "devise/sessions#new"
+
+  # devise_scope :user do
+  # end
+
   devise_scope :user do
-    root to: "devise/sessions#new"
+    authenticated :user do
+      root 'pages#home', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+
+    get 'login', to: 'devise/sessions#new'
+    delete 'logout', to: 'devise/sessions#destroy'
   end
+
+  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update ]
+  resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
 
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
