@@ -1,0 +1,40 @@
+<div class="d-flex flex-column p-3 text-white bg-dark vh-100" style="width: 20%;">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <%= image_tag('enricher_logo.png', height: 80, crop: :fill) %>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="#" class="nav-link active">
+        Classrooms
+      </a>
+    </li>
+    <li>
+      <%= link_to 'Office hours', office_hours_path, class:"nav-link text-white" %>
+    </li>
+    <li>
+      <%= link_to 'Tickets', tickets_path, class:"nav-link text-white" %>
+    </li>
+    <li>
+      <%= link_to 'Announcements', tickets_path, class:"nav-link text-white" %>
+    </li>
+    <li>
+      <%= link_to 'Chatroom', tickets_path, class:"nav-link text-white" %>
+    </li>
+    <li>
+      <%= link_to 'Settings', tickets_path, class:"nav-link text-white" %>
+    </li>
+  </ul>
+  <hr>
+  <div class="dropdown text-wrap">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle me-2">
+      <strong><%= current_user.name %></strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+      <li><%= link_to "Action", "#", class: "dropdown-item-active" %></li>
+      <li><%= link_to "Another action", "#", class: "dropdown-item" %></li>
+      <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+    </ul>
+  </div>
+</div>
