@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
     resources :messages, only: :create
+    resources :announcements, only: [ :index, :show, :new, :create, :destroy ]
 
     member do
       get :roster
