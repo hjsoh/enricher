@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_065338) do
+ActiveRecord::Schema.define(version: 2021_04_04_070649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2021_04_04_065338) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["office_hour_id"], name: "index_appointments_on_office_hour_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "classroom_announcements", force: :cascade do |t|
+    t.bigint "classroom_id", null: false
+    t.bigint "announcement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["announcement_id"], name: "index_classroom_announcements_on_announcement_id"
+    t.index ["classroom_id"], name: "index_classroom_announcements_on_classroom_id"
   end
 
   create_table "classrooms", force: :cascade do |t|
@@ -132,6 +141,8 @@ ActiveRecord::Schema.define(version: 2021_04_04_065338) do
 
   add_foreign_key "appointments", "office_hours"
   add_foreign_key "appointments", "users"
+  add_foreign_key "classroom_announcements", "announcements"
+  add_foreign_key "classroom_announcements", "classrooms"
   add_foreign_key "classrooms", "users"
   add_foreign_key "comments", "tickets"
   add_foreign_key "comments", "users", column: "author_id"
