@@ -66,11 +66,8 @@ class TicketsController < ApplicationController
     redirect_to ticket_path(@ticket)
   end
 
-  def search
-    raise
-    @tickets = Ticket.where("created_at >= :created_at AND updated_at <= :updated_at",
-    {created_at: params[:created_at], updated_at: params[:updated_at]})
-    authorize @tickets
+  def partial
+    @tickets = policy_scope(Ticket).order(created_at: :desc)
   end
 
   private

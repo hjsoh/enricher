@@ -3,10 +3,36 @@
 <p>Teacher in charge: <%= @classroom.user.name %></p>
 
 <p><%= @classroom.user_id %></p>
+
 <%= link_to "Edit this classroom", edit_classroom_path(@classroom) %>
 <%= link_to "Destroy this classroom", classroom_path(@classroom), method: :delete,
             data: { confirm: "Are you sure?" } %>
 <%= link_to "View the roster", roster_classroom_path(@classroom) %>
+
+
+<div class="container">
+  <h2>Here are the number of students: <%= @classroom.enrollments.count %></h2>
+  <h2>Upcoming office hours: <%= @classroom.user.office_hours.count %> </h2>
+  <h2>Outstanding tickets: <%= @classroom.tickets.count %></h2>
+</div>
+
+<div class="container">
+  Here are the announcements!
+</div>
+
+
+<div class="container">
+  Tickets go here:
+  <%= render @classroom.tickets %>
+</div>
+
+<div class="container">
+  Announcements go here:
+  <%= render @classroom.announcements %>
+</div>
+
+<div class="container">
+
 
 <h1>#<%= @classroom.name %></h1>
 <div id="messages" data-classroom-id="<%= @classroom.id %>">
@@ -18,16 +44,20 @@
         <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
       </i>
       <p><%= message.content %></p>
-    
+
     </div>
   <% end %>
 
 </div>
+
+
 
 <form action="chatrooms/1/messages" method="post"></form>
 
 <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
   <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
   <%= f.submit %>
- 
+
 <% end %>
+
+</div>

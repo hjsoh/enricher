@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   # for the teacher ticket
   has_many :classrooms
-  has_many :tickets, :through => :classrooms
+  has_many :teacher_tickets, :through => :classrooms, source: :tickets
 
   # for the comments
   has_many :comments, :foreign_key => 'author_id'
