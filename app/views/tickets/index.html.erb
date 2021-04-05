@@ -1,7 +1,33 @@
-<h1>All tickets go here</h1>
+<div class="container p-2">
+  <h1>View all your tickets</h1>
+</div>
+<%#= render "search" %>
+<div class="container">
+<h2>Search tickets by name/ category</h2>
+
+  <%= form_tag tickets_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find all tickets"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
 
 <% @tickets.each do |ticket| %>
-  <%= ticket.question %>
-  <%= ticket.category_name %>
-  <%= ticket.user.email %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card-body">
+       <h5 class="card-title">Question: <%= ticket.question %></h5>
+        <p class="card-text">Category:<%= ticket.category_name %></p>
+        <p class="card-text">Name: <%= ticket.user.name %></p>
+        <p class="card-text">Date: <%= ticket.created_at %></p>
+        <p class="card-text">Ticket privacy: <%= ticket.is_private %></p>
+        <%= link_to "Go to ticket", ticket_path(ticket) %>
+      </div>
+    </div>
+  </div>
 <% end %>
+</div>
+
+

@@ -1,17 +1,28 @@
 Rails.application.routes.draw do
-  # mount ForestLiana::Engine => '/forest'
-  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   root to: 'pages#home'
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update ]
+  resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
+
+  get 'announcements', to: 'announcements#index'
+
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
     resources :messages, only: :create
+    resources :announcements, only: [ :show, :new, :create, :destroy ]
 
     member do
       get :roster
       patch :roster_update
     end
   end
+
+
+  get 'chatrooms', to: 'classrooms#chatrooms'
 
   resources :tickets, only: [ :index, :show, :edit, :destroy, :update ] do
     resources :comments, only: [ :new, :create ]

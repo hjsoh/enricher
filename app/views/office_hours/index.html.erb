@@ -1,0 +1,13 @@
+<h1>All office hours here</h1>
+
+<%# link_to “Sign in with Google”, user_google_oauth2_omniauth_authorize_path %>
+
+<ul>
+  <% @office_hours.each do |oh| %>
+   <li>
+    <%= oh.date %>
+    <%= oh.start_time.strftime('%H:%M') %>
+    <%= oh.end_time.strftime('%H:%M') %>
+   </li>
+  <% end %>
+</ul>

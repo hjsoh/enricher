@@ -12,6 +12,8 @@ puts "Cleaning database"
 Ticket.destroy_all
 Classroom.destroy_all
 Student.destroy_all
+Appointment.destroy_all
+OfficeHour.destroy_all
 User.destroy_all
 
 puts "Successfully cleaned up database"
@@ -22,7 +24,7 @@ puts "Create test account for teacher"
 teacher_test = User.create!(
   email: 'teacher_test@hotmail.com',
   password: '123456',
-  name: Faker::Name.name,
+  name: Faker::Name.unique.name,
   role: 'teacher'
   )
 
@@ -33,7 +35,7 @@ puts "Creating 50 students"
 
 50.times do
   student = Student.create!(
-    name: Faker::Name.name
+    name: Faker::Name.unique.name
   )
 end
 
@@ -42,11 +44,11 @@ puts "Finished 50 students"
 
 puts "Creating 50 parents"
 
-50.times do
+50.times do |index|
   parent = User.create!(
-    email: Faker::Internet.email,
+    email: "parent#{index + 1}@gmail.com",
     password: '123456',
-    name: Faker::Name.name,
+    name: Faker::Name.unique.name,
     role: 'parent'
   )
 end
@@ -58,12 +60,25 @@ puts "Linking students to parents"
 
 Student.all.each do |student|
   (1..2).to_a.sample.times do
-    student.parents << User.all.where(role:'parent').order('RANDOM()') #how does this link into guardianships?
+    student.parents << User.all.where(role:'parent').sample #how does this link into guardianships?
   end
 end
 
 puts "Finished linking students to parents"
 
+
+puts "Creating 50 teachers"
+
+50.times do |index|
+  parent = User.create!(
+    email: "teacher#{index + 1}@gmail.com",
+    password: '123456',
+    name: Faker::Name.unique.name,
+    role: 'teacher'
+  )
+end
+
+puts "Finished creating 50 teacher accounts"
 
 
 puts "Create 60 classrooms"
@@ -116,4 +131,64 @@ puts "Seeding 100 tickets"
 end
 
 puts "Successfully seeded 100 tickets"
+
+
+puts "Seeding 100 office hours"
+
+teachers = User.all.where(role:'teacher')
+
+teachers.each do |teacher|
+  oh = teacher.office_hours.build(
+    date: Faker::Date.between(from: '2020-01-01', to: '2021-03-31'),
+    start_time: '14:00',
+    end_time: '14:30'
+    )
+  oh.save!
+end
+
+puts "Successfully seeded 100 office hours"
+
+
+puts "Seeding 50 appointments"
+
+oh = OfficeHour.all.limit(50)
+
+oh.each do |element|
+  Appointment.create(
+    user: User.all.where(role:'parent').sample,
+    office_hour: element
+    )
+end
+
+puts "Successfully seeded 50 appointments"
+
+puts "Seeding 10 announcements"
+
+10.times do
+  announcement = Announcement.new(
+    title: [
+      "Bring thermometers to school tomorrow.",
+      "There will be a substitute teacher taking over this class.",
+      "Please remind your child to wear deodorant.",
+      "Tiktok dancing in class will not be tolerated."].sample,
+    content: [
+      "Don't disappoint me.",
+      "Behave.",
+      "Why did you bear a child anyway."].sample
+  )
+  assignment = []
+  rand(1..5).times do |x|
+    assign = Classroom.all.where(is_active:true).sample
+    assignment << assign
+  end
+  announcement.classrooms = assignment
+  announcement.save!
+end
+
+puts "Successfully seeded 10 announcements"
+
+
+
+
+
 

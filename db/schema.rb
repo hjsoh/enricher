@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_165609) do
+ActiveRecord::Schema.define(version: 2021_04_04_070649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "office_hour_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["office_hour_id"], name: "index_appointments_on_office_hour_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "classroom_announcements", force: :cascade do |t|
+    t.bigint "classroom_id", null: false
+    t.bigint "announcement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["announcement_id"], name: "index_classroom_announcements_on_announcement_id"
+    t.index ["classroom_id"], name: "index_classroom_announcements_on_classroom_id"
+  end
 
   create_table "classrooms", force: :cascade do |t|
     t.string "name"
@@ -63,7 +88,9 @@ ActiveRecord::Schema.define(version: 2021_04_01_165609) do
   end
 
   create_table "office_hours", force: :cascade do |t|
-    t.datetime "slot"
+    t.date "date"
+    t.time "start_time"
+    t.time "end_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -104,11 +131,18 @@ ActiveRecord::Schema.define(version: 2021_04_01_165609) do
     t.string "name"
     t.boolean "admin", default: false
     t.string "authentication_token", limit: 30
+    t.string "access_token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "office_hours"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "classroom_announcements", "announcements"
+  add_foreign_key "classroom_announcements", "classrooms"
   add_foreign_key "classrooms", "users"
   add_foreign_key "comments", "tickets"
   add_foreign_key "comments", "users", column: "author_id"

@@ -1,0 +1,28 @@
+<h1>enri'CHER chatrooms</h1>
+
+<div style="display: grid; grid-template-columns: 1fr 4fr;">
+  <div class="bg-dark container">
+    <h4 style="color:white;">Classrooms</h4>
+    <% @classrooms.each do |c|%>
+      <p><%= link_to "# #{c.name}", classrooms_path %></p>
+    <% end %>
+  </div>
+
+  <div class="chat rounded vh-90">
+    <% @classrooms.each do |classroom| %>
+      <%= render "messages", classroom: classroom, message: classroom.messages %>
+
+      <%= simple_form_for [ classroom, @message ], remote: true do |f| %>
+        <div class="row">
+          <div class="col-10">
+            <%= f.input :content, label: false, placeholder: "Message ##{classroom.name}" %>
+          </div>
+          <div class="col-2">
+            <%= f.submit "Send", class: 'btn btn-primary chat-input' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+</div>
+

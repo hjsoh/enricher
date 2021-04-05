@@ -14,8 +14,15 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' if user_signed_in? %>
     <%= render 'shared/flashes' %>
-    <%= yield %>
+    <div class="d-flex">
+      <%= render 'shared/sidebar' if user_signed_in? %>
+      <div class="container-fluid px-0">
+        <%= render 'shared/searchbar' if user_signed_in? %>
+        <div class="container">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
