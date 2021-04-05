@@ -2,7 +2,7 @@ class AnnouncementsController < ApplicationController
   include Pundit
 
   def index
-    @announcement = policy_scope(Announcement).order(created_at: :desc)
+    @announcements = policy_scope(Announcement).order(created_at: :desc)
   end
 
   def new
