@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   resources :office_hours, only: [ :index, :show, :edit, :destroy, :update ]
   resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
 
+  get 'announcements', to: 'announcements#index'
+
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
     resources :messages, only: :create
-    resources :announcements, only: [ :index, :show, :new, :create, :destroy ]
+    resources :announcements, only: [ :show, :new, :create, :destroy ]
 
     member do
       get :roster
