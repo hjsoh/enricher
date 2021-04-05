@@ -3,28 +3,23 @@ class AnnouncementsController < ApplicationController
 
   def index
     @announcements = policy_scope(Announcement).order(created_at: :desc)
+    @announcement = Announcement.new
   end
 
   def new
-    @classroom = Classroom.find(params[:classroom_id])
     @announcement = Announcement.new
     authorize @announcement
-    authorize @classroom
   end
 
   def create
     @announcement = Announcement.new(announcement_params)
-    @classroom = Classroom.find(params[:classroom_id])
-
-    @announcement.user = current_user
-    @announcement.classroom = @classroom
+    @classroom_ids = announcement_params[:classroom_ids]
 
     authorize @announcement
-
     if @announcement.save
-      redirect_to classroom_announcements_path(@classroom)
+      redirect_to announcements_path
     else
-      render :new
+      render :index
     end
   end
 
@@ -42,6 +37,6 @@ class AnnouncementsController < ApplicationController
   private
 
   def announcement_params
-    params.require(:announcement).permit(:title, :content)
+    params.require(:announcement).permit(:title, :content, classroom_ids: [])
   end
 end

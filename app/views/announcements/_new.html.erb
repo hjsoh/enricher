@@ -1,0 +1,10 @@
+<div class="container p-2">
+  <h1>Post new announcement</h1>
+</div>
+
+<%= simple_form_for @announcement do |f| %>
+  <%= f.input :title, label: 'Title', error: 'Please include a title.' %>
+  <%= f.input :content, label: 'Content' %>
+  <%= f.association :classrooms, collection: current_user.classrooms, as: :check_boxes, include_hidden: false %>
+  <%= f.button :submit, "Post", class: "btn btn-primary"  %>
+<% end %>
