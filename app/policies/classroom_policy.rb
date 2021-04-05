@@ -1,7 +1,7 @@
 class ClassroomPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.role == 'admin'
+      if user.admin == true
         scope.all
       else
         scope.where(user: user)
