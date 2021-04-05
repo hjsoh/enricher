@@ -10,10 +10,12 @@ require 'faker'
 
 puts "Cleaning database"
 Ticket.destroy_all
+Message.destroy_all
 Classroom.destroy_all
 Student.destroy_all
 Appointment.destroy_all
 OfficeHour.destroy_all
+Announcement.destroy_all
 User.destroy_all
 
 puts "Successfully cleaned up database"
