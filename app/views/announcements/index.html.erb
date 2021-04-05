@@ -1,8 +1,12 @@
+<!-- if user is teacher -->
+
 <%= render "new" %>
 
 <div class="container p-2">
-  <h1>View all announcements</h1>
+  <h1>View all my announcements</h1>
 </div>
+
+<!-- TODO: display only announcements created by user -->
 
 <div class="list-group">
   <% @announcements.each do |anc| %>
@@ -24,3 +28,6 @@
 </div>
 
 
+<!-- if user is parent -->
+
+<!-- TODO: display all announcements for classrooms in which student is enrolled in

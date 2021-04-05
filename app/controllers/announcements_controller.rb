@@ -19,7 +19,8 @@ class AnnouncementsController < ApplicationController
     if @announcement.save
       redirect_to announcements_path
     else
-      render :index
+      redirect_to announcements_path
+      flash[:alert] = "Please include a title."
     end
   end
 
