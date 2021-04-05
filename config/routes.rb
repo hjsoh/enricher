@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   resources :office_hours, only: [ :index, :show, :edit, :destroy, :update ]
   resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
 
-  get 'announcements', to: 'announcements#index'
-
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
     resources :messages, only: :create
@@ -20,6 +18,8 @@ Rails.application.routes.draw do
       patch :roster_update
     end
   end
+
+  resources :announcements, only: [ :index, :show, :new, :create, :destroy ]
 
 
   get 'chatrooms', to: 'classrooms#chatrooms'

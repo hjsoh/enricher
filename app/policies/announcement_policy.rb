@@ -1,7 +1,13 @@
 class AnnouncementPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.role == 'teacher'
+        user.announcements
+      elsif user.role == 'parent'
+        user.student_announcements
+      else
+        Announcement.all
+      end
     end
   end
 
