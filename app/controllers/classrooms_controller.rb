@@ -59,6 +59,13 @@ class ClassroomsController < ApplicationController
     @message = Message.new
   end
 
+  def show_chat
+    @classrooms = Classroom.all
+    authorize(@classrooms)
+    @classroom = Classroom.find(params[:classroom_id])
+    @message = Message.new
+  end
+
   private
 
   def set_classroom
