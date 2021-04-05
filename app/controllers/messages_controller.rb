@@ -12,7 +12,8 @@ class MessagesController < ApplicationController
         @classroom,
         render_to_string(partial: "message", locals: { message: @message })
       )
-      redirect_to chatrooms_path(anchor: "message-#{@message.id}")
+      redirect_to show_chat_path(@classroom)
+      #if we need anchor, anchor: "message-#{@message.id}"
     else
       render "classrooms/show"
     end
