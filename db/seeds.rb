@@ -12,6 +12,8 @@ puts "Cleaning database"
 Ticket.destroy_all
 Classroom.destroy_all
 Student.destroy_all
+Appointment.destroy_all
+OfficeHour.destroy_all
 User.destroy_all
 
 puts "Successfully cleaned up database"
@@ -159,5 +161,34 @@ oh.each do |element|
 end
 
 puts "Successfully seeded 50 appointments"
+
+puts "Seeding 10 announcements"
+
+10.times do
+  announcement = Announcement.new(
+    title: [
+      "Bring thermometers to school tomorrow.",
+      "There will be a substitute teacher taking over this class.",
+      "Please remind your child to wear deodorant.",
+      "Tiktok dancing in class will not be tolerated."].sample,
+    content: [
+      "Don't disappoint me.",
+      "Behave.",
+      "Why did you bear a child anyway."].sample
+  )
+  assignment = []
+  rand(1..5).times do |x|
+    assign = Classroom.all.where(is_active:true).sample
+    assignment << assign
+  end
+  announcement.classrooms = assignment
+  announcement.save!
+end
+
+puts "Successfully seeded 10 announcements"
+
+
+
+
 
 
