@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   # for the teacher r/s
   has_many :classrooms
+  has_many :teacher_tickets, :through => :classrooms, source: :tickets
+
   has_many :tickets, :through => :classrooms
   has_many :announcements, through: :classrooms
 

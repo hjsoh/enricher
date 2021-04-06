@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     resources :comments, only: [ :new, :create ]
   end
 
+  get "tickets/partial", to: "tickets#partial"
+
   patch "tickets/:id/done", to: "tickets#done"
 
   #API for classroom
