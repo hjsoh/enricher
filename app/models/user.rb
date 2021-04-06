@@ -13,9 +13,12 @@ class User < ApplicationRecord
   has_many :office_hours
   has_many :teacher_appointments, through: :office_hours, source: :appointment
 
-  # for the teacher ticket
+  # for the teacher r/s
   has_many :classrooms
   has_many :teacher_tickets, :through => :classrooms, source: :tickets
+
+  has_many :tickets, :through => :classrooms
+  has_many :announcements, through: :classrooms
 
   # for the comments
   has_many :comments, :foreign_key => 'author_id'
@@ -30,6 +33,8 @@ class User < ApplicationRecord
   # parent r/s
   has_many :guardianships
   has_many :students, through: :guardianships
+  has_many :student_classrooms, through: :students, source: :classrooms
+  has_many :student_announcements, through: :student_classrooms, source: :announcements
 
   # teachers r/s
 

@@ -52,4 +52,11 @@ class ClassroomPolicy < ApplicationPolicy
       # classroom.user == user || classroom.parents.any? { |parent| parent == user }
     end
   end
+
+  def show_chat?
+    record.all? do |classroom|
+      true
+      # classroom.user == user || classroom.parents.any? { |parent| parent == user }
+    end
+  end
 end

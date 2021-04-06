@@ -1,14 +1,16 @@
 <h1>enri'CHER chatrooms</h1>
 
 <div style="display: grid; grid-template-columns: 1fr 4fr;">
-  <div class="bg-dark container">
-    <h4 style="color:white;">Classrooms</h4>
-    <% @classrooms.each do |c|%>
-      <p><%= link_to "# #{c.name}", classrooms_path %></p>
-    <% end %>
-  </div>
+  <div class="bg-dark container vh-90 ">
+    
+      <h4 style="color:white;">Classrooms</h4>
+      <% @classrooms.each do |c|%>
+        <p><%= link_to "# #{c.name}", show_chat_path(c) %></p>
+      <% end %>
+    
+  </div>  
 
-  <div class="chat rounded vh-90">
+  <div class="chat rounded vh-100">
     <% @classrooms.each do |classroom| %>
       <%= render "messages", classroom: classroom, message: classroom.messages %>
 
