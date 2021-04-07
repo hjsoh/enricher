@@ -3,8 +3,10 @@ class ClassroomPolicy < ApplicationPolicy
     def resolve
       if user.admin == true
         scope.all
-      else
-        scope.where(user: user)
+      elsif user.role == "teacher"
+        scope.where(user:user)
+      elsif user.role == 'parent'
+        user.student_classrooms
       end
     end
   end
