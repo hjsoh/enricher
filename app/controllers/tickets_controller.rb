@@ -61,9 +61,14 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     authorize @ticket
 
-    @ticket.update(ticket_params)
+    @ticket.status = "done"
 
-    redirect_to ticket_path(@ticket)
+    if @ticket.save!
+      redirect_to ticket_path(@ticket)
+    else
+      render :new
+    end
+
   end
 
   def partial

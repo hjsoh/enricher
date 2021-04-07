@@ -15,12 +15,16 @@
 
   <body>
     <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' if current_user.role == "parent" %>
+    <%= render 'shared/footer' if current_user.role == "parent" %>
     <div class="d-flex">
-      <%= render 'shared/sidebar' if user_signed_in? %>
+      <%= render 'shared/sidebar' if user_signed_in? && current_user.role == "teacher" %>
       <div class="container-fluid px-0">
-        <%= render 'shared/searchbar' if user_signed_in? %>
+        <%= render 'shared/searchbar' if user_signed_in? && current_user.role == "teacher" %>
         <div class="container">
+
           <%= yield %>
+
         </div>
       </div>
     </div>

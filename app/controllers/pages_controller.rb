@@ -4,6 +4,10 @@ class PagesController < ApplicationController
   def home
     if user_signed_in?
       if current_user.role == 'parent'
+
+        @navbar = true
+        @footer = true
+
         render :parent
       else
         render :teacher
