@@ -1,63 +1,58 @@
-<h2>Classroom name: <%= @classroom.name %></h2>
-<p>Academic year: <%= @classroom.academic_year %></p>
-<p>Teacher in charge: <%= @classroom.user.name %></p>
-
-<p><%= @classroom.user_id %></p>
-
-<%= link_to "Edit this classroom", edit_classroom_path(@classroom) %>
-<%= link_to "Destroy this classroom", classroom_path(@classroom), method: :delete,
-            data: { confirm: "Are you sure?" } %>
-<%= link_to "View the roster", roster_classroom_path(@classroom) %>
-
-
-<div class="container">
-  <h2>Here are the number of students: <%= @classroom.enrollments.count %></h2>
-  <h2>Upcoming office hours: <%= @classroom.user.office_hours.count %> </h2>
-  <h2>Outstanding tickets: <%= @classroom.tickets.count %></h2>
-</div>
-
-<div class="container">
-  Here are the announcements!
-</div>
-
-
-<div class="container">
-  Tickets go here:
-  <%= render @classroom.tickets %>
-</div>
-
-<div class="container">
-  Announcements go here:
-  <%= render @classroom.announcements %>
-</div>
-
-<div class="container">
-
-
-<h1>#<%= @classroom.name %></h1>
-<div id="messages" data-classroom-id="<%= @classroom.id %>">
-
-  <% @classroom.messages.each do |message| %>
-    <div class="message-container" id="message-<%= message.id %>">
-      <i class="author">
-        <span><%= message.user.name %></span>
-        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-      </i>
-      <p><%= message.content %></p>
+<div class="container py-3">
+  <div class="row justify-content-md">
+    <div class="col col-lg-3">
+      <div class="p-2">
+        <h2><%= @classroom.name %></h2>
+        <h4><%= @classroom.academic_year %></h4>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Teacher: <%= @classroom.user.name %></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Students: <span class="badge badge-primary badge-pill"><%= @classroom.enrollments.count %></span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Upcoming office hours: <span class="badge badge-primary badge-pill"><%= @classroom.user.office_hours.count %></span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">Outstanding tickets: <span class="badge badge-primary badge-pill"><%= @classroom.tickets.count %></span></li>
+        <li class="list-group-item list-group-item-action"><%= link_to "View the roster", roster_classroom_path(@classroom) %></li>
+        <li class="list-group-item list-group-item-action"><%= link_to "Edit this classroom", edit_classroom_path(@classroom) %></li>
+        <li class="list-group-item list-group-item-action"><%= link_to "Destroy this classroom", classroom_path(@classroom), method: :delete,
+              data: { confirm: "Are you sure?" } %></li>
+      </ul>
 
     </div>
-  <% end %>
-
+    <div class="col col-lg-9">
+      <!-- ANNOUNCEMENTS -->
+        <h4 class="p-2">Announcements:</h4>
+        <div class="list-group">
+          <% @classroom.announcements.each do |anc| %>
+              <div class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"><%= anc.title %></h5>
+                  <small><%= anc.created_at %></small>
+                </div>
+                <p class="mb-1"><%= anc.content %></p>
+              </div>
+          <% end %>
+        </div>
+      <!-- TICKETS -->
+        <h4 class="p-2">Tickets:</h4>
+        <%= render @classroom.tickets %>
+      <!-- CHATROOM MESSAGES -->
+        <h4 class="p-2">Chatroom:</h4>
+        <div id="messages" data-classroom-id="<%= @classroom.id %>">
+          <% @classroom.messages.each do |message| %>
+            <div class="message-container" id="message-<%= message.id %>">
+              <i class="author">
+                <span><%= message.user.name %></span>
+                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              </i>
+              <p><%= message.content %></p>
+            </div>
+          <% end %>
+        </div>
+        <form action="chatrooms/1/messages" method="post"></form>
+        <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
+          <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
+          <%= f.submit %>
+        <% end %>
+    </div>
+  </div>
 </div>
 
-
-
-<form action="chatrooms/1/messages" method="post"></form>
-
-<%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
-  <%= f.submit %>
-
-<% end %>
-
-</div>

@@ -2,8 +2,13 @@ class AnnouncementsController < ApplicationController
   include Pundit
 
   def index
-    @announcements = policy_scope(Announcement).order(created_at: :desc)
     @announcement = Announcement.new
+
+    if params[:search].present?
+      @announcements = policy_scope(Announcement).order(created_at: :desc).search_by_title_and_contents(params[:search])
+    else
+      @announcements = policy_scope(Announcement).order(created_at: :desc)
+    end
   end
 
   def new
