@@ -1,3 +1,4 @@
+<!-- new announcement -->
 <% if current_user.role == "teacher" %>
   <%= render "new" %>
 <% end %>
@@ -6,6 +7,17 @@
   <h1>View all my announcements</h1>
 </div>
 
+<!-- filter -->
+<div class="input-group">
+  <%= form_tag(announcements_path, :method => "get") do %>
+    <%= search_field_tag :search, params[:search], placeholder: "Filter", class: "form-control" %>
+    <div class="input-group-btn">
+      <%= button_tag "Search", class:"btn btn-info glyphicon glyphicon-search ml-2",:name => nil%>
+    </div>
+  <% end %>
+</div>
+
+<!-- list all -->
 <div class="list-group">
   <% @announcements.each do |anc| %>
       <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
