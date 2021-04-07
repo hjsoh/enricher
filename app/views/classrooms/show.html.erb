@@ -17,9 +17,9 @@
       </ul>
 
     </div>
-    <div class="col-md-auto">
+    <div class="col col-lg-9">
       <!-- ANNOUNCEMENTS -->
-        <h2 class="p-2">Announcements:</h2>
+        <h4 class="p-2">Announcements:</h4>
         <div class="list-group">
           <% @classroom.announcements.each do |anc| %>
               <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -32,10 +32,10 @@
           <% end %>
         </div>
       <!-- TICKETS -->
-        <h2 class="p-2">Tickets:</h2>
+        <h4 class="p-2">Tickets:</h4>
         <%= render @classroom.tickets %>
       <!-- CHATROOM MESSAGES -->
-        <h2 class="p-2">Chatroom:</h2>
+        <h4 class="p-2">Chatroom:</h4>
         <div id="messages" data-classroom-id="<%= @classroom.id %>">
           <% @classroom.messages.each do |message| %>
             <div class="message-container" id="message-<%= message.id %>">
