@@ -61,8 +61,8 @@ class ClassroomsController < ApplicationController
 
   def show_chat
     @classrooms = Classroom.all
-    authorize(@classrooms)
     @classroom = Classroom.find(params[:classroom_id])
+    authorize(@classroom)
     @message = Message.new
   end
 

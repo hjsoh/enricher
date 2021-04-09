@@ -3,8 +3,10 @@ class ClassroomPolicy < ApplicationPolicy
     def resolve
       if user.admin == true
         scope.all
-      else
-        scope.where(user: user)
+      elsif user.role == "teacher"
+        scope.where(user:user)
+      elsif user.role == 'parent'
+        user.student_classrooms
       end
     end
   end
@@ -48,13 +50,14 @@ class ClassroomPolicy < ApplicationPolicy
     # only allow if all classrooms belongs to the current_user
     # and the current_user is a teacher or the parent of the classroom
     
-    record.all? do |classroom|
+    # record.all? do |classroom|
       true
       # classroom.user == user || classroom.students.any? { |student| student == user }
-    end
+    
   end
 
   def show_chat?
+    raise
     record.all? do |classroom|
       true
     
