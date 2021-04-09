@@ -47,16 +47,17 @@ class ClassroomPolicy < ApplicationPolicy
     # user == current_user
     # only allow if all classrooms belongs to the current_user
     # and the current_user is a teacher or the parent of the classroom
+    
     record.all? do |classroom|
       true
-      # classroom.user == user || classroom.parents.any? { |parent| parent == user }
+      # classroom.user == user || classroom.students.any? { |student| student == user }
     end
   end
 
   def show_chat?
     record.all? do |classroom|
       true
-      # classroom.user == user || classroom.parents.any? { |parent| parent == user }
+    
     end
   end
 end

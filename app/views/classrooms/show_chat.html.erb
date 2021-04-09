@@ -1,7 +1,7 @@
 <h1>enri'CHER chatrooms</h1>
 
 <div style="display: grid; grid-template-columns: 1fr 4fr;">
-  <div class="bg-dark container">
+  <div class="bg-dark container box-one">
     <h4 style="color:white;">Classrooms</h4>
     <% @classrooms.each do |c|%>
       <p><%= link_to "# #{c.name}", show_chat_path(c) %></p>
@@ -12,15 +12,19 @@
       <%= render "messages", classroom: @classroom, message: @classroom.messages %>
 
       <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
+     
         <div class="row">
-          <div class="col-10">
-            <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
-          </div>
-          <div class="col-2">
-            <%= f.submit "Send", class: 'btn btn-primary chat-input' %>
+          <div class="footer ">
+          
+            <div class="col-10 col-2">
+              <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
+              <%= f.submit "Send", class: 'btn btn-primary chat-input' %> 
+              <% end %>
+            </div>
           </div>
         </div>
-      <% end %>
-    
+      </div> 
     </div>
-</div>
+  </div>
+  
+
