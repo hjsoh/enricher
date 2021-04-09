@@ -25,7 +25,6 @@ class ClassroomPolicy < ApplicationPolicy
     # raise
     record.user == user || record.parents.any? { |parent| parent == user }
     # raise
-
   end
 
   def edit?
@@ -45,22 +44,23 @@ class ClassroomPolicy < ApplicationPolicy
   end
 
   def chatrooms?
-    # record == array of classrooms
+    # record == classroom instance
     # user == current_user
     # only allow if all classrooms belongs to the current_user
     # and the current_user is a teacher or the parent of the classroom
-    
     # record.all? do |classroom|
-      true
-      # classroom.user == user || classroom.students.any? { |student| student == user }
-    
+    true
+    # classroom.user == user || classroom.students.any? { |student| student == user }
   end
 
   def show_chat?
-    raise
-    record.all? do |classroom|
-      true
-    
+    # raise
+    # i am a teacher
+    if user.role == 'teacher'
+      user.classrooms.include? record
+    else
+      user.student_classrooms.include? record 
     end
+    # or i'm a parent
   end
 end
