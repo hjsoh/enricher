@@ -28,6 +28,9 @@ gem 'redis', '~> 4.0'
 # Token for API
 gem 'simple_token_authentication'
 
+# gem for gmail
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -40,6 +43,8 @@ gem "rails_admin_import", "~> 2.2"
 
 #search
 gem 'pg_search', '~> 2.3.0'
+
+
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
@@ -59,6 +64,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  #emails
+  gem 'letter_opener'
 end
 
 group :test do
