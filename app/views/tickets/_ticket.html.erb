@@ -14,12 +14,21 @@
         <p class="card-text">Asked by: <%= ticket.user.name %></p>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Category: <%= ticket.category_name %></small>
         <small class="text-muted">
           <% if ticket.is_private? %>
-            <span class="badge badge-pill badge-danger">Private</span>
+            <span class="badge badge-pill badge-dark">Private</span>
           <% else %>
-            <span class="badge badge-pill badge-success">Public</span>
+            <span class="badge badge-pill badge-light">Public</span>
+          <% end %>
+            |  Category: <%= ticket.category_name %>
+        </small>
+        <small class="text-muted">
+          <% if ticket.status == "Not yet started" %>
+            <span class="badge badge-danger">Not started</span>
+          <% elsif ticket.status == "In progress" %>
+            <span class="badge badge-primary">In progress</span>
+          <% elsif ticket.status == "Completed" %>
+            <span class="badge badge-success">Completed</span>
           <% end %>
         </small>
       </div>
