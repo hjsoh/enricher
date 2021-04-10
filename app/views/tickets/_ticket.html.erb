@@ -3,11 +3,11 @@
       <div class="card-body">
         <div class="row">
           <div class="col-12 col-lg-8">
-            <%= link_to ticket_path(ticket) do %>
+            <%= link_to ticket_path(ticket), class: 'ticket-question' do %>
               <h5 class="card-title"><%= ticket.question %></h5>
             <% end %>
           </div>
-          <div class="col-12 col-lg-4">
+          <div class="col-12 col-lg-4 text-right">
           <small class="text-muted">Created at <%= ticket.created_at %></small>
           </div>
         </div>

@@ -1,0 +1,32 @@
+<!-- <ul class="list-group list-group-flush">
+  <li class="list-group-item">Teacher: <%#= @classroom.user.name %></li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">Students: <span class="badge badge-primary badge-pill"><%= @classroom.enrollments.count %></span></li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">Upcoming office hours: <span class="badge badge-primary badge-pill"><%= @classroom.user.office_hours.count %></span></li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">Outstanding tickets: <span class="badge badge-primary badge-pill"><%= @classroom.tickets.count %></span></li>
+  <li class="list-group-item list-group-item-action"><%#= link_to "View the roster", roster_classroom_path(@classroom) %></li>
+  <li class="list-group-item list-group-item-action"><%#= link_to "Edit this classroom", edit_classroom_path(@classroom) %></li>
+  <li class="list-group-item list-group-item-action"><%#= link_to "Destroy this classroom", classroom_path(@classroom), method: :delete,
+        data: { confirm: "Are you sure?" } %></li>
+</ul> -->
+
+  <div class="col-sm-4">
+    <div class="card w-100">
+      <div class="card-body d-flex">
+        <h4 class="display-6"><i class="fas fa-user-graduate"></i><%= @classroom.enrollments.count %></h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card w-100">
+      <div class="card-body d-flex">
+        <h4 class="display-6"><i class="fas fa-handshake"></i><%= @classroom.user.office_hours.count %></h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card w-100">
+      <div class="card-body d-flex">
+        <h4 class="display-6"><i class="fas fa-ticket-alt"></i><%= @classroom.user.tickets.count %></h4>
+      </div>
+    </div>
+  </div>
