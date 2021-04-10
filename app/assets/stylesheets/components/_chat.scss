@@ -2,7 +2,18 @@
 .chat {
   border: 1px solid;
   background: white;
-  height: 70vh;
+  height: 80vh;
   overflow-y: auto;
+  
 }
 
+.box-one {
+  height: 80vh;
+  overflow: scroll;
+}
+
+.chat-footer {
+  position: fixed;
+  bottom: 0;
+  width: 75%;
+  }
