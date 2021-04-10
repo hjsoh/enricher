@@ -1,32 +1,31 @@
-
 <div class="container d-flex flex-column p-3 text-white bg-dark sticky-top vh-100" style="width: 20%;">
   <div class="d-flex justify-content-center">
-    <%= link_to image_tag('enricher_logo.png', height: 80, crop: :fill), root_path %>
+    <%= link_to image_tag('enricher_logo.png', height: 80, crop: :fill, class: "img-style"), root_path %>
   </div>
   <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column mb-auto" id="sidebar-nav">
       <li class="nav-item">
-        <%= link_to classrooms_path, class:"nav-link active text-white" do %>
+        <%= link_to classrooms_path, class:"nav-link text-white #{current_page?('/classrooms') && 'active'}" do %>
           <i class="far fa-address-book">  Classrooms</i>
         <% end %>
       </li>
       <li>
-        <%= link_to office_hours_path, class:"nav-link text-white" do %>
+        <%= link_to office_hours_path, class:"nav-link text-white #{current_page?('/office_hours') && 'active'}" do %>
           <i class="far fa-calendar-alt">  Office hours</i>
         <% end %>
       </li>
       <li>
-        <%= link_to tickets_path, class:"nav-link text-white" do %>
+        <%= link_to tickets_path, class:"nav-link text-white #{current_page?('/tickets') && 'active'}" do %>
           <i class="far fa-hand-paper">  Tickets</i>
         <% end %>
       </li>
       <li>
-        <%= link_to announcements_path, class:"nav-link text-white" do %>
+        <%= link_to announcements_path, class:"nav-link text-white #{current_page?('/announcements') && 'active'}" do %>
           <i class="far fa-clipboard">  Announcements</i>
         <% end %>
       </li>
       <li>
-        <%= link_to chatrooms_path, class:"nav-link text-white" do %>
+        <%= link_to chatrooms_path, class:"nav-link text-white #{current_page?('/chatrooms') && 'active'}" do %>
           <i class="far fa-comments"> Chatroom</i>
         <% end %>
       </li>
@@ -37,8 +36,8 @@
       <a style="font-size:0.7rem"><%= current_user.name %></a>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <%= link_to 'Settings', tickets_path, class:"nav-link text-white" %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+      <%= link_to 'Settings', tickets_path, class:"dropdown-item" %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
     </div>
   </div>
 </div>

@@ -3,11 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
+gem 'omniauth-google-oauth2'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'faker'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 gem 'pundit'
-gem 'omniauth-google-oauth2'
 # gem 'google-api-client', require: 'google/apis/calendar_v3'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
