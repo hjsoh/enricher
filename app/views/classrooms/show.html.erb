@@ -15,31 +15,45 @@
       <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
     </div>
   </div>
-  <!-- TICKETS -->
   <div class="row p-2">
+  <!-- TICKETS -->
     <div class="col-12 col-lg-6">
       <h4 class="p-2">Tickets:</h4>
       <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
     </div>
-    <!-- CHATROOM MESSAGES -->
+  <!-- APPOINTMENTS -->
     <div class="col-12 col-lg-6">
-      <h4 class="p-2">Chatroom:</h4>
-      <div id="messages" data-classroom-id="<%= @classroom.id %>">
-        <% @classroom.messages.each do |message| %>
-          <div class="message-container" id="message-<%= message.id %>">
-            <i class="author">
-              <span><%= message.user.name %></span>
-              <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-            </i>
-            <p><%= message.content %></p>
+      <h4 class="p-2">Appointments:</h4>
+      <% @classroom.user.teacher_appointments.each do |ta| %>
+        <div class="card mt-2 mb-2">
+          <div class="card-body">
+            <%= ta.user.name %>
+            <%= ta.office_hour.date %> <%= ta.office_hour.start_time.strftime('%H:%M') %> to <%= ta.office_hour.end_time.strftime('%H:%M') %>
           </div>
-        <% end %>
-      </div>
-      <form action="chatrooms/1/messages" method="post"></form>
-      <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
-        <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
-        <%= f.submit %>
+        </div>
       <% end %>
+    </div>
+  </div>
+  <!-- CHATROOM MESSAGES -->
+  <div class="row pr-2">
+    <div class="col">
+      <h4 class="p-2">Chatroom:</h4>
+        <div id="messages" data-classroom-id="<%= @classroom.id %>">
+          <% @classroom.messages.each do |message| %>
+            <div class="message-container" id="message-<%= message.id %>">
+              <i class="author">
+                <span><%= message.user.name %></span>
+                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              </i>
+              <p><%= message.content %></p>
+            </div>
+          <% end %>
+        </div>
+        <form action="chatrooms/1/messages" method="post"></form>
+        <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
+          <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
+          <%= f.submit %>
+        <% end %>
     </div>
   </div>
 </div>
