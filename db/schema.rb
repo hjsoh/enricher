@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_070649) do
+ActiveRecord::Schema.define(version: 2021_04_10_070706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,12 +88,11 @@ ActiveRecord::Schema.define(version: 2021_04_04_070649) do
   end
 
   create_table "office_hours", force: :cascade do |t|
-    t.date "date"
-    t.time "start_time"
-    t.time "end_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["user_id"], name: "index_office_hours_on_user_id"
   end
 
@@ -127,6 +126,7 @@ ActiveRecord::Schema.define(version: 2021_04_04_070649) do
     t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "nickname"
     t.string "name"
     t.boolean "admin", default: false
     t.string "authentication_token", limit: 30

@@ -1,13 +1,11 @@
 <h1>All office hours here</h1>
 
-<%# link_to “Sign in with Google”, user_google_oauth2_omniauth_authorize_path %>
+<%= month_calendar(events: @office_hours, end_attribute: :end_time) do |date, office_hours| %>
+  <%= date %>
 
-<ul>
-  <% @office_hours.each do |oh| %>
-   <li>
-    <%= oh.date %>
-    <%= oh.start_time.strftime('%H:%M') %>
-    <%= oh.end_time.strftime('%H:%M') %>
-   </li>
+  <% office_hours.each do |office_hour| %>
+    <div class="meeting">
+      <p><%= office_hour.start_time.strftime('%H:%M') %> - <%= office_hour.end_time.strftime('%H:%M') %></p>
+    </div>
   <% end %>
-</ul>
+<% end %>
