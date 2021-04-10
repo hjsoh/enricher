@@ -28,9 +28,6 @@ gem 'redis', '~> 4.0'
 # Token for API
 gem 'simple_token_authentication'
 
-# gem for gmail
-gem 'dotenv-rails', groups: [:development, :test]
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

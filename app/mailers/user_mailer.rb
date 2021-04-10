@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
     @user = user
 
 
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    mail(to: @user.email, subject: 'Welcome to Enri\'cher')
   end
     # emails = ['wzhikai@gmail.com']
     # # @users = ['wzhikai@gmail.com'] # Instance variable => available in view
