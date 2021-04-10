@@ -1,11 +1,13 @@
 <h1>All office hours here</h1>
 
-<%= month_calendar(events: @office_hours, end_attribute: :end_time) do |date, office_hours| %>
-  <%= date %>
+<div class="calendar-container">
+  <%= month_calendar(events: @office_hours, end_attribute: :end_time) do |date, office_hours| %>
+    <%= date %>
 
-  <% office_hours.each do |office_hour| %>
-    <div class="meeting">
-      <p><%= office_hour.start_time.strftime('%H:%M') %> - <%= office_hour.end_time.strftime('%H:%M') %></p>
-    </div>
+    <% office_hours.each do |office_hour| %>
+      <div class="meeting">
+        <small><%= office_hour.time unless office_hour.multi_days? %></p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
