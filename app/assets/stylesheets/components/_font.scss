@@ -1,3 +1,16 @@
-h1, h2, h3, h4, p {
-  font-family: 'Open Sans', sans-serif;
+h1, h2, h3, h4, h5, p {
+  font-family: 'Roboto', sans-serif;
+}
+
+.badge-logo {
+  background-color: $rich-purple;
+  color: white;
+}
+
+.card .fas {
+  color: $rich-purple;
+}
+
+.info-header {
+  color: $rich-purple;
 }

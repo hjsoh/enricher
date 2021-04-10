@@ -8,7 +8,7 @@
             <% end %>
           </div>
           <div class="col-12 col-lg-4 text-right">
-          <small class="text-muted">Created at <%= ticket.created_at %></small>
+          <small class="text-muted">Created on <%= ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
           </div>
         </div>
         <p class="card-text">Asked by: <%= ticket.user.name %></p>
