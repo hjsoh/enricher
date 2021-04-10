@@ -29,6 +29,8 @@ class ClassroomsController < ApplicationController
   def show
     @classroom = Classroom.find(params[:id])
     @message = Message.new()
+    @announcements = @classroom.announcements
+    @tickets = @classroom.tickets
   end
 
   def edit

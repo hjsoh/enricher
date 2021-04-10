@@ -20,20 +20,10 @@
     <div class="col col-lg-9">
       <!-- ANNOUNCEMENTS -->
         <h4 class="p-2">Announcements:</h4>
-        <div class="list-group">
-          <% @classroom.announcements.each do |anc| %>
-              <div class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1"><%= anc.title %></h5>
-                  <small><%= anc.created_at %></small>
-                </div>
-                <p class="mb-1"><%= anc.content %></p>
-              </div>
-          <% end %>
-        </div>
+        <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
       <!-- TICKETS -->
         <h4 class="p-2">Tickets:</h4>
-        <%= render @classroom.tickets %>
+        <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
       <!-- CHATROOM MESSAGES -->
         <h4 class="p-2">Chatroom:</h4>
         <div id="messages" data-classroom-id="<%= @classroom.id %>">
