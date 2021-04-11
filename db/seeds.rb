@@ -155,8 +155,8 @@ puts "Seeding 30 office hours per teacher"
 teachers = User.all.where(role:'teacher')
 
 teachers.each do |teacher|
-    30.times do
-    start_time = Faker::Time.between_dates(from: '2021-01-01', to: Date.today, period: :morning)
+  30.times do
+    start_time = Faker::Time.between_dates(from: '2021-01-01', to: Date.today, period: :afternoon)
     oh = teacher.office_hours.build(
       start_time: start_time,
       end_time: start_time + 15.minutes
@@ -168,18 +168,51 @@ end
 puts "Successfully seeded 30 office hours per teacher"
 
 
+puts "Seeding 30 office hours for test teacher"
+
+30.times do
+  start_time = Faker::Time.between_dates(from: '2021-01-01', to: Date.today, period: :afternoon)
+  oh = OfficeHour.new(
+    start_time: start_time,
+    end_time: start_time + 15.minutes
+    )
+  oh.user = User.find_by(email: "teacher_test@hotmail.com")
+  oh.save!
+end
+
+puts "Successfully seeded 30 office hours for test teacher"
+
+
 puts "Seeding 100 appointments"
 
-oh = OfficeHour.all.limit(100)
+oh = OfficeHour.all.sample(100)
 
 oh.each do |element|
+  parent = User.all.where(role:'parent').sample
   Appointment.create(
-    user: User.all.where(role:'parent').sample,
-    office_hour: element
+    user: parent,
+    office_hour: element,
+    name: "#{parent.name} : #{element.user.name}"
     )
 end
 
 puts "Successfully seeded 100 appointments"
+
+
+puts "Seeding 20 appointments for test teacher"
+
+oh = User.find_by(email: "teacher_test@hotmail.com").office_hours.sample(20)
+
+oh.each do |element|
+  parent = User.all.where(role:'parent').sample
+  Appointment.create(
+    user: parent,
+    office_hour: element,
+    name: "#{parent.name} : #{User.find_by(email: "teacher_test@hotmail.com").name}"
+    )
+end
+
+puts "Successfully seeded 20 appointments for test teacher"
 
 
 puts "Seeding 10 announcements"
