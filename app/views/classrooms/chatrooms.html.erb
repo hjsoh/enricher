@@ -2,12 +2,16 @@
 
 <div style="display: grid; grid-template-columns: 1fr 4fr;">
   
-    <div class="bg-dark container box-one ">
+    <div class="bg-dark container box-one; ">
     
       <h4 style="color:white;">Classrooms</h4>
       <% @classrooms.each do |c|%>
-        <p><%= link_to "# #{c.name}", show_chat_path(c) %></p>
+      <% if !c.messages.empty? %>
+         <p><%= link_to "# #{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
+      <% else %>
+        <p><%= link_to "# #{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
       <% end %>
+    <% end %>
     </div>
 
 
