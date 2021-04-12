@@ -1,7 +1,7 @@
 class OfficeHoursController < ApplicationController
   def index
     start_date = params.fetch(:start_time, Date.today).to_date
-    @office_hours = policy_scope(OfficeHour).where(start_time: start_date.beginning_of_month.beginning_of_week..start_date.end_of_month.end_of_week)
+    @office_hours = policy_scope(OfficeHour)
   end
 
   def new
@@ -11,6 +11,7 @@ class OfficeHoursController < ApplicationController
 
   def create
     @office_hour = OfficeHour.new(office_hour_params)
+    @office_hour.end_time = @office_hour.start_time + 15.minutes
     @office_hour.user = current_user
     authorize @office_hour
     if @office_hour.save
@@ -27,7 +28,7 @@ class OfficeHoursController < ApplicationController
 
   def update
     @office_hour = OfficeHour.find(params[:id])
-    @office_hour.user = current_user
+    @office_hour.end_time = @office_hour.start_time + 15.minutes
     authorize @office_hour
     if @office_hour.save
       redirect_to office_hours_path, alert: "Edited office hour"
