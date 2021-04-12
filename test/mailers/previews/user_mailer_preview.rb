@@ -9,7 +9,7 @@ class UserMailerPreview < ActionMailer::Preview
     # row = 'row'
     # UserMailer.with(user: User.last).welcome_email(row)
 
-    UserMailer.welcome_email(User.last).deliver_now
+    UserMailer.welcome_email(User.find_by(id: 112)).deliver_now
     #UserMailer.with(email: 'wzhikai@gmail.com').welcome_email
   end
 

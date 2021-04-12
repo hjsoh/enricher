@@ -2,9 +2,6 @@ class User < ApplicationRecord
   # Token
   acts_as_token_authenticatable
 
-  # after creation, send email
-  after_create :send_welcome_email
-
   attr_accessor :allow_blank_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -73,8 +70,4 @@ class User < ApplicationRecord
   end
 
   private
-
-  def send_welcome_email
-    UserMailer.with(user: self).welcome.deliver_now
-  end
 end
