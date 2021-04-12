@@ -13,4 +13,26 @@ h1, h2, h3, h4, h5, p {
 
 .info-header {
   color: $primary;
+  font-weight: bold;
+}
+
+.author {
+ color: $primary;
+ font-weight: bold;
+}
+
+.comment-container {
+  display: flex;
+}
+
+.simple_form.new_comment {
+  width: 100%;
+}
+
+.info-header .row .col-8 {
+  margin-bottom: 20px;
+}
+
+.info-header .row .col {
+  margin-bottom: 20px;
 }

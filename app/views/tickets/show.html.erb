@@ -1,78 +1,69 @@
 <div class="container py-3">
   <div class="row">
     <div class="col-md-6">
-      <div class="row card p-3">
-        <h5>Question</h5>
+      <div class="row card p-3 mb-2 mr-1">
+        <h5 class="info-header">Question</h5>
         <p class="card-text"><%= @ticket.question %></p>
+        <%= link_to ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary my-2"  do %>
+          <i class="fas fa-trash" style="color:white"></i> Delete this ticket
+        <% end %>
+        <%= link_to "Go back to all tickets", tickets_path, class: 'btn btn-primary' %>
       </div>
-      <div class="row card p-3">
-        <h5>Details</h5>
+      <div class="row card p-3 mb-2 mr-1">
+        <h5 class="info-header">Details</h5>
+        <div class="row">
+          <div class="col mb-1"><strong>Asked by: </strong></div>
+          <div class="col-8"><%= @ticket.user.name %></div>
+          <div class="col mb-1"><strong>Student:</strong></div>
+          <div class="col-8"><% @names_array.each do |name| %><%= name %>
+            <% end %></div>
+          <div class="col mb-1"><strong>Created on: </strong></div>
+          <div class="col-8"><%= @ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></div>
+          <div class="col mb-1"><strong>Category: </strong></div>
+          <div class="col-8"><%= @ticket.category_name %></div>
+          <div class="col mb-1"><strong>Status: </strong></div>
+          <div class="col-8">
+            <% if @ticket.status == "Not yet started" %>
+              <span class="badge badge-danger">Not started</span>
+            <% elsif @ticket.status == "In progress" %>
+              <span class="badge badge-primary">In progress</span>
+            <% elsif @ticket.status == "Completed" %>
+              <span class="badge badge-success">Completed</span>
+            <% end %>
+          </div>
+          <div class="col mb-1"><strong>Privacy: </strong></div>
+          <div class="col-8">
+            <% if @ticket.is_private? %>
+              <span class="badge badge-dark">Private</span>
+            <% else %>
+              <span class="badge badge-light">Public</span>
+            <% end %></div>
+        </div>
       </div>
     </div>
-    <div class="col-md-6 card p-3">
-      <h5>Comments</h5>
+    <div class="col-md-6 card p-3 mb-2">
+      <h5 class="info-header">Comments</h5>
+      <div class="col">
       <div class="row">
         <% @ticket.comments.each do |comment| %>
-           <div class="card">
-           Content: <%= comment.content %>
-           <br />
-           Author: <%= comment.author.name %>
-           <br />
+           <div class="card w-100 p-3 mb-2">
+            <div class="d-flex justify-content-between">
+              <p class="card-text author"><%= comment.author.name %></p>
+              <small class="card-text"><%= comment.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
+            </div>
+           <p class="card-text"><%= comment.content %></p>
            </div>
         <% end %>
-        <%= link_to 'Add a comment', new_ticket_comment_path(@ticket) %>
+      </div>
+      <div class="row pt-4">
+        <%= simple_form_for [ @ticket, @comment ] do |f| %>
+          <%= f.input :content, label: false %>
+          <%= f.submit "Add a comment", class: "btn btn-primary my-2", "data-disable-with" => "Commenting.." %>
+        <% end %>
+      </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<!--
-<div class="container">
-  <h1 class="text-center">This is the ticket you are looking for</h1>
-      <h3 class="text-center">Parent:<%= @ticket.user.name %></h1>
-      <h3 class="text-center">Teacher:<%= @ticket.classroom.user.name %></h1>
-    <%= link_to "Go back to all tickets", tickets_path %>
-</div>
-
-<div class="container">
-
-
-  <div class="container">
-  <%= simple_form_for [ @ticket ] do |f| %>
-
-    <%= f.label :question %>
-    <%= f.text_field :question %>
-    <%= f.label :category_name %>
-    <%= f.text_field :category_name %>
-    <%= f.input :is_private, as: :radio_buttons %>
-    <%= f.input :status %>
-    <%= f.submit "Update ticket", class: "btn btn-primary" %>
-  <% end %>
-  </div>
-  <%= link_to "Delete this ticket", ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }  %>
-</div>
-
-<div class="container">
-
-  <h3>Add a comment to the ticket</h1>
-
-
-
-  <%= link_to 'Add a comment', new_ticket_comment_path(@ticket) %>
-
-  <%#= render :partial => 'comments/new' %>
-
-    <% @ticket.comments.each do |comment| %>
-       <div class="card">
-       Content: <%= comment.content %>
-       <br />
-       Author: <%= comment.author.name %>
-       <br />
-       </div>
-    <% end %>
-</div>
- -->
-
 
 

@@ -1,11 +1,10 @@
 <% @tickets.each do |ticket| %>
+  <%= link_to ticket_path(ticket), class: 'cardlink' do %>
     <div class="card mt-2 mb-2">
       <div class="card-body">
         <div class="row">
           <div class="col-12 col-lg-8">
-            <%= link_to ticket_path(ticket), class: 'cardlink' do %>
               <h5 class="card-title"><%= ticket.question %></h5>
-            <% end %>
           </div>
           <div class="col-12 col-lg-4 text-right">
           <small class="text-muted">Created on <%= ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
@@ -16,9 +15,9 @@
       <div class="card-footer">
         <small class="text-muted">
           <% if ticket.is_private? %>
-            <span class="badge badge-pill badge-dark">Private</span>
+            <span class="badge badge-dark">Private</span>
           <% else %>
-            <span class="badge badge-pill badge-light">Public</span>
+            <span class="badge badge-light">Public</span>
           <% end %>
             |  Category: <%= ticket.category_name %>
         </small>
@@ -33,4 +32,5 @@
         </small>
       </div>
     </div>
+  <% end %>
 <% end %>
