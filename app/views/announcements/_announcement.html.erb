@@ -1,18 +1,27 @@
-<div class="list-group">
-  <% @announcements.each do |anc| %>
-      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1"><%= anc.title %></h5>
-          <small><%= anc.created_at %></small>
+<% announcements.each do |anc| %>
+  <div class="card mt-2 mb-2">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <h5 class="card-title"><%= anc.title %></h5>
         </div>
-        <p class="mb-1"><%= anc.content %></p>
-        <ul class="list-inline">
-          <small>Posted in:
-          <% anc.classroom_announcements.each do |x| %>
-            <li class="list-inline-item"><%= x.classroom.name %></li>
-          <% end %>
-          </small>
-        </ul>
-      </a>
-  <% end %>
-</div>
+        <div class="col-12 col-lg-4 text-right">
+          <small class="text-muted">Posted at <%= anc.created_at %></small>
+        </div>
+      </div>
+        <p class="card-text"><%= anc.content %></p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Posted in:
+        <% anc.classroom_announcements.each do |x| %>
+          <li class="list-inline-item"><%= x.classroom.name %></li>
+        <% end %>
+      </small>
+      <small class="text-muted">
+        <%= link_to announcement_path(anc), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
+      </small>
+    </div>
+  </div>
+<% end %>

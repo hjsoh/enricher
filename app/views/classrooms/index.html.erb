@@ -2,15 +2,4 @@
   <h1>All classrooms</h1>
 </div>
 
-<div class="album py-2 px-2 bg-light">
-  <div class="cards mt-3" style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap:10px">
-  <% @classrooms.each do |classroom| %>
-    <div class="card-body">
-      <h5 class="card-title"><%= link_to classroom.name, classroom_path(classroom) %></h5>
-      <h6 class="card-subtitle mb-2 text-muted"></h6>
-      <p class="card-text"><%= classroom.academic_year %></p>
-      <% link_to "Go to classroom", chatrooms_path(classroom) %>
-    </div>
-  <% end %>
-  </div>
-</div>
+<%= render 'classroom' %>

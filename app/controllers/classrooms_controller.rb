@@ -29,6 +29,8 @@ class ClassroomsController < ApplicationController
   def show
     @classroom = Classroom.find(params[:id])
     @message = Message.new()
+    @announcements = @classroom.announcements
+    @tickets = @classroom.tickets
   end
 
   def edit
@@ -54,15 +56,24 @@ class ClassroomsController < ApplicationController
 
   def chatrooms
     # find all classrooms by this user
-    @classrooms = Classroom.all
+    if current_user.role == 'teacher'
+      @classrooms = current_user.classrooms  
+    else
+      @classrooms = current_user.student_classrooms
+    end
     authorize(@classrooms)
     @message = Message.new
   end
 
   def show_chat
-    @classrooms = Classroom.all
-    authorize(@classrooms)
+    if current_user.role == 'teacher'
+      @classrooms = current_user.classrooms  
+    else
+      @classrooms = current_user.student_classrooms
+    end
+
     @classroom = Classroom.find(params[:classroom_id])
+    authorize(@classroom)
     @message = Message.new
   end
 

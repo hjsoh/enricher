@@ -2,7 +2,6 @@ class TicketsController < ApplicationController
   include Pundit
 
   def index
-
     if params[:query].present?
       @tickets = Ticket.global_search(params[:query])
       skip_policy_scope
