@@ -1,15 +1,27 @@
 <div class="container py-3">
   <div class="row">
     <div class="col-md-6">
-      <div class="row card p-2">
+      <div class="row card p-3">
+        <h5>Question</h5>
+        <p class="card-text"><%= @ticket.question %></p>
+      </div>
+      <div class="row card p-3">
         <h5>Details</h5>
       </div>
-      <div class="row card p-2">
-        <h5>Question</h5>
-      </div>
     </div>
-    <div class="col-md-6 card p-2">
+    <div class="col-md-6 card p-3">
       <h5>Comments</h5>
+      <div class="row">
+        <% @ticket.comments.each do |comment| %>
+           <div class="card">
+           Content: <%= comment.content %>
+           <br />
+           Author: <%= comment.author.name %>
+           <br />
+           </div>
+        <% end %>
+        <%= link_to 'Add a comment', new_ticket_comment_path(@ticket) %>
+      </div>
     </div>
   </div>
 </div>
