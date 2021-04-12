@@ -5,14 +5,14 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
 
-  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update ]
+  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update, :new, :create ]
   resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
 
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
     resources :messages, only: :create
     resources :announcements, only: [ :show, :new, :create, :destroy ]
-    
+
     member do
       get :roster
       patch :roster_update

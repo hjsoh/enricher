@@ -5,16 +5,30 @@
     <%= date %>
 
     <% office_hours.each do |office_hour| %>
-      <div class="meeting">
-        <%=
-          if office_hour.appointment.nil?
-            'Available'
-          else
-            office_hour.appointment.name
-          end
-        %></p>
-        <small><%= office_hour.time unless office_hour.multi_days? %></small>
+      <div class="meeting <%= office_hour.appointment.nil? ? 'avail-meeting' : 'taken-meeting' %>" data-toggle="collapse" href="#oh-slot">
+        <p>
+          <% if office_hour.appointment.nil? %>
+            Available
+          <% else %>
+            <%= link_to(office_hour.appointment.name, edit_office_hour_path(office_hour)) %>
+          <% end %>
+        </p>
+        <small class="collapse" id="oh-slot"><%= office_hour.time unless office_hour.multi_days? %></small>
       </div>
     <% end %>
   <% end %>
+</div>
+
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button">
+    Link with href
+  </a>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample">
+    Button with data-target
+  </button>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
 </div>

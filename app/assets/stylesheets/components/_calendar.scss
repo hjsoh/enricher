@@ -9,13 +9,19 @@
 
 .meeting {
   color: white;
-  padding: 8px 24px;
+  padding: 0px 24px;
   border-radius: 4px;
-  background: #1EDD88;
   transition: background 0.3s ease;
 }
 
+.taken-meeting {
+  background: #1EDD88;
+}
+
+.avail-meeting {
+  background: #83919E;
+}
+
 .meeting:hover {
-  background: #1BCB7F;
-  color: white;
+  background: #5E81F4;
 }
