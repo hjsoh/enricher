@@ -37,5 +37,9 @@ document.addEventListener('turbolinks:load', () => {
   initClassroomCable();
 });
 
+document.addEventListener('turbolinks:render', (e) => {
+  e.preventDefault();
+})
+
 //flatpickr
 initFlatpickr();

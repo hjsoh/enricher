@@ -2,7 +2,6 @@ class TicketsController < ApplicationController
   include Pundit
 
   def index
-
     if params[:query].present?
       @tickets = Ticket.global_search(params[:query])
       skip_policy_scope
@@ -47,6 +46,11 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.find(params[:id])
     authorize @ticket
+    students = @ticket.user.students
+    @names_array = []
+    students.each { |s| @names_array << s.name }
+
+    @comment = Comment.new
   end
 
   def update

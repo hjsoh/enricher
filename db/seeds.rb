@@ -32,6 +32,17 @@ teacher_test = User.create!(
 
 puts "Successfully created test account for teacher"
 
+puts "Creating 10 test classrooms for teacher_test"
+  10.times do
+  classroom = Classroom.new(
+    name: "#{(1..6).to_a.sample}#{('A'..'H').to_a.sample} - #{['English', 'Chinese', 'Maths', 'Science'].sample}",
+    is_active: [true, false].sample,
+    academic_year: "AY-#{(2016..2021).to_a.sample}"
+  )
+  classroom.user = User.find_by(email: "teacher_test@hotmail.com")
+  classroom.save!
+  end
+
 
 puts "Creating 50 students"
 

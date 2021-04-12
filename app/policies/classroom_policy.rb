@@ -4,7 +4,7 @@ class ClassroomPolicy < ApplicationPolicy
       if user.admin == true
         scope.all
       elsif user.role == "teacher"
-        scope.where(user:user)
+        scope.where(user: user)
       elsif user.role == 'parent'
         user.student_classrooms
       end
