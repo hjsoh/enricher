@@ -2,10 +2,10 @@
   <h3 style="color:white">#<%= classroom.name %></h3>
 </div>
 
-<div class="container" id="messages" data-classroom-id="<%= classroom.id %>">
+<div class="message-container" id="messages" data-classroom-id="<%= classroom.id %>">
 
   <% classroom.messages.each do |message| %>
-    <div class="message-container" id="message-<%= message.id %>">
+    <div class="container" id="message-<%= message.id %>">
       <i class="author">
         <strong><%= message.user.name %></strong>
         <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
