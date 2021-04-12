@@ -4,7 +4,7 @@
     <%= date %>
 
     <% office_hours.each do |office_hour| %>
-      <div class="meeting <%= office_hour.appointment.nil? ? 'avail-meeting' : 'taken-meeting' %>" data-toggle="collapse" href="#oh-slot">
+      <div class="meeting <%= office_hour.appointment.nil? ? 'avail-meeting' : 'taken-meeting' %>" data-toggle="collapse" href="#oh-slot-<%=office_hour.id%>">
         <p>
           <% if office_hour.appointment.nil? %>
             <%= link_to('Available', edit_office_hour_path(office_hour)) %>
@@ -12,7 +12,7 @@
             <%= link_to(office_hour.appointment.name, edit_office_hour_path(office_hour)) %>
           <% end %>
         </p>
-        <small class="collapse" id="oh-slot"><%= office_hour.time unless office_hour.multi_days? %></small>
+        <small class="collapse" id="oh-slot-<%=office_hour.id%>"><%= office_hour.time unless office_hour.multi_days? %></small>
       </div>
     <% end %>
   <% end %>
