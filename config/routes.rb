@@ -3,7 +3,23 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
+
   # devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  # root to: "devise/sessions#new"
+
+  # devise_scope :user do
+  # end
+
+  devise_scope :user do
+    authenticated :user do
+      root 'pages#home', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+
 
   #route for welcome email on register
   devise_for :users, :controllers => { :registrations => "registrations_added" }
