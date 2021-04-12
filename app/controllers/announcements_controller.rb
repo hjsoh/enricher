@@ -36,6 +36,7 @@ class AnnouncementsController < ApplicationController
 
   def destroy
     @announcement = Announcement.find(params[:id])
+    authorize @announcement
     @announcement.destroy
     redirect_to announcements_path
   end

@@ -24,6 +24,6 @@ class AnnouncementPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user == user # Only creator of announcement can delete it
+     user.classroom_ids.any? { |id| record.classroom_ids.include?(id) }
   end
 end

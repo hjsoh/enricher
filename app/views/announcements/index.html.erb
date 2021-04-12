@@ -11,4 +11,4 @@
 <%= render "filter" %>
 
 <!-- list all -->
-<%= render @announcement %>
+<%= render partial: "announcements/announcement", locals: { announcements: @announcements} %>
