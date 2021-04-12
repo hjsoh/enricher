@@ -3,9 +3,9 @@ class TicketPolicy < ApplicationPolicy
     def resolve
       # need to filter for teacher or parent owner
       if user.admin == true
-        scope.all
+        Ticket.all
       else
-        scope.where(user: user)
+        user.tickets
       end
     end
   end

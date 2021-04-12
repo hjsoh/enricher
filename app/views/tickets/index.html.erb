@@ -1,7 +1,5 @@
 <div class="container p-2">
   <h1>View all your tickets</h1>
-</div>
-<div class="container">
 <h2>Search tickets by name / category</h2>
 
   <%= form_tag tickets_path, method: :get do %>
@@ -13,8 +11,7 @@
     <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
 
-<%= render partial: 'ticket' %>
-
+<%= render 'ticket', locals: { tickets: @tickets } %>
 </div>
 
 
