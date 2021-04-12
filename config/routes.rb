@@ -3,7 +3,26 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  # devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+
+  # root to: "devise/sessions#new"
+
+  # devise_scope :user do
+  # end
+
+  devise_scope :user do
+    authenticated :user do
+      root 'pages#home', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+
+
+  #route for welcome email on register
+  devise_for :users, :controllers => { :registrations => "registrations_added" }
 
   resources :office_hours, only: [ :index, :show, :edit, :destroy, :update ]
   resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
@@ -12,7 +31,7 @@ Rails.application.routes.draw do
     resources :tickets, only: [ :index, :show, :new, :create]
     resources :messages, only: :create
     resources :announcements, only: [ :show, :new, :create, :destroy ]
-    
+
     member do
       get :roster
       patch :roster_update

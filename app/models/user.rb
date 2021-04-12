@@ -1,10 +1,15 @@
 class User < ApplicationRecord
   # Token
   acts_as_token_authenticatable
+  attr_accessor :allow_blank_password
+
 
   attr_accessor :allow_blank_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  # teachers r/s
+  has_many :classrooms
 
   # for the parent ticket
   # attr_accessor :email, :password, :password_confirmation
@@ -37,7 +42,6 @@ class User < ApplicationRecord
   has_many :student_announcements, through: :student_classrooms, source: :announcements
 
   # teachers r/s
-
   def students_in_classrooms
     self.classrooms.students
   end
@@ -56,6 +60,7 @@ class User < ApplicationRecord
     user
   end
 
+    # Called by Devise to enable/disable password presence validation
   def password_required?
     allow_blank_password ? false : super
   end
@@ -68,4 +73,6 @@ class User < ApplicationRecord
   def after_import_save(record)
     # UserMailer.with(user: self).welcome_reset_password_instructions.deliver_now
   end
+
+  private
 end
