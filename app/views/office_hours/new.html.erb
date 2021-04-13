@@ -1,0 +1,6 @@
+<h1>Create new office hour</h1>
+
+<%= simple_form_for @office_hour do |f| %>
+  <%= f.input :start_time, :minute_step => 15 %>
+  <%= f.button :submit, class:"btn btn-primary btn-block"%>
+<% end %>

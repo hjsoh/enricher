@@ -30,7 +30,7 @@ teacher_test = User.create!(
   role: 'teacher'
   )
 
-puts "Finished creating test account for teacher"
+puts "Successfully created test account for teacher"
 
 puts "Creating 10 test classrooms for teacher_test"
   10.times do
@@ -52,7 +52,7 @@ puts "Creating 50 students"
   )
 end
 
-puts "Finished 50 students"
+puts "Successfully created 50 students"
 
 
 puts "Creating 50 parents"
@@ -66,7 +66,7 @@ puts "Creating 50 parents"
   )
 end
 
-puts "Finished creating 50 parent accounts"
+puts "Successfully created 50 parent accounts"
 
 
 puts "Linking students to parents"
@@ -77,13 +77,13 @@ Student.all.each do |student|
   end
 end
 
-puts "Finished linking students to parents"
+puts "Successfully linked students to parents"
 
 
 puts "Creating 50 teachers"
 
 50.times do |index|
-  parent = User.create!(
+  teacher = User.create!(
     email: "teacher#{index + 1}@gmail.com",
     password: '123456',
     name: Faker::Name.unique.name,
@@ -91,7 +91,7 @@ puts "Creating 50 teachers"
   )
 end
 
-puts "Finished creating 50 teacher accounts"
+puts "Successfully created 50 teacher accounts"
 
 
 puts "Create 60 classrooms"
@@ -106,7 +106,22 @@ puts "Create 60 classrooms"
   classroom.save!
 end
 
-puts "Create 60 classrooms attributed with teachers"
+puts "Successfully created 60 classrooms attributed with teachers"
+
+
+puts "Creating 10 test classrooms for teacher_test"
+
+  10.times do
+  classroom = Classroom.new(
+    name: "#{(1..6).to_a.sample}#{('A'..'H').to_a.sample} - #{['English', 'Chinese', 'Maths', 'Science'].sample}",
+    is_active: [true, false].sample,
+    academic_year: "AY-#{(2016..2021).to_a.sample}"
+  )
+  classroom.user = User.find_by(email: "teacher_test@hotmail.com")
+  classroom.save!
+  end
+
+puts "Successfully created 10 test classrooms for teacher_test"
 
 
 puts "Linking student to classroom"
@@ -117,7 +132,7 @@ Student.all.each do |student|
   end
 end
 
-puts "Finished linking student to classroom"
+puts "Successfully linked student to classroom"
 
 
 puts "Seeding 100 tickets"
@@ -146,34 +161,70 @@ end
 puts "Successfully seeded 100 tickets"
 
 
-puts "Seeding 100 office hours"
+puts "Seeding 30 office hours per teacher"
 
 teachers = User.all.where(role:'teacher')
 
 teachers.each do |teacher|
-  oh = teacher.office_hours.build(
-    date: Faker::Date.between(from: '2020-01-01', to: '2021-03-31'),
-    start_time: '14:00',
-    end_time: '14:30'
+  30.times do
+    start_time = Faker::Time.between_dates(from: '2021-01-01', to: Date.today, period: :afternoon)
+    oh = teacher.office_hours.build(
+      start_time: start_time,
+      end_time: start_time + 15.minutes
+      )
+    oh.save!
+  end
+end
+
+puts "Successfully seeded 30 office hours per teacher"
+
+
+puts "Seeding 30 office hours for test teacher"
+
+30.times do
+  start_time = Faker::Time.between_dates(from: '2021-01-01', to: Date.today, period: :afternoon)
+  oh = OfficeHour.new(
+    start_time: start_time,
+    end_time: start_time + 15.minutes
     )
+  oh.user = User.find_by(email: "teacher_test@hotmail.com")
   oh.save!
 end
 
-puts "Successfully seeded 100 office hours"
+puts "Successfully seeded 30 office hours for test teacher"
 
 
-puts "Seeding 50 appointments"
+puts "Seeding 100 appointments"
 
-oh = OfficeHour.all.limit(50)
+oh = OfficeHour.all.sample(100)
 
 oh.each do |element|
+  parent = User.all.where(role:'parent').sample
   Appointment.create(
-    user: User.all.where(role:'parent').sample,
-    office_hour: element
+    user: parent,
+    office_hour: element,
+    name: "#{parent.name} : #{element.user.name}"
     )
 end
 
-puts "Successfully seeded 50 appointments"
+puts "Successfully seeded 100 appointments"
+
+
+puts "Seeding 20 appointments for test teacher"
+
+oh = User.find_by(email: "teacher_test@hotmail.com").office_hours.sample(20)
+
+oh.each do |element|
+  parent = User.all.where(role:'parent').sample
+  Appointment.create(
+    user: parent,
+    office_hour: element,
+    name: "#{parent.name} : #{User.find_by(email: "teacher_test@hotmail.com").name}"
+    )
+end
+
+puts "Successfully seeded 20 appointments for test teacher"
+
 
 puts "Seeding 10 announcements"
 
@@ -199,9 +250,3 @@ puts "Seeding 10 announcements"
 end
 
 puts "Successfully seeded 10 announcements"
-
-
-
-
-
-

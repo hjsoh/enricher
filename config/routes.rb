@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   #route for welcome email on register
   devise_for :users, :controllers => { :registrations => "registrations_added" }
 
-  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update ]
+  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update, :new, :create ]
   resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
 
   resources :classrooms do
