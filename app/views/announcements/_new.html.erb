@@ -1,12 +1,13 @@
 <div class="card p-4 mt-2">
   <div class="container">
-    <h1>Post new announcement</h1>
+    <h1>Post a new announcement</h1>
   </div>
 
   <%= simple_form_for @announcement do |f| %>
     <%= f.input :title, label: 'Title', error: 'Please include a title.' %>
     <%= f.input :content, label: 'Content' %>
     <%= f.association :classrooms,
+                      label: 'Selected classes',
                       collection: current_user.classrooms,
                       as: :check_boxes,
                       input_html: { class: "tag-selector" },
