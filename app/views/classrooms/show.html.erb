@@ -31,7 +31,7 @@
               <%= ta.user.name %>
             </div>
             <div class="col  text-center">
-              <%= ta.office_hour.date %>
+              <%= ta.office_hour.start_time.strftime('%F') %>
             </div>
             <div class="col  text-center">
              <%= ta.office_hour.start_time.strftime('%H:%M') %> to <%= ta.office_hour.end_time.strftime('%H:%M') %>
