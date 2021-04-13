@@ -1,8 +1,5 @@
-  <div class="input-group d-inline-flex">
+  <div class="container-fluid">
     <%= form_tag(announcements_path, :method => "get") do %>
       <%= search_field_tag :search, params[:search], placeholder: "Filter", class: "form-control" %>
-      <div class="input-group-btn">
-        <%= button_tag "Search", class:"btn btn-info glyphicon glyphicon-search ml-2",:name => nil%>
-      </div>
     <% end %>
   </div>

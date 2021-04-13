@@ -1,25 +1,27 @@
-<h1>enri'CHER chatrooms</h1>
+<div class="container">
+  <h1 class='text-primary'>enri'CHER chatrooms</h1>
 
-<div style="display: grid; grid-template-columns: 1fr 4fr;">
-  <div class="bg-dark container box-one">
-    <h4 style="color:white;">Classrooms</h4>
-    <% @classrooms.each do |c|%>
-      <% if !c.messages.empty? %>
-        <p><%= link_to "# #{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
-      <% else %>
-        <p><%= link_to "# #{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
-     <% end %>
-    <% end %>
-  </div>
-
-  <div class="chat rounded vh-90">
-      <%= render "messages", classroom: @classroom %>
-      <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
-          <div class="chat-footer d-flex container">
-            <%= f.input :content, label: false, placeholder: "Message # #{@classroom.name}" %>
-            <%= f.submit "Send", class: 'btn btn-primary chat-input' %>
-          </div>
+  <div style="display: grid; grid-template-columns: 1fr 4fr;">
+    <div class="bg-dark container box-one">
+      <h4 style="color:white;">Classrooms</h4>
+      <% @classrooms.each do |c|%>
+        <% if !c.messages.empty? %>
+          <p><%= link_to "# #{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
+        <% else %>
+          <p><%= link_to "# #{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
+       <% end %>
       <% end %>
+    </div>
+
+    <div class="chat rounded vh-90">
+        <%= render "messages", classroom: @classroom %>
+        <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
+            <div class="chat-footer d-flex container">
+              <%= f.input :content, label: false, placeholder: "Message # #{@classroom.name}" %>
+              <%= f.submit "Send", class: 'btn btn-primary chat-input' %>
+            </div>
+        <% end %>
+    </div>
   </div>
 </div>
 

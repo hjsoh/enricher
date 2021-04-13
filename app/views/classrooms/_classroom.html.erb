@@ -1,6 +1,6 @@
 <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 10px;">
   <% @classrooms.each do |classroom| %>
-    <div class="card classroom-card">
+    <div class="card card-select">
       <div class="card-body">
         <h5 class="card-title"><%= link_to classroom.name, classroom_path(classroom) %></h5>
         <p class="card-text"><%= classroom.academic_year %></p>

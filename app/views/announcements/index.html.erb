@@ -11,10 +11,10 @@
       <h1 class='text-primary'>View all my announcements</h1>
     </div>
 
-    <div class="container">
       <!-- filter -->
       <%= render "filter" %>
 
+    <div class="container">
       <!-- list all -->
       <%= render partial: "announcements/announcement", locals: { announcements: @announcements} %>
     </div>
