@@ -57,7 +57,7 @@ class ClassroomsController < ApplicationController
   def chatrooms
     # find all classrooms by this user
     if current_user.role == 'teacher'
-      @classrooms = current_user.classrooms  
+      @classrooms = current_user.classrooms
     else
       @classrooms = current_user.student_classrooms
     end
@@ -67,7 +67,7 @@ class ClassroomsController < ApplicationController
 
   def show_chat
     if current_user.role == 'teacher'
-      @classrooms = current_user.classrooms  
+      @classrooms = current_user.classrooms
     else
       @classrooms = current_user.student_classrooms
     end
