@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+ # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do
       @user = User.create(create_param)
-      if @user.save
+      if @user.persisted? ||@user.save
         UserMailer.welcome_email(@user).deliver_now
       else
         render :new
