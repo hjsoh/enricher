@@ -1,23 +1,23 @@
-<h1>enri'CHER chatrooms</h1>
+<div class="container">
+  <h1 class='text-primary'>enri'CHER chatrooms</h1>
 
-<div style="display: grid; grid-template-columns: 1fr 4fr;">
-  
-    <div class="bg-dark container box-one; ">
-    
-      <h4 style="color:white;">Classrooms</h4>
-      <% @classrooms.each do |c|%>
-      <% if !c.messages.empty? %>
-         <p><%= link_to "# #{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
-      <% else %>
-        <p><%= link_to "# #{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
+  <div style="display: grid; grid-template-columns: 1fr 4fr;">
+
+      <div class="bg-dark container box-one">
+
+        <h4 class="sticky-top text-white">Classrooms</h4>
+        <% @classrooms.each do |c|%>
+        <% if !c.messages.empty? %>
+           <p><%= link_to "# #{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
+        <% else %>
+          <p><%= link_to "# #{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
+        <% end %>
       <% end %>
-    <% end %>
-    </div>
+      </div>
 
-
-  <div class="chat rounded vh-100">
-    Select a classroom to begin your chat
-    
+    <div class="chat rounded vh-90">
+      Select a classroom to begin your chat
     </div>
+  </div>
 </div>
 

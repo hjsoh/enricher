@@ -1,0 +1,63 @@
+<div class="col-sm-4">
+    <div class="card card-select">
+      <%= link_to roster_classroom_path(@classroom), class: 'cardlink' do %>
+        <div class="card-body d-flex">
+          <div class="col">
+            <h1 class="display-5"><i class="fas fa-users"></i></h1>
+          </div>
+          <div class="col">
+            <div class="row">
+              <h4><%= @classroom.enrollments.count %></h4>
+            </div>
+            <div class="row">
+              <small>Students</small>
+            </div>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card card-select">
+      <%= link_to office_hours_path, class: 'cardlink' do %>
+        <div class="card-body d-flex">
+          <div class="col">
+            <h1 class="display-5"><i class="fas fa-handshake"></i></h1>
+          </div>
+          <div class="col">
+            <div class="row">
+              <h4><%= @classroom.user.office_hours.count %></h4>
+            </div>
+            <div class="row">
+              <small>Appointments</small>
+            </div>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card card-select">
+      <%= link_to tickets_path, class: 'cardlink' do %>
+        <div class="card-body d-flex">
+          <div class="col">
+            <h1 class="display-5 pl-2"><i class="fas fa-ticket-alt"></i></h1>
+          </div>
+          <div class="col">
+            <div class="row">
+              <h4><%= @classroom.user.tickets.count %></h4>
+            </div>
+            <div class="row">
+              <small>Tickets</small>
+            </div>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
