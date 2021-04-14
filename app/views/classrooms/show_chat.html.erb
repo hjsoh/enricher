@@ -1,6 +1,7 @@
 
+
 <!-- initial chatroom landing page -->
-<div class="container rounded">
+<div class="rounded chat-wrapper p-0 mx-0">
   <div id="frame">
     <div id="sidepanel">
       <div id="search">
@@ -10,7 +11,7 @@
       <div id="contacts">
         <ul class="list-unstyled">
           <% @classrooms.each do |c|%>
-            <li class="contact <%= current_page?('/chatrooms/c.id') && 'active' %>"> --to check with teacher
+            <li class="<%= "contact pl-2 #{list_active(c, request.url)}" %>"> --to check with teacher
               <div class="wrap">
                 <div class="meta">
                   <% if !c.messages.empty? %>
