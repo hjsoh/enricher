@@ -29,12 +29,7 @@
 // }
 
 #frame {
-  width: 95%;
-  min-width: 360px;
-  max-width: 1000px;
-  height: 92vh;
-  min-height: 300px;
-  max-height: 720px;
+  height: 90vh;
   background: #E6EAEA;
 }
 @media screen and (max-width: 360px) {
@@ -304,21 +299,15 @@
 #frame #sidepanel #search {
   border-top: 1px solid #32465a;
   border-bottom: 1px solid #32465a;
-  font-weight: 300;
+  font-weight: 300px;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel #search {
     display: none;
   }
 }
-#frame #sidepanel #search label {
-  position: absolute;
-  margin: 10px 0 0 20px;
-}
 #frame #sidepanel #search input {
-  font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
-  padding: 10px 0 10px 46px;
-  width: calc(100% - 25px);
+  padding: 10px 20px;
   border: none;
   background: #32465a;
   color: #f5f5f5;

@@ -1,34 +1,35 @@
 
-<div id="frame">
-  <div id="sidepanel">
-    <div id="search">
-      <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-      <input type="text" placeholder="Search classrooms" />
-    </div>
-    <div id="contacts">
-      <ul class="list-unstyled">
-        <% @classrooms.each do |c|%>
-          <li class="contact">
-            <div class="wrap">
-              <div class="meta">
-                <% if !c.messages.empty? %>
-                   <p class="name"><%= link_to "#{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
-                <% else %>
-                  <p class="name"><%= link_to "#{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
-                <% end %>
-                <%= c.messages.empty? ? '' : c.messages.last.content %>
+<div class="container mt-4">
+  <div id="frame">
+    <div id="sidepanel">
+      <div id="search" class="container-fluid">
+        <input type="text" placeholder="Search classrooms">
+      </div>
+      <div id="contacts">
+        <ul class="list-unstyled">
+          <% @classrooms.each do |c|%>
+            <li class="contact">
+              <div class="wrap">
+                <div class="meta">
+                  <% if !c.messages.empty? %>
+                     <p class="name"><%= link_to "#{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
+                  <% else %>
+                    <p class="name"><%= link_to "#{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
+                  <% end %>
+                  <%= c.messages.empty? ? '' : c.messages.last.content %>
+                </div>
               </div>
-            </div>
-          </li>
-        <% end %>
-       </ul>
+            </li>
+          <% end %>
+         </ul>
+      </div>
     </div>
-  </div>
-  <div class="content">
-    <div class="contact-profile container">
-      <p>Select a classroom to begin</p>
-    </div>
-    <div class="messages">
+    <div class="content">
+      <div class="contact-profile container">
+        <p>Select a classroom to begin</p>
+      </div>
+      <div class="messages">
+      </div>
     </div>
   </div>
 </div>
