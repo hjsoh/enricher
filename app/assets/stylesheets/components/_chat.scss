@@ -31,8 +31,13 @@
   overflow-y: auto;
 }
 
+.chat-wrapper {
+  height: calc(100vh - 1.5em - 2rem - 2px);
+}
+
 #frame {
   height: 90vh;
+  display: flex;
   background: #E6EAEA;
 }
 
@@ -44,7 +49,6 @@
 }
 
 #frame #sidepanel {
-  float: left;
   min-width: 280px;
   max-width: 340px;
   width: 40%;
@@ -587,8 +591,7 @@
 }
 
 #frame .content {
-  float: right;
-  width: 60%;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -596,15 +599,11 @@
 
 @media screen and (max-width: 735px) {
   #frame .content {
-    width: calc(100% - 58px);
     min-width: 300px !important;
   }
 }
 
 @media screen and (min-width: 900px) {
-  #frame .content {
-    width: calc(100% - 340px);
-  }
 }
 
 #frame .content .contact-profile {
@@ -643,9 +642,10 @@
 }
 
 #frame .content .messages {
-  height: auto;
-  min-height: calc(100% - 93px);
-  max-height: calc(100% - 93px);
+  height: 100%;
+  // min-height: calc(100% - 93px);
+  // max-height: calc(100% - 93px);
+  width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -666,7 +666,6 @@
 }
 
 #frame .content .messages ul li {
-  display: inline-block;
   clear: both;
   float: left;
   margin: 15px 15px 5px 15px;
@@ -718,7 +717,7 @@
 }
 
 #frame .content .message-input {
-  position: absolute;
+  position: sticky;
   bottom: 0;
   width: 100%;
   z-index: 99;
@@ -732,7 +731,6 @@
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
   float: left;
   border: none;
-  width: calc(100% - 90px);
   padding: 11px 32px 10px 8px;
   font-size: 0.8em;
   color: #32465a;
@@ -796,4 +794,13 @@
   height: 86%;
   overflow-y: auto;
   color: 1B1E1B;
+}
+
+#message_content { 
+  height: 38px;
+}
+
+.replies { 
+  display: flex;
+  flex-direction: column;
 }

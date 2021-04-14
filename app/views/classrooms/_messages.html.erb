@@ -1,6 +1,6 @@
 
 <!-- selected classroom view -->
-<div class="container mt-4 rounded">
+<div class="container mt-4 p-0 rounded">
   <div class="content">
     <div class="contact-profile container">
       <p><%= classroom.name %></p>
@@ -9,11 +9,12 @@
       <ul class="list-unstyled">
         <% classroom.messages.each do |message| %>
           <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'replies' : 'sent' %>">
-            <p><%= message.content %></p>
             <i class="author">
               <strong><%= message.user.name %></strong>
               <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
             </i>
+            <p><%= message.content %></p>
+            
           </li>
         <% end %>
       </ul>
