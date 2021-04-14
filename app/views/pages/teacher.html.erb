@@ -1,1 +1,44 @@
-<h1>teacher homepage</h1>
+<div class="container py-3">
+  <div class="row p-2">
+    <div class="col">
+      <h1 class=text-primary><%= @user.name %>'s Dashboard</h1>
+    </div>
+  </div>
+  <!-- CLASSROOM INFO -->
+  <div class="row p-2">
+    <%= render partial: 'teacher_info' %>
+  </div>
+  <!-- ANNOUNCEMENTS -->
+  <div class="row p-2">
+    <div class="col">
+      <h4 class="p-2 info-header">Latest Announcements:</h4>
+      <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
+    </div>
+  </div>
+  <div class="row p-2">
+  <!-- TICKETS -->
+    <div class="col-12 col-lg-6">
+      <h4 class="p-2 info-header">Latest Tickets:</h4>
+      <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
+    </div>
+  <!-- APPOINTMENTS -->
+    <div class="col-12 col-lg-6">
+      <h4 class="p-2 info-header">Upcoming Office Hours:</h4>
+      <% @office_hours.each do |oh| %>
+        <div class="card mt-2 mb-2 card-select">
+          <div class="card-body row">
+            <div class="col">
+              <%= oh.user.name %>
+            </div>
+            <div class="col text-center">
+              <%= oh.start_time.strftime('%F') %>
+            </div>
+            <div class="col text-center">
+             <%= oh.start_time.strftime('%H:%M') %> to <%= oh.end_time.strftime('%H:%M') %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
