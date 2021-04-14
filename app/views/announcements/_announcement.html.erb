@@ -6,7 +6,7 @@
           <h5 class="card-title"><%= anc.title %></h5>
         </div>
         <div class="col-12 col-lg-4 text-right">
-          <small class="text-muted">Posted at <%= anc.created_at %></small>
+          <small class="text-muted">Posted at <%= anc.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
         </div>
       </div>
         <p class="card-text"><%= anc.content %></p>

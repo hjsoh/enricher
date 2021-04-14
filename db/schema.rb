@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_04_07_120925) do
+ActiveRecord::Schema.define(version: 2021_04_11_141714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_04_07_120925) do
     t.bigint "office_hour_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["office_hour_id"], name: "index_appointments_on_office_hour_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
@@ -89,22 +89,12 @@ ActiveRecord::Schema.define(version: 2021_04_07_120925) do
   end
 
   create_table "office_hours", force: :cascade do |t|
-    t.date "date"
-    t.time "start_time"
-    t.time "end_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["user_id"], name: "index_office_hours_on_user_id"
-  end
-
-  create_table "pg_search_documents", force: :cascade do |t|
-    t.text "content"
-    t.string "searchable_type"
-    t.bigint "searchable_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -141,6 +131,9 @@ ActiveRecord::Schema.define(version: 2021_04_07_120925) do
     t.string "name"
     t.boolean "admin", default: false
     t.string "authentication_token", limit: 30
+    t.string "access_token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

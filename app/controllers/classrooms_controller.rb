@@ -4,7 +4,7 @@ class ClassroomsController < ApplicationController
   before_action :set_classroom, only: [:show, :edit, :update, :destroy, :roster]
 
   def index
-    @classrooms = policy_scope(Classroom).order(created_at: :desc)
+    @classrooms = policy_scope(Classroom).order(name: :asc)
   end
 
   def new
@@ -57,7 +57,7 @@ class ClassroomsController < ApplicationController
   def chatrooms
     # find all classrooms by this user
     if current_user.role == 'teacher'
-      @classrooms = current_user.classrooms  
+      @classrooms = current_user.classrooms
     else
       @classrooms = current_user.student_classrooms
     end
@@ -67,7 +67,7 @@ class ClassroomsController < ApplicationController
 
   def show_chat
     if current_user.role == 'teacher'
-      @classrooms = current_user.classrooms  
+      @classrooms = current_user.classrooms
     else
       @classrooms = current_user.student_classrooms
     end
