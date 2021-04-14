@@ -4,7 +4,7 @@ class ClassroomsController < ApplicationController
   before_action :set_classroom, only: [:show, :edit, :update, :destroy, :roster]
 
   def index
-    @classrooms = policy_scope(Classroom).order(created_at: :desc)
+    @classrooms = policy_scope(Classroom).order(name: :asc)
   end
 
   def new
