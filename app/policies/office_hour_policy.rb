@@ -3,7 +3,13 @@ class OfficeHourPolicy < ApplicationPolicy
     def resolve
       if user.admin == true
         scope.all
-      else scope.where(user:user)
+      # if teacher, show only own office hours
+      elsif user.role == 'teacher'
+        scope.where(user:user)
+      # if parent, show office hours of teacher of students' classses
+      else
+        raise
+        scope.where(user:record.) #how to restrict this?
       end
     end
   end

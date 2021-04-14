@@ -1,4 +1,16 @@
 
+<% if current_user.role=="parent" %>
+  <% simple_form_for @office_hours do |f| %>
+    <%= f.input :user, collection: ['apple','orange']%>
+<!--       <% current_user.student_classrooms.each do |classroom| %>
+        <%= "#{classroom.name} (#{classroom.user.name})" %>
+      <% end %>
+ -->
+  <% end %>
+<% else %>
+  ''
+<% end %>
+
 <div class="calendar-container container">
   <%= month_calendar(events: @office_hours, end_attribute: :end_time) do |date, office_hours| %>
     <%= date %>

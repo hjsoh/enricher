@@ -3,13 +3,9 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
   attr_accessor :allow_blank_password
 
-
   attr_accessor :allow_blank_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
-  # teachers r/s
-  has_many :classrooms
 
   # for the parent ticket
   # attr_accessor :email, :password, :password_confirmation
@@ -30,7 +26,6 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
-
 
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }
   validates :name, presence: true
@@ -54,13 +49,13 @@ class User < ApplicationRecord
       user = User.create(
             name: data["name"],
             email: data["email"],
-            encrypted_password: Devise.friendly_token[0,20]
-      )
+            encrypted_password: Devise.friendly_token[0, 20]
+            )
     end
     user
   end
 
-    # Called by Devise to enable/disable password presence validation
+  # Called by Devise to enable/disable password presence validation
   def password_required?
     allow_blank_password ? false : super
   end
@@ -73,6 +68,4 @@ class User < ApplicationRecord
   def after_import_save(record)
     # UserMailer.with(user: self).welcome_reset_password_instructions.deliver_now
   end
-
-  private
 end
