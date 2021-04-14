@@ -12,16 +12,16 @@
       <div class="row card p-3 mb-2 mr-1">
         <h5 class="info-header">Details</h5>
         <div class="row">
-          <div class="col mb-1"><strong>Asked by: </strong></div>
+          <div class="col-4 mb-1"><strong>Asked by: </strong></div>
           <div class="col-8"><%= @ticket.user.name %></div>
-          <div class="col mb-1"><strong>Student:</strong></div>
+          <div class="col-4 mb-1"><strong>Student:</strong></div>
           <div class="col-8"><% @names_array.each do |name| %><%= name %>
             <% end %></div>
-          <div class="col mb-1"><strong>Created on: </strong></div>
+          <div class="col-4 mb-1"><strong>Created on: </strong></div>
           <div class="col-8"><%= @ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></div>
-          <div class="col mb-1"><strong>Category: </strong></div>
+          <div class="col-4 mb-1"><strong>Category: </strong></div>
           <div class="col-8"><%= @ticket.category_name %></div>
-          <div class="col mb-1"><strong>Status: </strong></div>
+          <div class="col-4 mb-1"><strong>Status: </strong></div>
           <div class="col-8">
             <% if @ticket.status == "Not yet started" %>
               <span class="badge badge-danger">Not started</span>
@@ -31,7 +31,7 @@
               <span class="badge badge-success">Completed</span>
             <% end %>
           </div>
-          <div class="col mb-1"><strong>Privacy: </strong></div>
+          <div class="col-4 mb-1"><strong>Privacy: </strong></div>
           <div class="col-8">
             <% if @ticket.is_private? %>
               <span class="badge badge-dark">Private</span>
