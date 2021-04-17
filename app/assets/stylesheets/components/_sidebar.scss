@@ -18,3 +18,25 @@
 .lh-tight { line-height: 1.25; }
 
 .img-style { border-radius: 2px }
+
+// @media (max-width: 992px) {
+//     .navbar-collapse.collapsing .navbar-nav {
+//         display: block;
+//         position: fixed;
+//         top: 0;
+//         bottom: 0;
+//         left: -45%;
+//         transition: all 0.2s ease;
+//     }
+//     .navbar-collapse.show .navbar-nav {
+//         position: fixed;
+//         top: 0;
+//         bottom: 0;
+//         left: 0;
+//         flex-direction: column;
+//         height: auto;
+//         width: 45%;
+//         transition: left 0.35s ease;
+//         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+//     }
+// }
