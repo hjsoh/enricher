@@ -1,5 +1,5 @@
 Rails.application.configure do
-  # config.action_mailer.default_url_options = { host: "localhost:3000" }
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -50,7 +50,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              "smtp.sendgrid.net",
     port:                 587,
-    domain:               'www.enri-cher.com',
+    domain:               'localhost:3000',
     user_name:            'apikey',
     password:             ENV['SENDGRID_API_KEY'],
     authentication:       :plain,

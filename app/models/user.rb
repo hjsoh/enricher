@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   # Token
   acts_as_token_authenticatable
-  attr_accessor :allow_blank_password
 
   attr_accessor :allow_blank_password
   # Include default devise modules. Others available are:
@@ -58,17 +57,19 @@ class User < ApplicationRecord
     user
   end
 
-  # Called by Devise to enable/disable password presence validation
+  private
+    # Called by Devise to enable/disable password presence validation
   def password_required?
-    allow_blank_password ? false : super
+    # allow_blank_password ? false : super
   end
 
   # Don't require a password when importing users
   def before_import_save(record)
-    self.allow_blank_password = true
+    # self.allow_blank_password = true
   end
 
   def after_import_save(record)
     # UserMailer.with(user: self).welcome_reset_password_instructions.deliver_now
+    UserMailer.welcome_email(self).deliver_now
   end
 end
