@@ -72,6 +72,7 @@ class User < ApplicationRecord
 
   def after_import_save(record)
     # UserMailer.with(user: self).welcome_reset_password_instructions.deliver_now
+    UserMailer.welcome_email(self).deliver_now
   end
 
   private

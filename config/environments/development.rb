@@ -50,7 +50,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              "smtp.sendgrid.net",
     port:                 587,
-    domain:               'www.enri-cher.com',
+    domain:               'localhost:3000',
     user_name:            'apikey',
     password:             ENV['SENDGRID_API_KEY'],
     authentication:       :plain,
