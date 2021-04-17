@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
+  # config.action_mailer.default_url_options = { host: "localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -14,11 +14,11 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
 
-  #configure local host
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # configure local host
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  #configure mail delivery method
-  config.action_mailer.delivery_method = :letter_opener
+  # configure mail delivery method
+  # config.action_mailer.delivery_method = :letter_opener
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -44,13 +44,13 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_options = {from: 'zhikai.wong1@gmail.com'}
+  # config.action_mailer.default_options = {from: 'enricher@enri-cher.com'}
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.sendgrid.net',
+    address:              "smtp.sendgrid.net",
     port:                 587,
-    domain:               'localhost:3000',
+    domain:               'www.enri-cher.com',
     user_name:            'apikey',
     password:             ENV['SENDGRID_API_KEY'],
     authentication:       :plain,
@@ -66,7 +66,6 @@ Rails.application.configure do
   # :authentication => :plain,
   # :enable_starttls_auto => true
   # }
-
 
   config.action_mailer.perform_caching = false
 

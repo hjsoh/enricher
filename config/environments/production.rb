@@ -62,12 +62,26 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.sendgrid.net',
     port:                 587,
-    domain:               'enri-cher.com/',
+    domain:               'heroku.com/',
     user_name:            'apikey',
     password:             ENV['SENDGRID_API_KEY'],
     authentication:       :plain,
     enable_starttls_auto: true
   }
+
+#   Rails.application.configure do
+#   if ENV["SENDGRID_API_KEY"].present?
+#     config.action_mailer.smtp_settings = {
+#       address: "smtp.sendgrid.net",
+#       port: 587,
+#       authentication: :plain,
+#       user_name: "apikey",
+#       password: ENV["SENDGRID_API_KEY"],
+#       domain: "heroku.com",
+#       enable_starttls_auto: true
+#     }
+#   end
+# end
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
