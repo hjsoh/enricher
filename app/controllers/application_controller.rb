@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  
+  attr_accessor :allow_blank_password
 
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
