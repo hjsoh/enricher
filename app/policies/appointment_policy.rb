@@ -18,7 +18,11 @@ class AppointmentPolicy < ApplicationPolicy
     new?
   end
 
-  def appointment?
-    true
+  def appointment_new?
+    user.role == "parent"
+  end
+
+  def appointment_create?
+    appointment_new?
   end
 end

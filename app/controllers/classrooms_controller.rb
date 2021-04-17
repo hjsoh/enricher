@@ -71,7 +71,6 @@ class ClassroomsController < ApplicationController
     else
       @classrooms = current_user.student_classrooms
     end
-
     @classroom = Classroom.find(params[:classroom_id])
     authorize(@classroom)
     @message = Message.new

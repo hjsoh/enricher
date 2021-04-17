@@ -27,7 +27,8 @@ teacher_test = User.create!(
   email: 'teacher_test@hotmail.com',
   password: '123456',
   name: Faker::Name.unique.name,
-  role: 'teacher'
+  role: 'teacher',
+  admin: true
   )
 
 puts "Successfully created test account for teacher"
