@@ -17,8 +17,4 @@ class AppointmentPolicy < ApplicationPolicy
   def create?
     new?
   end
-
-  def appointment?
-    true
-  end
 end

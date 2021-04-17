@@ -27,8 +27,11 @@ Rails.application.routes.draw do
 
   resources :office_hours, only: [ :index, :show, :edit, :destroy, :update, :new, :create ] do
     member do
-      get 'appointment'
+      get 'appointment', to: 'appointments#new'
+      post 'apppointment', to: 'appointments#create'
     end
+
+    resources :appointments, only: [:create]
   end
 
   # resources :appointments, only: [ :index, :show, :edit, :destroy, :update, :new, :create ]

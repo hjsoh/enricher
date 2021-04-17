@@ -54,12 +54,11 @@ class ClassroomPolicy < ApplicationPolicy
   end
 
   def show_chat?
-    # raise
     # i am a teacher
     if user.role == 'teacher'
       user.classrooms.include? record
     else
-      user.student_classrooms.include? record 
+      user.student_classrooms.include? record
     end
     # or i'm a parent
   end
