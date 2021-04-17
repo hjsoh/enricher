@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
+  config.action_mailer.default_url_options = { host: "http://enri-cher.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -53,6 +53,35 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default_options = {from: 'zhikai.wong1@gmail.com'}
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    port:                 587,
+    domain:               'heroku.com/',
+    user_name:            'apikey',
+    password:             ENV['SENDGRID_API_KEY'],
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
+
+#   Rails.application.configure do
+#   if ENV["SENDGRID_API_KEY"].present?
+#     config.action_mailer.smtp_settings = {
+#       address: "smtp.sendgrid.net",
+#       port: 587,
+#       authentication: :plain,
+#       user_name: "apikey",
+#       password: ENV["SENDGRID_API_KEY"],
+#       domain: "heroku.com",
+#       enable_starttls_auto: true
+#     }
+#   end
+# end
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store

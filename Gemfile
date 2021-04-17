@@ -44,7 +44,8 @@ gem "rails_admin_import", "~> 2.2"
 #search
 gem 'pg_search', '~> 2.3.0'
 
-
+#sendgrid gem
+gem 'sendgrid-ruby'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
