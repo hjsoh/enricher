@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations_added" }
 
   resources :office_hours, only: [ :index, :show, :edit, :destroy, :update, :new, :create ]
-  resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
+  resources :appointments, only: [ :index, :show, :edit, :destroy, :update, :new, :create ]
 
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
