@@ -5,7 +5,16 @@
     <div class="contact-profile container">
       <p><%= classroom.name %></p>
     </div>
-    <div class="messages">
+  
+    <div class="announcement_container">
+      <h3>Announcements</h3>
+      <% @classroom.announcements.each do |announcement| %>
+        <%= announcement.title %>
+        <%= announcement.content %>
+      <% end %>
+    </div>
+
+    <div class="messages" style="height: 65vh;">
       <ul class="list-unstyled">
         <% classroom.messages.each do |message| %>
           <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'replies' : 'sent' %>">
