@@ -1,0 +1,20 @@
+<div class="card p-4 mt-2">
+  <div class="container">
+    <h1 class="text-primary">New ticket</h1>
+  </div>
+
+  <div class="container">
+    <%= simple_form_for @ticket do |f| %>
+      <%= f.input :question, label: 'Ask your question here', error: 'A question is mandatory, please specify one' %>
+      <%= f.input :category_name, label: 'What category of ticket does this belong to?', error: 'Category is mandatory, please specify one' %>
+      <%= f.input :is_private, as: :boolean, input_html: { class: "toggle" } %>
+      <%= f.input :classroom_id,
+                        label: 'Post ticket in which classroom?',
+                        collection: current_user.student_classrooms,
+                        as: :radio_buttons,
+                        input_html: { class: "tag-selector" },
+                        item_wrapper_class: 'tag-item' %>
+      <%= f.button :submit, "Create Ticket", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>
