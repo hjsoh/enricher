@@ -11,7 +11,7 @@
       <div id="contacts">
         <ul class="list-unstyled">
           <% @classrooms.each do |c|%>
-            <li class="<%= "contact pl-2 #{list_active(c, request.url)}" %>"> --to check with teacher
+            <li class="contact pl-2 <%= "#{list_active(c, request.url)}" %>">
               <div class="wrap">
                 <div class="meta">
                   <% if !c.messages.empty? %>
@@ -27,7 +27,6 @@
          </ul>
       </div>
     </div>
-
     <%= render "messages", classroom: @classroom %>
   </div>
 </div>
