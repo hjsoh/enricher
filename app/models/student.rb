@@ -5,4 +5,8 @@ class Student < ApplicationRecord
   has_many :parents, through: :guardianships, source: :user
 
   validates :name, presence: true
+
+  def teachers
+    self.guardianships
+  end
 end

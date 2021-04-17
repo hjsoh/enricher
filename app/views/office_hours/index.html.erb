@@ -1,31 +1,34 @@
 
-<% if current_user.role=="parent" %>
-  <% simple_form_for @office_hours do |f| %>
-    <%= f.input :user, collection: ['apple','orange']%>
-<!--       <% current_user.student_classrooms.each do |classroom| %>
-        <%= "#{classroom.name} (#{classroom.user.name})" %>
-      <% end %>
- -->
-  <% end %>
-<% else %>
-  ''
-<% end %>
-
-<div class="calendar-container container">
-  <%= month_calendar(events: @office_hours, end_attribute: :end_time) do |date, office_hours| %>
-    <%= date %>
-
-    <% office_hours.each do |office_hour| %>
-      <div class="meeting <%= office_hour.appointment.nil? ? 'avail-meeting' : 'taken-meeting' %>" data-toggle="collapse" href="#oh-slot-<%=office_hour.id%>">
-        <p>
-          <% if office_hour.appointment.nil? %>
-            <%= link_to('Available', edit_office_hour_path(office_hour)) %>
-          <% else %>
-            <%= link_to(office_hour.appointment.name, edit_office_hour_path(office_hour)) %>
-          <% end %>
-        </p>
-        <small class="collapse" id="oh-slot-<%=office_hour.id%>"><%= office_hour.time unless office_hour.multi_days? %></small>
-      </div>
+<div class="container">
+  <!-- teacher selection bar for parents to find office hours -->
+  <% if current_user.role=="parent" %>
+    <%= simple_form_for :new_office_hour do |f| %>
+      <%= f.input :filter, prompt: 'Select class / teacher', collection: User.all %>
     <% end %>
+  <% else %>
+      <!-- dont show anything for teachers -->
   <% end %>
+
+  <div class="calendar-container">
+    <%= month_calendar(events: @office_hours, end_attribute: :end_time) do |date, office_hours| %>
+      <%= date %>
+
+      <% office_hours.each do |office_hour| %>
+        <div class="meeting <%= office_hour.appointment.nil? ? 'avail-meeting' : 'taken-meeting' %>" data-toggle="collapse" href="#oh-slot-<%=office_hour.id%>">
+          <p>
+            <% if office_hour.appointment.nil? %>
+              <% if current_user.role=="teacher" %>
+                <%= link_to('Available', edit_office_hour_path(office_hour)) %>
+              <% else %>
+                <%# link_to('Available', new_appointment_path(office_hour)) %>
+              <% end %>
+            <% else %>
+              <%= link_to(office_hour.appointment.name, edit_office_hour_path(office_hour)) %>
+            <% end %>
+          </p>
+          <small class="collapse" id="oh-slot-<%=office_hour.id%>"><%= office_hour.time unless office_hour.multi_days? %></small>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

@@ -16,6 +16,7 @@ class User < ApplicationRecord
 
   # for the teacher r/s
   has_many :classrooms
+  has_many :teacher_students, through: :classrooms, source: :enrollments
   has_many :teacher_tickets, :through => :classrooms, source: :tickets
 
   has_many :tickets, :through => :classrooms
@@ -34,7 +35,9 @@ class User < ApplicationRecord
   has_many :guardianships
   has_many :students, through: :guardianships
   has_many :student_classrooms, through: :students, source: :classrooms
+  has_many :student_teachers, through: :student_classrooms, source: :user
   has_many :student_announcements, through: :student_classrooms, source: :announcements
+  has_many :student_office_hours, through: :student_teachers, source: :office_hours
 
   # teachers r/s
   def students_in_classrooms
