@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   get 'chatrooms', to: 'classrooms#chatrooms'
   get '/chatrooms/:classroom_id', to: 'classrooms#show_chat', as: :show_chat
 
-  resources :tickets, only: [ :index, :show, :new, :create, :edit, :destroy, :update ] do
+  resources :tickets, only: [ :index, :show, :edit, :destroy, :update, :new, :create ] do
     resources :comments, only: [ :new, :create ]
   end
 

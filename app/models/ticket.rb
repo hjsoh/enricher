@@ -10,8 +10,6 @@ class Ticket < ApplicationRecord
   #own your comments!
   has_many :comments, dependent: :destroy
 
-
-
   # def teacher
   #   User.find_by_id(id: self.teacher_id)
   # end
