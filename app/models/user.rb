@@ -6,9 +6,6 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
-  # teachers r/s
-  has_many :classrooms
-
   # for the parent ticket
   # attr_accessor :email, :password, :password_confirmation
   has_many :tickets
@@ -18,6 +15,7 @@ class User < ApplicationRecord
 
   # for the teacher r/s
   has_many :classrooms
+  has_many :teacher_students, through: :classrooms, source: :enrollments
   has_many :teacher_tickets, :through => :classrooms, source: :tickets
 
   has_many :tickets, :through => :classrooms
@@ -29,7 +27,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
-
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }
   validates :name, presence: true
 
@@ -37,7 +34,9 @@ class User < ApplicationRecord
   has_many :guardianships
   has_many :students, through: :guardianships
   has_many :student_classrooms, through: :students, source: :classrooms
+  has_many :student_teachers, through: :student_classrooms, source: :user
   has_many :student_announcements, through: :student_classrooms, source: :announcements
+  has_many :student_office_hours, through: :student_teachers, source: :office_hours
 
   # teachers r/s
   def students_in_classrooms
@@ -52,8 +51,8 @@ class User < ApplicationRecord
       user = User.create(
             name: data["name"],
             email: data["email"],
-            encrypted_password: Devise.friendly_token[0,20]
-      )
+            encrypted_password: Devise.friendly_token[0, 20]
+            )
     end
     user
   end
@@ -73,5 +72,4 @@ class User < ApplicationRecord
     # UserMailer.with(user: self).welcome_reset_password_instructions.deliver_now
     UserMailer.welcome_email(self).deliver_now
   end
-
 end

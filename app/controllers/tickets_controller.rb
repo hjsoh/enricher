@@ -34,7 +34,6 @@ class TicketsController < ApplicationController
 
     authorize @ticket
 
-
     #need one for teacher, one for parent. doing for parent now
     if @ticket.save
       redirect_to classroom_tickets_path(@classroom)
@@ -72,7 +71,6 @@ class TicketsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def partial

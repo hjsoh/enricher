@@ -11,9 +11,11 @@ class OfficeHoursController < ApplicationController
 
   def create
     @office_hour = OfficeHour.new(office_hour_params)
+    end_time = @office_hour.start_time + 15.minutes
+    @office_hour.end_time = end_time
     @office_hour.user = current_user
     authorize @office_hour
-    if @office_hour.save
+    if @office_hour.save!
       redirect_to office_hours_path, alert: "Created new office hour"
     else
       render :new
@@ -29,6 +31,9 @@ class OfficeHoursController < ApplicationController
     @office_hour = OfficeHour.find(params[:id])
     authorize @office_hour
     if @office_hour.update(office_hour_params)
+      end_time = @office_hour.start_time + 15.minutes
+      @office_hour.end_time = end_time
+      @office_hour.save
       redirect_to office_hours_path, alert: "Edited office hour"
     else
       render :edit

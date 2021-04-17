@@ -25,8 +25,16 @@ Rails.application.routes.draw do
   #route for welcome email on register
   devise_for :users, :controllers => { :registrations => "registrations_added" }
 
-  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update, :new, :create ]
-  resources :appointments, only: [ :index, :show, :edit, :destroy, :update ]
+  resources :office_hours, only: [ :index, :show, :edit, :destroy, :update, :new, :create ] do
+    member do
+      get 'appointment', to: 'appointments#new'
+      post 'apppointment', to: 'appointments#create'
+    end
+
+    resources :appointments, only: [:create]
+  end
+
+  # resources :appointments, only: [ :index, :show, :edit, :destroy, :update, :new, :create ]
 
   resources :classrooms do
     resources :tickets, only: [ :index, :show, :new, :create]
