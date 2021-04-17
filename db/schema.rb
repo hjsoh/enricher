@@ -130,7 +130,6 @@ ActiveRecord::Schema.define(version: 2021_04_11_141714) do
     t.string "name"
     t.boolean "admin", default: false
     t.string "authentication_token", limit: 30
-    t.string "nickname"
     t.string "access_token"
     t.datetime "expires_at"
     t.string "refresh_token"
