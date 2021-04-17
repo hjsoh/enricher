@@ -2,7 +2,9 @@ class User < ApplicationRecord
   # Token
   acts_as_token_authenticatable
 
-  attr_accessor :allow_blank_password
+  # attr_accessor :allow_blank_password
+
+  # attr_accessor :allow_blank_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
@@ -67,7 +69,8 @@ class User < ApplicationRecord
   end
 
   def after_import_save(record)
-    # UserMailer.with(user: self).welcome_reset_password_instructions.deliver_now
+    UserMailer.with(user: self).welcome_email.deliver_now
+    UserMailer.with(user: self).welcome_email_reset_instructions.deliver_now
     UserMailer.welcome_email(self).deliver_now
     UserMailer.welcome_email(User.last)
   end
