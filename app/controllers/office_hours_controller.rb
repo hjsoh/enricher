@@ -45,8 +45,4 @@ class OfficeHoursController < ApplicationController
   def office_hour_params
     params.require(:office_hour).permit(:start_time)
   end
-
-  def appointment_params
-    params.require(:appointment).permit(:office_hour_id)
-  end
 end

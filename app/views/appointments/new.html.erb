@@ -1,18 +1,10 @@
 <div class="container">
   <h1 class="text-primary">Create new office hour appointment</h1>
 
-  <ul>
-    <li>
-      Teacher: <%= @office_hour.user.name %>
-    </li>
-    <li>
-      Start time: <%= @office_hour.start_time %>
-    </li>
-    <li>
-      End time: <%= @office_hour.end_time %>
-    </li>
-  </ul>
-
+  <p>Teacher: <%= @office_hour.user.name %></p>
+  <p>Date: <%= @office_hour.start_time.strftime('%F') %></p>
+  <p>Start time: <%= @office_hour.start_time.strftime('%H:%M') %></p>
+  <p>End time: <%= @office_hour.end_time.strftime('%H:%M') %></p>
 
   <%= simple_form_for [@office_hour, @appointment] do |f| %>
     <%= f.button :submit, class:"btn btn-primary btn-block", value:"Create new appointment"%>
