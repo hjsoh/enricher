@@ -38,7 +38,7 @@
                 <% if current_user.role == 'teacher' %>
                   <%= @user.office_hours.count %>
                 <% else %>
-                  <%= @user.student_office_hours.count %>
+                  <%= @user.appointments.count %>
                 <% end %>
               </h4>
             </div>
@@ -61,7 +61,13 @@
           </div>
           <div class="col">
             <div class="row">
-              <h4><%= @user.tickets.count %></h4>
+              <h4>
+                <% if current_user.role == 'teacher' %>
+                  <%= @user.teacher_tickets.count %>
+                <% else %>
+                  <%= @user.tickets.count %>
+                <% end %>
+              </h4>
             </div>
             <div class="row">
               <small>Tickets</small>
