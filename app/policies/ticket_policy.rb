@@ -4,6 +4,8 @@ class TicketPolicy < ApplicationPolicy
       # need to filter for teacher or parent owner
       if user.admin == true
         Ticket.all
+      elsif user.role == 'teacher'
+        user.teacher_tickets
       else
         user.tickets
       end

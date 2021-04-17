@@ -8,11 +8,15 @@ class PagesController < ApplicationController
         @navbar = true
         @footer = true
 
+        @user = current_user
+        @announcements = @user.student_announcements.order(created_at: :desc).first(4)
+        @tickets = @user.tickets.order(created_at: :desc).first(4)
+        @office_hours = @user.student_appointments.order(created_at: :desc).first(4)
         render :parent
       else
         @user = current_user
         @announcements = @user.announcements.order(created_at: :desc).first(4)
-        @tickets = @user.tickets.order(created_at: :desc).first(4)
+        @tickets = @user.teacher_tickets.order(created_at: :desc).first(4)
         @office_hours = @user.office_hours.order(created_at: :desc).first(4)
         render :teacher
       end
