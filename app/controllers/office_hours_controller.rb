@@ -22,6 +22,16 @@ class OfficeHoursController < ApplicationController
     end
   end
 
+  def appointment
+    @office_hour = OfficeHour.find(params[:id])
+    @appointment = Appointment.new
+    @appointment.office_hour = @office_hour
+    @appointment.user = current_user
+    @appointment.name = "#{current_user.name} : #{@office_hour.user.name}"
+    authorize @appointment
+    @appointment.save!
+  end
+
   def edit
     @office_hour = OfficeHour.find(params[:id])
     authorize @office_hour
@@ -43,6 +53,6 @@ class OfficeHoursController < ApplicationController
   private
 
   def office_hour_params
-    params.require(:office_hour).permit(:start_time)
+    params.require(:office_hour).permit(:start_time, :office_hour_id)
   end
 end
