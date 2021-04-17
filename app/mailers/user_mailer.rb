@@ -18,7 +18,7 @@ class UserMailer < Devise::Mailer
     @user = user
     @token = create_reset_password_token(@user)
     mail(to: @user.email, subject: 'Welcome to Enri\'cher')
-
+    # raise
     # from = Email.new(email: 'enricher@enri-cher.com')
     # subject = 'Welcome to Enri\'cher'
     # to = Email.new(email: @user.email)
@@ -67,6 +67,7 @@ class UserMailer < Devise::Mailer
     user.reset_password_token = hashed
     user.reset_password_sent_at = Time.now.utc
     user.save
+    return @token
   end
 
   # def new_welcome(email, row)
