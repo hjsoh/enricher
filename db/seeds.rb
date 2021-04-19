@@ -168,7 +168,7 @@ teachers = User.all.where(role:'teacher')
 
 teachers.each do |teacher|
   30.times do
-    start_time = Faker::Time.between_dates(from: '2021-01-01', to: Date.today, period: :afternoon)
+    start_time = Faker::Time.between_dates(from: '2021-01-01', to: '2021-12-31', period: :afternoon)
     oh = teacher.office_hours.build(
       start_time: start_time,
       end_time: start_time + 15.minutes

@@ -24,17 +24,17 @@
   <!-- APPOINTMENTS -->
     <div class="col-12 col-lg-6">
       <h4 class="p-2 info-header">Upcoming Office Hours:</h4>
-      <% @office_hours.each do |oh| %>
+      <% @appointments.each do |appointment| %>
         <div class="card mt-2 mb-2 card-select">
           <div class="card-body row">
             <div class="col">
-              <%= oh.user.name %>
+              <%= appointment.user.name %>
             </div>
             <div class="col text-center">
-              <%= oh.start_time.strftime('%F') %>
+              <%= appointment.office_hour.start_time.strftime('%F') %>
             </div>
             <div class="col text-center">
-             <%= oh.start_time.strftime('%H:%M') %> to <%= oh.end_time.strftime('%H:%M') %>
+             <%= appointment.office_hour.start_time.strftime('%H:%M') %> to <%= appointment.office_hour.end_time.strftime('%H:%M') %>
             </div>
           </div>
         </div>

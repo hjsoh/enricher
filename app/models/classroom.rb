@@ -8,4 +8,8 @@ class Classroom < ApplicationRecord
   has_many :messages
   has_many :classroom_announcements, dependent: :destroy
   has_many :announcements, through: :classroom_announcements
+
+  def active?
+    self.is_active == true
+  end
 end

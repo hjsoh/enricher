@@ -10,18 +10,6 @@ class User < ApplicationRecord
 
   # for the parent ticket
   # attr_accessor :email, :password, :password_confirmation
-  has_many :tickets
-  has_many :appointments
-  has_many :office_hours
-
-  # for the teacher r/s
-  has_many :classrooms
-  has_many :teacher_students, through: :classrooms, source: :enrollments
-  has_many :teacher_tickets, :through => :classrooms, source: :tickets
-  has_many :announcements, through: :classrooms
-
-  # for the comments
-  has_many :comments, :foreign_key => 'author_id'
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -29,14 +17,27 @@ class User < ApplicationRecord
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }
   validates :name, presence: true
 
+  # for the teacher r/s
+  has_many :classrooms
+  has_many :office_hours
+  has_many :teacher_appointments, through: :office_hours, source: :appointment
+  has_many :teacher_students, through: :classrooms, source: :enrollments
+  has_many :teacher_tickets, through: :classrooms, source: :tickets
+  has_many :announcements, through: :classrooms
+
+  # for the comments
+  has_many :comments, :foreign_key => 'author_id'
+
   # parent r/s
   has_many :guardianships
+  has_many :tickets
+  has_many :appointments
   has_many :students, through: :guardianships
   has_many :student_classrooms, through: :students, source: :classrooms
   has_many :student_teachers, through: :student_classrooms, source: :user
   has_many :student_announcements, through: :student_classrooms, source: :announcements
   has_many :student_office_hours, through: :student_teachers, source: :office_hours
-  has_many :student_appointments, through: :office_hours, source: :appointment
+  # has_many :student_appointments, through: :office_hours, source: :appointment
 
   # teachers r/s
   def students_in_classrooms
@@ -58,7 +59,8 @@ class User < ApplicationRecord
   end
 
   private
-    # Called by Devise to enable/disable password presence validation
+
+  # Called by Devise to enable/disable password presence validation
   def password_required?
     allow_blank_password ? false : super
   end

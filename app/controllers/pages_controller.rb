@@ -11,7 +11,7 @@ class PagesController < ApplicationController
         @user = current_user
         @announcements = @user.student_announcements.order(created_at: :desc).first(4)
         @tickets = @user.tickets.order(created_at: :desc).first(4)
-        @office_hours = @user.student_appointments.order(created_at: :desc).first(4)
+        @appointments = @user.appointments.order(created_at: :desc).first(4)
         render :parent
       else
         @user = current_user
