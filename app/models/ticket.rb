@@ -22,6 +22,6 @@ class Ticket < ApplicationRecord
   end
 
   def open?
-    !self.status == 'Completed'
+    self.status != 'Completed'
   end
 end
