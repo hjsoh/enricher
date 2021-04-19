@@ -14,6 +14,10 @@ class Appointment < ApplicationRecord
     self.office_hour.user
   end
 
+  def start_time
+    self.office_hour.start_time
+  end
+
   def upcoming?
     self.office_hour.start_time > DateTime.now
   end
