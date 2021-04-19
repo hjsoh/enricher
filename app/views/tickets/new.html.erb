@@ -1,8 +1,0 @@
-<h1>Some new ticket view here</h1>
-
-<%= simple_form_for [ @classroom, @ticket ] do |f| %>
-  <%= f.input :question, label: 'Ask your question here', error: 'A question is mandatory, please specify one' %>
-  <%= f.input :category_name, label: 'What category of ticket does this belong to?', error: 'Category is mandatory, please specify one' %>
-  <%#= f.input :is_private,  :as => :radio %>
-  <%= f.button :submit, "Create Ticket", class: "btn btn-primary"  %>
-<% end %>

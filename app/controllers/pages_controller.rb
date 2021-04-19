@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
+      @user = current_user
       if current_user.role == 'parent'
 
         @navbar = true
@@ -18,6 +19,7 @@ class PagesController < ApplicationController
         @announcements = @user.announcements.order(created_at: :desc)
         @tickets = @user.teacher_tickets.where.not(status: 'Completed').order(created_at: :desc)
         @appointments = @user.teacher_appointments.joins(:office_hour).where("office_hours.start_time > ?", DateTime.now).order('office_hours.start_time ASC')
+
         render :teacher
       end
     else
