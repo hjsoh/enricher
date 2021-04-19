@@ -2,8 +2,12 @@
   <% if current_user.role == "parent" %>
     <%= render "new", locals: { ticket: @ticket } %>
   <% end %>
-  <h1 class=text-primary>View all your tickets</h1>
+  <div class="card p-4 mt-2">
+    <div class="container">
+      <h1 class=text-primary>View all your tickets</h1>
+    </div>
 
+  <div class="container">
   <%= form_tag tickets_path, method: :get do %>
     <%= text_field_tag :query,
       params[:query],
@@ -11,6 +15,7 @@
       placeholder: "Search tickets"
     %>
   <% end %>
-
-  <%= render 'ticket', locals: { tickets: @tickets } %>
+    <%= render 'ticket', locals: { tickets: @tickets } %>
+  </div>
+  </div>
 </div>
