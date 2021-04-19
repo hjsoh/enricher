@@ -7,15 +7,15 @@
       <h1 class=text-primary>View all your tickets</h1>
     </div>
 
-  <div class="container">
-  <%= form_tag tickets_path, method: :get do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Search tickets"
-    %>
-  <% end %>
-    <%= render 'ticket', locals: { tickets: @tickets } %>
-  </div>
+    <div class="container">
+      <%= form_tag tickets_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search tickets"
+        %>
+      <% end %>
+        <%= render 'ticket', locals: { tickets: @tickets } %>
+    </div>
   </div>
 </div>
