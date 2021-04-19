@@ -5,14 +5,21 @@ class PagesController < ApplicationController
     if user_signed_in?
       @user = current_user
       if current_user.role == 'parent'
-        @announcements = @user.student_announcements.order(created_at: :desc).first(4)
-        @tickets = @user.tickets.order(created_at: :desc).first(4)
-        @office_hours = @user.student_appointments.order(created_at: :desc).first(4)
+
+        @navbar = true
+        @footer = true
+
+        @user = current_user
+        @announcements = @user.student_announcements.order(created_at: :desc)
+        @tickets = @user.tickets.where.not(status: 'Completed').order(created_at: :desc)
+        @appointments = @user.appointments.joins(:office_hour).where("office_hours.start_time > ?", DateTime.now).order('office_hours.start_time ASC')
         render :parent
       else
-        @announcements = @user.announcements.order(created_at: :desc).first(4)
-        @tickets = @user.teacher_tickets.order(created_at: :desc).first(4)
-        @office_hours = @user.office_hours.order(created_at: :desc).first(4)
+        @user = current_user
+        @announcements = @user.announcements.order(created_at: :desc)
+        @tickets = @user.teacher_tickets.where.not(status: 'Completed').order(created_at: :desc)
+        @appointments = @user.teacher_appointments.joins(:office_hour).where("office_hours.start_time > ?", DateTime.now).order('office_hours.start_time ASC')
+
         render :teacher
       end
     else

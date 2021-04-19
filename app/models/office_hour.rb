@@ -13,4 +13,12 @@ class OfficeHour < ApplicationRecord
   def multi_days?
     (end_time.to_date - start_time.to_date).to_i >= 1
   end
+
+  def upcoming?
+    self.start_time > DateTime.now
+  end
+
+  def available?
+    self.appointment.nil?
+  end
 end
