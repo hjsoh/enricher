@@ -2,6 +2,8 @@ class TicketsController < ApplicationController
   include Pundit
 
   def index
+    @ticket = Ticket.new
+
     if params[:query].present?
       @tickets = Ticket.global_search(params[:query])
       skip_policy_scope
@@ -16,29 +18,23 @@ class TicketsController < ApplicationController
   end
 
   def new
-    @classroom = Classroom.find(params[:classroom_id])
     @ticket = Ticket.new
     authorize @ticket
-    authorize @classroom
   end
 
   def create
     @ticket = Ticket.new(ticket_params)
-    @classroom = Classroom.find(params[:classroom_id])
-
-    @ticket.is_private = true
-    @ticket.status = "open"
-
+    @classroom_ids = ticket_params[:classroom_ids]
     @ticket.user = current_user
-    @ticket.classroom = @classroom
+    @ticket.status = 'Not yet started'
 
     authorize @ticket
 
-    #need one for teacher, one for parent. doing for parent now
     if @ticket.save
-      redirect_to classroom_tickets_path(@classroom)
+      redirect_to tickets_path
     else
-      render :new
+      redirect_to tickets_path
+      flash[:alert] = "Please try again."
     end
   end
 
@@ -80,6 +76,6 @@ class TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:question, :academic_year, :user_id, :classroom_id, :category_name, :is_private, :status)
+    params.require(:ticket).permit(:question, :academic_year, :user_id, :category_name, :is_private, :status, :classroom_id)
   end
 end

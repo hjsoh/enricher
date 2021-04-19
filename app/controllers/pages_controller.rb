@@ -3,6 +3,7 @@ class PagesController < ApplicationController
 
   def home
     if user_signed_in?
+      @user = current_user
       if current_user.role == 'parent'
 
         @navbar = true
