@@ -62,12 +62,12 @@ class User < ApplicationRecord
 
   # Called by Devise to enable/disable password presence validation
   def password_required?
-    allow_blank_password ? false : super
+    # allow_blank_password ? false : super
   end
 
   # Don't require a password when importing users
   def before_import_save(record)
-    self.allow_blank_password = true
+    # self.allow_blank_password = true
   end
 
   def after_import_save(record)
