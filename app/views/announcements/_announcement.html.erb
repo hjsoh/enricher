@@ -14,7 +14,7 @@
     <div class="card-footer">
       <small class="text-muted">Posted in:
         <% announcement.classroom_announcements.each do |x| %>
-          <li class="list-inline-item"><%= x.classroom.name %></li>
+          <li class="list-inline-item badge badge-primary"><%= x.classroom.name %></li>
         <% end %>
       </small>
       <small class="text-muted">

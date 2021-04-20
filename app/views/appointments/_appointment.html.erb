@@ -3,14 +3,14 @@
     <div class="card mt-2 mb-2 card-select">
       <div class="card-body">
         <div class="row">
-          <div class="col-12 col-lg-8">
+          <div class="col-12 col-lg-8 align-self-center">
             <% if current_user.role == 'teacher' %>
               <h5 class="card-title"><%= appointment.parent.name %></h5>
             <% else %>
               <h5 class="card-title"><%= appointment.teacher.name %></h5>
             <% end %>
           </div>
-          <div class="col-12 col-lg-4">
+          <div class="col-12 col-lg-4 align-self-center">
             <div>
               <small class="text-muted"><%= appointment.start_time.strftime('%-d %b %y') %></small>
             </div>
@@ -21,22 +21,8 @@
         </div>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Student: <%= appointment.user.students.name %></small>
+        <small class="text-muted">Student: <%= appointment.user.students.each(&:name) %></small>
       </div>
     </div>
   </div>
-
-  <!-- <div class="card mt-2 mb-2 card-select">
-    <div class="card-body row">
-      <div class="col">
-        <%= appointment.teacher.name %>
-      </div>
-      <div class="col text-center">
-        <%= appointment.start_time.strftime('%F') %>
-      </div>
-      <div class="col text-center">
-       <%= appointment.start_time.strftime('%H:%M') %> - <%= appointment.office_hour.end_time.strftime('%H:%M') %>
-      </div>
-    </div>
-  </div> -->
 <% end %>
