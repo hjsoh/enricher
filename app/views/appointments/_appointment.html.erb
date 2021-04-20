@@ -1,0 +1,15 @@
+<% appointments.each do |appointment| %>
+  <div class="card mt-2 mb-2 card-select">
+    <div class="card-body row">
+      <div class="col">
+        <%= appointment.user.name %>
+      </div>
+      <div class="col text-center">
+        <%= appointment.start_time.strftime('%F') %>
+      </div>
+      <div class="col text-center">
+       <%= appointment.start_time.strftime('%H:%M') %> - <%= appointment.office_hour.end_time.strftime('%H:%M') %>
+      </div>
+    </div>
+  </div>
+<% end %>
