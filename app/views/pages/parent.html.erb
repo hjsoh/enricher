@@ -1,7 +1,7 @@
 <div class="container py-3">
   <div class="row p-2">
     <div class="col">
-      <h1 class=text-primary><%= @user.name %>'s Dashboard</h1>
+      <h1 class=text-primary><%= @parent.name %>'s Dashboard</h1>
     </div>
   </div>
   <!-- CLASSROOM INFO -->
@@ -12,33 +12,19 @@
   <div class="row p-2">
     <div class="col">
       <h4 class="p-2 info-header">Latest Announcements:</h4>
-        <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
+        <%= render partial: 'announcements/announcement', locals: { announcements: @parent_announcements } %>
     </div>
   </div>
   <div class="row p-2">
   <!-- TICKETS -->
     <div class="col-12 col-lg-6">
       <h4 class="p-2 info-header">Latest Tickets:</h4>
-      <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
+      <%= render partial: 'tickets/ticket', locals: { tickets: @parent_tickets } %>
     </div>
   <!-- APPOINTMENTS -->
     <div class="col-12 col-lg-6">
       <h4 class="p-2 info-header">Upcoming Appointments:</h4>
-      <% @appointments.each do |appointment| %>
-        <div class="card mt-2 mb-2 card-select">
-          <div class="card-body row">
-            <div class="col">
-              <%= appointment.user.name %>
-            </div>
-            <div class="col text-center">
-              <%= appointment.start_time.strftime('%F') %>
-            </div>
-            <div class="col text-center">
-             <%= appointment.start_time.strftime('%H:%M') %> to <%= appointment.office_hour.end_time.strftime('%H:%M') %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <%= render partial: 'appointments/appointment', locals: { appointments: @parent_appointments } %>
     </div>
   </div>
 </div>

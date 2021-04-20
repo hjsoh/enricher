@@ -17,10 +17,10 @@ class PagesController < ApplicationController
         render :parent
       else
         @teacher = current_user
-        @teacher_classrooms = @user.classrooms.where(is_active: true).order(name: :asc)
-        @teacher_announcements = @user.announcements.order(created_at: :desc)
-        @teacher_tickets = @user.teacher_tickets.where.not(status: 'Completed').order(created_at: :desc)
-        @teacher_appointments = @user.teacher_appointments.joins(:office_hour).where("office_hours.start_time > ?", DateTime.now).order('office_hours.start_time ASC')
+        @teacher_classrooms = current_user.classrooms.where(is_active: true).order(name: :asc)
+        @teacher_announcements = current_user.announcements.order(created_at: :desc)
+        @teacher_tickets = current_user.teacher_tickets.where.not(status: 'Completed').order(created_at: :desc)
+        @teacher_appointments = current_user.teacher_appointments.joins(:office_hour).where("office_hours.start_time > ?", DateTime.now).order('office_hours.start_time ASC')
         render :teacher
       end
     else
