@@ -27,7 +27,6 @@ Devise.setup do |config|
   config.mailer_sender = 'enricher@enri-cher.com'
   config.mailer = 'UserMailer'
 
-
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

@@ -9,9 +9,9 @@
             <div class="row">
               <h4>
                 <% if current_user.role == 'teacher' %>
-                  <%= @user.classrooms.count %>
+                  <%= @user.classrooms.where(is_active: true).count %>
                 <% else %>
-                  <%= @user.student_classrooms.count %>
+                  <%= @user.student_classrooms.where(is_active: true).count %>
                 <% end %>
               </h4>
             </div>
@@ -36,14 +36,14 @@
             <div class="row">
               <h4>
                 <% if current_user.role == 'teacher' %>
-                  <%= @user.office_hours.count %>
+                  <%= @user.teacher_appointments.count %>
                 <% else %>
                   <%= @user.appointments.count %>
                 <% end %>
               </h4>
             </div>
             <div class="row">
-              <small>Office Hours</small>
+              <small>Appointments</small>
             </div>
           </div>
           <div class="col">
