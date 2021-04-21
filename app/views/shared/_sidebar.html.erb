@@ -1,5 +1,52 @@
+<!-- Collapsed below, remove d-none and add d-flex to show -->
+<div class="d-flex flex-column bg-dark text-white sticky-top vh-100" id="sidebar-sm" style="width: 4.5rem;">
+
+    <span class="visually-hidden">Icon-only</span>
+    <span class="expand-action">Expand</span>
+
+  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+    <li class="nav-item">
+      <a href="#" class="nav-link active py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+        <svg class="bi" width="24" height="24"><use xlink:href="#home"></use></svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
+        <svg class="bi" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
+        <svg class="bi" width="24" height="24"><use xlink:href="#table"></use></svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
+        <svg class="bi" width="24" height="24"><use xlink:href="#grid"></use></svg>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
+        <svg class="bi" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
+      </a>
+    </li>
+  </ul>
+  <div class="dropdown border-top">
+    <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+    </a>
+    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+      <li><a class="dropdown-item" href="#">New project...</a></li>
+      <li><a class="dropdown-item" href="#">Settings</a></li>
+      <li><a class="dropdown-item" href="#">Profile</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Sign out</a></li>
+    </ul>
+  </div>
+</div>
+
 <!-- Collapsed below, add d-none and remove d-flex to hide -->
-<div class="d-flex flex-column p-3 bg-light" id="sidebar-lg" style="width: 280px;">
+<div class="flex-column p-3 bg-dark d-none" id="sidebar-lg" style="width: 280px;">
     <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
     <span class="fs-4">Sidebar</span>
     <span class="collapse-action">Collapse</span>
@@ -51,50 +98,55 @@
     </ul>
   </div>
 </div>
-<!-- Collapsed below, remove d-none and add d-flex to show -->
-<div class="flex-column bg-light d-none" id="sidebar-sm" style="width: 4.5rem;">
 
-    <svg class="bi" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-    <span class="visually-hidden">Icon-only</span>
-    <span class="expand-action">Expand</span>
 
-  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-    <li class="nav-item">
-      <a href="#" class="nav-link active py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
-        <svg class="bi" width="24" height="24"><use xlink:href="#home"></use></svg>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Dashboard">
-        <svg class="bi" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Orders">
-        <svg class="bi" width="24" height="24"><use xlink:href="#table"></use></svg>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Products">
-        <svg class="bi" width="24" height="24"><use xlink:href="#grid"></use></svg>
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Customers">
-        <svg class="bi" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
-      </a>
-    </li>
-  </ul>
-  <div class="dropdown border-top">
-    <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
-    </a>
-    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-      <li><a class="dropdown-item" href="#">New project...</a></li>
-      <li><a class="dropdown-item" href="#">Settings</a></li>
-      <li><a class="dropdown-item" href="#">Profile</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Sign out</a></li>
+<!-- previous version -->
+<div class="container d-flex flex-column p-3 text-white bg-dark sticky-top vh-100" style="width: 20%; min-width: 200px;">
+  <div class="d-flex justify-content-center">
+    <%= link_to image_tag('enricher_logo.png', height: 80, crop: :fill, class: "img-style"), root_path %>
+  </div>
+  <hr>
+    <ul class="nav nav-pills flex-column mb-auto" id="sidebar-nav">
+      <li class="nav-item">
+        <%= link_to classrooms_path, class:"nav-link text-white #{current_page?('/classrooms') && 'active'}" do %>
+         <i class="far fa-address-book mr-3"></i> Classrooms
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to office_hours_path, class:"nav-link text-white #{current_page?('/office_hours') && 'active'}" do %>
+          <i class="far fa-calendar mr-3"></i> Office Hours
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to tickets_path, class:"nav-link text-white #{current_page?('/tickets') && 'active'}" do %>
+         <i class="far fa-hand-paper mr-3"></i> Tickets
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to announcements_path, class:"nav-link text-white #{current_page?('/announcements') && 'active'}" do %>
+          <i class="far fa-clipboard mr-3"></i> Announcements
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to chatrooms_path, class:"nav-link text-white #{current_page?('/chatrooms') && 'active'}" do %>
+          <i class="far fa-comments mr-2"></i> Chatroom
+        <% end %>
+      </li>
     </ul>
+  <hr>
+  <div class="dropdown">
+    <button class="btn btn-block btn-secondary dropdown-toggle text-wrap" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <% if current_user.role == "teacher" %>
+        <span class="badge badge-primary" style="font-size:0.5rem">Teacher</span>
+      <% elsif current_user.role == "parent" %>
+        <span class="badge badge-success" style="font-size:0.5rem">Parent</span>
+      <% end %>
+        <a style="font-size:0.7rem"><%= current_user.name %></a>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to 'Settings', tickets_path, class:"dropdown-item" %>
+      <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+    </div>
   </div>
 </div>
+
