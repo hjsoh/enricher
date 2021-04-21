@@ -36,6 +36,7 @@ class User < ApplicationRecord
   has_many :student_teachers, through: :student_classrooms, source: :user
   has_many :student_announcements, through: :student_classrooms, source: :announcements
   has_many :student_office_hours, through: :student_teachers, source: :office_hours
+
   # has_many :student_appointments, through: :office_hours, source: :appointment
 
   # teachers r/s
@@ -57,8 +58,6 @@ class User < ApplicationRecord
     user
   end
 
-  private
-
   # Called by Devise to enable/disable password presence validation
   def password_required?
     allow_blank_password ? false : super
@@ -66,10 +65,12 @@ class User < ApplicationRecord
 
   # Don't require a password when importing users
   def before_import_save(record)
+    puts "I am calling the hook"
     self.allow_blank_password = true
   end
 
   def after_import_save(record)
     UserMailer.welcome_email(self).deliver_now
   end
+
 end
