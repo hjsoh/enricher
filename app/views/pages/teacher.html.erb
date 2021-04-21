@@ -24,7 +24,11 @@
   <!-- APPOINTMENTS -->
     <div class="col-12 col-lg-6">
       <h4 class="p-2 info-header">Upcoming Appointments:</h4>
-      <%= render partial: 'appointments/appointment', locals: { appointments: @teacher_appointments } %>
+
+      <div class="section-scroll">
+        <%= render partial: 'appointments/appointment', locals: { appointments: @teacher_appointments } %>
+      </div>
+
     </div>
   </div>
 </div>

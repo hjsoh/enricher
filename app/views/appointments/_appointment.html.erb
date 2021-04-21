@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Student: <%= appointment.user.students.each(&:name) %></small>
+        <small class="text-muted">Students: <%= appointment.user.students.map(&:name).join(", ") %></small>
       </div>
     </div>
   </div>

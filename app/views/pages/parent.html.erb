@@ -12,7 +12,9 @@
   <div class="row p-2">
     <div class="col">
       <h4 class="p-2 info-header">Latest Announcements:</h4>
+      <div class="section-scroll">
         <%= render partial: 'announcements/announcement', locals: { announcements: @parent_announcements } %>
+      </div>
     </div>
   </div>
   <div class="row p-2">

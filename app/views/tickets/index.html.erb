@@ -1,6 +1,6 @@
 <div class="container p-2">
   <% if current_user.role == "parent" %>
-    <%= render "new", locals: { ticket: @ticket } %>
+    <%= render "new", locals: { tickets: @tickets } %>
   <% end %>
   <h1 class=text-primary>View all your tickets</h1>
 
@@ -12,5 +12,5 @@
     %>
   <% end %>
 
-  <%= render 'ticket', locals: { tickets: @tickets } %>
+  <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
 </div>

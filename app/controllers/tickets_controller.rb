@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   include Pundit
 
   def index
-    @ticket = Ticket.new
+    # @ticket = Ticket.new
 
     if params[:query].present?
       @tickets = Ticket.global_search(params[:query])
