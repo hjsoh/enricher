@@ -17,6 +17,9 @@ class User < ApplicationRecord
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }
   validates :name, presence: true
 
+  # for avatar upload
+  has_one_attached :avatar
+
   # for the teacher r/s
   has_many :classrooms
   has_many :office_hours
