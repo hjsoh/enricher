@@ -5,6 +5,17 @@
     <div class="contact-profile container">
       <p><%= classroom.name %></p>
     </div>
+
+    <div class="announcements">
+      <ul class="list-inline-item">
+        <% classroom.announcements.each do |announcement| %>
+        <li id="announcement-<%= announcement.id %>" >
+              <strong><%= announcement.title %></strong>
+              <small><%= announcement.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+        </li>
+        <% end %>
+      </ul>
+    </div>
     <div class="messages">
       <ul class="list-unstyled">
         <% classroom.messages.each do |message| %>
@@ -14,7 +25,7 @@
               <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
             </i>
             <p><%= message.content %></p>
-            
+
           </li>
         <% end %>
       </ul>
