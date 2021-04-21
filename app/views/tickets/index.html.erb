@@ -1,4 +1,7 @@
 <div class="container p-2">
+  <% if current_user.role == "parent" %>
+    <%= render "new", locals: { ticket: @ticket } %>
+  <% end %>
   <h1 class=text-primary>View all your tickets</h1>
 
   <%= form_tag tickets_path, method: :get do %>
@@ -9,7 +12,5 @@
     %>
   <% end %>
 
-<%= render 'ticket', locals: { tickets: @tickets } %>
+  <%= render 'ticket', locals: { tickets: @tickets } %>
 </div>
-
-

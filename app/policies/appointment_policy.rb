@@ -3,9 +3,10 @@ class AppointmentPolicy < ApplicationPolicy
     def resolve
       if user.admin == true
         scope.all
-      else
-        # show all available office hours or own appointments
+      elsif user.role == 'teacher'
         scope.where(user: user)
+      else
+        user.student_appointments
       end
     end
   end
@@ -16,9 +17,5 @@ class AppointmentPolicy < ApplicationPolicy
 
   def create?
     new?
-  end
-
-  def appointment?
-    true
   end
 end

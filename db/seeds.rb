@@ -27,7 +27,8 @@ teacher_test = User.create!(
   email: 'teacher_test@hotmail.com',
   password: '123456',
   name: Faker::Name.unique.name,
-  role: 'teacher'
+  role: 'teacher',
+  admin: true
   )
 
 puts "Successfully created test account for teacher"
@@ -48,7 +49,8 @@ puts "Creating 50 students"
 
 50.times do
   student = Student.create!(
-    name: Faker::Name.unique.name
+    name: Faker::Name.unique.name,
+    admission_year: (2018..2021).to_a.sample
   )
 end
 
@@ -167,7 +169,7 @@ teachers = User.all.where(role:'teacher')
 
 teachers.each do |teacher|
   30.times do
-    start_time = Faker::Time.between_dates(from: '2021-01-01', to: Date.today, period: :afternoon)
+    start_time = Faker::Time.between_dates(from: '2021-01-01', to: '2021-12-31', period: :afternoon)
     oh = teacher.office_hours.build(
       start_time: start_time,
       end_time: start_time + 15.minutes

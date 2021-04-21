@@ -7,7 +7,13 @@
           </div>
           <div class="col">
             <div class="row">
-              <h4><%= @user.classrooms.count %></h4>
+              <h4>
+                <% if current_user.role == 'teacher' %>
+                  <%= @user.classrooms.where(is_active: true).count %>
+                <% else %>
+                  <%= @user.student_classrooms.where(is_active: true).count %>
+                <% end %>
+              </h4>
             </div>
             <div class="row">
               <small>Classrooms</small>
@@ -28,10 +34,16 @@
           </div>
           <div class="col">
             <div class="row">
-              <h4><%= @user.office_hours.count %></h4>
+              <h4>
+                <% if current_user.role == 'teacher' %>
+                  <%= @user.teacher_appointments.count %>
+                <% else %>
+                  <%= @user.appointments.count %>
+                <% end %>
+              </h4>
             </div>
             <div class="row">
-              <small>Office Hours</small>
+              <small>Appointments</small>
             </div>
           </div>
           <div class="col">
@@ -49,7 +61,13 @@
           </div>
           <div class="col">
             <div class="row">
-              <h4><%= @user.tickets.count %></h4>
+              <h4>
+                <% if current_user.role == 'teacher' %>
+                  <%= @user.teacher_tickets.count %>
+                <% else %>
+                  <%= @user.tickets.count %>
+                <% end %>
+              </h4>
             </div>
             <div class="row">
               <small>Tickets</small>

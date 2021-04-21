@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://enri-cher.com" }
+  config.action_mailer.default_url_options = { host: "enricher2.herokuapp.com" }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -62,7 +62,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.sendgrid.net',
     port:                 587,
-    domain:               'heroku.com/',
+    domain:               'enricher2.herokuapp.com',
     user_name:            'apikey',
     password:             ENV['SENDGRID_API_KEY'],
     authentication:       :plain,
