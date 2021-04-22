@@ -1,12 +1,12 @@
 
-<div class="container">
+<div class="container-fluid p-3">
   <!-- teacher selection bar for parents to find office hours -->
   <% if current_user.role=="parent" %>
     <%= simple_form_for :new_office_hour do |f| %>
-      <%= f.input :filter, prompt: 'Select class / teacher', collection: current_user.student_teachers.all %>
+      <%= f.input :filter, label: 'Select class / teacher', prompt: 'Filter here', collection: current_user.student_teachers.all %>
     <% end %>
   <% else %>
-      <!-- dont show anything for teachers -->
+    <!-- dont show anything for teachers -->
   <% end %>
 
   <div class="calendar-container">

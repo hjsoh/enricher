@@ -1,26 +1,22 @@
-<div class="card p-4 my-2">
-  <div class="container">
-    <h1 class="text-primary">New ticket</h1>
-  </div>
+<div class="card p-4 py-2">
+  <h1 class="text-primary">New ticket</h1>
 
-  <div class="container">
-    <%= simple_form_for @ticket do |f| %>
-      <%= f.input :question, label: 'Ask your question:', error: 'A question is mandatory, please specify one' %>
-      <%= f.input :is_private, label: 'Is this question private?', as: :boolean, input_html: { class: "toggle" } %>
-      <%= f.input :category_name,
-                        label: 'Category:',
-                        collection: ['Attendance', 'Enrollment', 'Adhoc', 'Homework', 'Syllabus', 'Timetable', 'Welfare'],
-                        as: :radio_buttons,
-                        input_html: { class: "tag-selector" },
-                        item_wrapper_class: 'tag-item',
-                        error: 'Category is mandatory, please specify one' %>
-      <%= f.input :classroom_id,
-                        label: 'Post ticket in which classroom?',
-                        collection: current_user.student_classrooms,
-                        as: :radio_buttons,
-                        input_html: { class: "tag-selector" },
-                        item_wrapper_class: 'tag-item' %>
-      <%= f.button :submit, "Create Ticket", class: "btn btn-primary btn-block" %>
-    <% end %>
-  </div>
+  <%= simple_form_for @ticket do |f| %>
+    <%= f.input :question, label: 'What would you like to ask?', error: 'A question is mandatory, please specify one' %>
+    <%= f.input :is_private, label: 'Is this question private?', as: :boolean, input_html: { class: "toggle" } %>
+    <%= f.input :category_name,
+                      label: 'Category:',
+                      collection: ['Attendance', 'Enrollment', 'Adhoc', 'Homework', 'Syllabus', 'Timetable', 'Welfare'],
+                      as: :check_boxes,
+                      input_html: { class: "tag-selector" },
+                      item_wrapper_class: 'tag-item',
+                      error: 'Category is mandatory, please specify one' %>
+    <%= f.input :classroom_id,
+                      label: 'Select a classroom to post this into',
+                      collection: current_user.student_classrooms,
+                      as: :check_boxes,
+                      input_html: { class: "tag-selector" },
+                      item_wrapper_class: 'tag-item' %>
+    <%= f.button :submit, "Create Ticket", class: "btn btn-primary btn-block" %>
+  <% end %>
 </div>
