@@ -30,11 +30,13 @@ import { initFlatpickr } from "../plugins/flatpickr";
 
 // Internal imports, e.g:
 import { initClassroomCable } from '../channels/classroom_channel.js';
+import { initSidebars } from './../plugins/init_sidebars.js';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   initClassroomCable();
+  initSidebars();
 });
 
 document.addEventListener('turbolinks:render', (e) => {
