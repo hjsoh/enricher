@@ -1,4 +1,4 @@
-<div class="container py-3">
+<div class="container-fluid">
   <div class="row p-2">
     <div class="col">
       <h1 class=text-primary><%= @parent.name %>'s Dashboard</h1>
@@ -14,24 +14,36 @@
       <h4 class="p-2 info-header">Latest Announcements:</h4>
       <div class="section-scroll">
         <div class="section-scroll">
-          <%= render partial: 'announcements/announcement', locals: { announcements: @parent_announcements } %>
+          <% if @parent_announcements.empty? %>
+            <h3>--no announcements--</h3>
+          <% else %>
+            <%= render partial: 'announcements/announcement', locals: { announcements: @parent_announcements } %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
   <div class="row px-3">
   <!-- TICKETS -->
-    <div class="col-12 col-lg-6 card py-2">
+    <div class="col-lg-6 card py-2">
       <h4 class="p-2 info-header">Latest Tickets:</h4>
       <div class="section-scroll">
-        <%= render partial: 'tickets/ticket', locals: { tickets: @parent_tickets } %>
+        <% if @parent_tickets.empty? %>
+          <h3>--no outstanding tickets--</h3>
+        <% else %>
+          <%= render partial: 'tickets/ticket', locals: { tickets: @parent_tickets } %>
+        <% end %>
       </div>
     </div>
   <!-- APPOINTMENTS -->
-    <div class="col-12 col-lg-6 card py-2">
+    <div class="col-lg-6 card py-2">
       <h4 class="p-2 info-header">Upcoming Appointments:</h4>
       <div class="section-scroll">
-        <%= render partial: 'appointments/appointment', locals: { appointments: @parent_appointments } %>
+        <% if @parent_appointments.empty? %>
+          <h3>--no upcoming appointments--</h3>
+        <% else %>
+          <%= render partial: 'appointments/appointment', locals: { appointments: @parent_appointments } %>
+        <% end %>
       </div>
     </div>
   </div>
