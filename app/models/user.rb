@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   # for avatar upload
-  has_one_attached :avatar
+  has_one_attached :photo
 
   # for the teacher r/s
   has_many :classrooms

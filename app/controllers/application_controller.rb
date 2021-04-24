@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up)
+    devise_parameter_sanitizer.permit(:account_update, keys: [:photo])
   end
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
