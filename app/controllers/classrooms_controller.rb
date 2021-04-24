@@ -74,7 +74,7 @@ class ClassroomsController < ApplicationController
     end
     @classroom = Classroom.find(params[:classroom_id])
     authorize(@classroom)
-    @announcements = @classroom.announcements.where("created_at < Time.now - 86_400")
+    @announcements = @classroom.announcements.where("created_at <= Time.zone.now - 1")
     authorize(@announcements)
     @message = Message.new
   end
