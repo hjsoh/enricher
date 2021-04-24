@@ -3,9 +3,12 @@
     <div class="col text-left rounded">
       <h2><span class="badge badge-logo"><%= @classroom.name %></span></h2>
     </div>
-    <div class="col text-right">
-      <h2>Taught by: <%= @classroom.user.name %></h2>
-    </div>
+    <% if current_user.role == 'parent' %>
+      <div class="col text-right">
+        <h3>Taught by: <%= @classroom.user.name %></h3>
+      </div>
+    <% else %>
+    <% end %>
   </div>
   <!-- CLASSROOM INFO -->
   <div class="row">
