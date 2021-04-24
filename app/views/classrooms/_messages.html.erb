@@ -9,28 +9,29 @@
     <div class="announcements">
       <ul class="list-unstyled">
         <% classroom_announcements.each do |c| %>
-        <li id="announcement-<%= c.announcement.id %>" >
+        <div class="collapse show" id="announcement-<%= c.announcement.id %>">
+          <li id="announcement-<%= c.announcement.id %>" >
               <strong><%= c.announcement.title %></strong>
               <small><%= c.announcement.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-              <small class="text-muted">
-                <%= link_to announcement_path(c.announcement), data: { confirm: "Are you sure you want to hide this?" } do %>
-                <i class="fas fa-window-close"></i></i>
-              <% end %>
-      </small>
-        </li>
+              <small class="text-muted"><!--  -->
+                <i class="fas fa-window-close" data-toggle="collapse" data-target="#announcement-<%= c.announcement.id %>"></i>
+              </small>
+          </li>
+        </div>
         <% end %>
       </ul>
     </div>
     <div class="messages">
       <ul class="list-unstyled">
         <% classroom.messages.each do |message| %>
-          <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'replies' : 'sent' %>">
-            <i class="author">
-              <strong><%= message.user.name %></strong>
-              <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-            </i>
-            <p><%= message.content %></p>
-
+          <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'sent' : 'replies'  %>">
+            <div>
+              <i class="author">
+                <strong><%= message.user.name %></strong>
+                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              </i>
+            </div>
+            <div><p><%= message.content %></p></div>
           </li>
         <% end %>
       </ul>

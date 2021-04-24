@@ -73,7 +73,7 @@ class ClassroomsController < ApplicationController
       @classrooms = current_user.student_classrooms
     end
     @classroom = Classroom.find(params[:classroom_id])
-    @classroom_announcements = @classroom.classroom_announcements.where("created_at >= ?", 3.days.ago)
+    @classroom_announcements = @classroom.classroom_announcements.where("created_at >= ?", 1.days.ago)
     authorize @classroom_announcements
     @message = Message.new
   end
