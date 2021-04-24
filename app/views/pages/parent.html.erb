@@ -6,7 +6,7 @@
   </div>
   <!-- CLASSROOM INFO -->
   <div class="row">
-    <%= render partial: 'info' %>
+    <%= render partial: 'info', locals: { announcements: @parent_announcements, tickets: @parent_tickets, appointments: @parent_appointments} %>
   </div>
   <!-- ANNOUNCEMENTS -->
   <div class="row p-3">
@@ -25,7 +25,7 @@
   </div>
   <div class="row px-3">
   <!-- TICKETS -->
-    <div class="col-lg-6 card py-2">
+    <div class="col-sm-6 card py-2">
       <h4 class="p-2 info-header">Latest Tickets:</h4>
       <div class="section-scroll">
         <% if @parent_tickets.empty? %>
@@ -36,7 +36,7 @@
       </div>
     </div>
   <!-- APPOINTMENTS -->
-    <div class="col-lg-6 card py-2">
+    <div class="col-sm-6 card py-2">
       <h4 class="p-2 info-header">Upcoming Appointments:</h4>
       <div class="section-scroll">
         <% if @parent_appointments.empty? %>
