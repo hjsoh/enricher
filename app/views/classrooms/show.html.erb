@@ -1,67 +1,52 @@
-<div class="container py-3">
-  <div class="row pr-2">
+<div class="container-fluid p-3">
+  <div class="row p-2">
     <div class="col text-right rounded">
       <h2><span class="badge badge-logo"><%= @classroom.name %></span></h2>
     </div>
   </div>
   <!-- CLASSROOM INFO -->
-  <div class="row p-2">
-    <%= render partial: 'info' %>
+  <div class="row">
+    <%= render partial: 'info', locals: { announcements: @announcements, tickets: @tickets, appointments: @appointments} %>
   </div>
   <!-- ANNOUNCEMENTS -->
-  <div class="row p-2">
-    <div class="col">
-      <h4 class="p-2 info-header">Announcements:</h4>
-      <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
-    </div>
-  </div>
-  <div class="row p-2">
-  <!-- TICKETS -->
-    <div class="col-12 col-lg-6">
-      <h4 class="p-2 info-header">Tickets:</h4>
-      <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
-    </div>
-  <!-- APPOINTMENTS -->
-    <div class="col-12 col-lg-6">
-      <h4 class="p-2 info-header">Upcoming Office Hours:</h4>
-      <% @classroom.user.student_appointments.each do |ta| %>
-        <div class="card mt-2 mb-2 card-select">
-          <div class="card-body row">
-            <div class="col">
-              <%= ta.user.name %>
-            </div>
-            <div class="col text-center">
-              <%= ta.office_hour.start_time.strftime('%F') %>
-            </div>
-            <div class="col text-center">
-             <%= ta.office_hour.start_time.strftime('%H:%M') %> to <%= ta.office_hour.end_time.strftime('%H:%M') %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <!-- CHATROOM MESSAGES -->
-  <div class="row pr-2 p-0 mx-0">
-    <div class="col">
-      <h4 class="p-2 info-header">Chatroom:</h4>
-        <div id="messages" data-classroom-id="<%= @classroom.id %>">
-          <% @classroom.messages.each do |message| %>
-            <div class="message-container" id="message-<%= message.id %>">
-              <i class="author">
-                <span><%= message.user.name %></span>
-                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-              </i>
-              <p><%= message.content %></p>
-            </div>
-          <% end %>
-        </div>
-        <form action="chatrooms/1/messages" method="post"></form>
-        <%= simple_form_for [ @classroom, @message ], remote: true do |f| %>
-          <%= f.input :content, label: false, placeholder: "Message ##{@classroom.name}" %>
-          <%= f.submit %>
+  <div class="row p-3">
+    <div class="col card">
+      <h4 class="p-2 info-header">Latest Announcements:</h4>
+      <div class="section-scroll">
+        <% if @announcements.empty? %>
+          <h3>--no announcements--</h3>
+        <% else %>
+          <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
         <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row px-3">
+  <!-- TICKETS -->
+    <div class="col-sm-6 card py-2">
+      <h4 class="p-2 info-header">Latest Tickets:</h4>
+      <class class="section-scroll">
+        <% if @tickets.empty? %>
+          <h3>--no outstanding tickets--</h3>
+        <% else %>
+          <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
+        <% end %>
+      </class>
+    </div>
+  <!-- CLASS ROSTER -->
+    <div class="col-sm-6 card py-2">
+      <h4 class="p-2 info-header">Class Roster:</h4>
+      <div class="section-scroll">
+        <% if @class_roster.empty? %>
+          <h3>--no students in class--</h3>
+        <% else %>
+          <ol>
+          <% @class_roster.each do |student| %>
+            <li><%= student.name %></li>
+          </ol>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-

@@ -13,13 +13,11 @@
     <div class="col card">
       <h4 class="p-2 info-header">Latest Announcements:</h4>
       <div class="section-scroll">
-        <div class="section-scroll">
-          <% if @parent_announcements.empty? %>
-            <h3>--no announcements--</h3>
-          <% else %>
-            <%= render partial: 'announcements/announcement', locals: { announcements: @parent_announcements } %>
-          <% end %>
-        </div>
+        <% if @parent_announcements.empty? %>
+          <h3>--no announcements--</h3>
+        <% else %>
+          <%= render partial: 'announcements/announcement', locals: { announcements: @parent_announcements } %>
+        <% end %>
       </div>
     </div>
   </div>
