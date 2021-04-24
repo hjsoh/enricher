@@ -5,16 +5,23 @@
     <div class="contact-profile container">
       <p><%= classroom.name %></p>
     </div>
-  
-    <div class="announcement_container">
-      <h3>Announcements</h3>
-      <% @classroom.announcements.each do |announcement| %>
-        <%= announcement.title %>
-        <%= announcement.content %>
-      <% end %>
-    </div>
 
-    <div class="messages" style="height: 65vh;">
+    <div class="announcements">
+      <ul class="list-unstyled">
+        <% classroom_announcements.each do |c| %>
+        <li id="announcement-<%= c.announcement.id %>" >
+              <strong><%= c.announcement.title %></strong>
+              <small><%= c.announcement.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              <small class="text-muted">
+                <%= link_to announcement_path(c.announcement), data: { confirm: "Are you sure you want to hide this?" } do %>
+                <i class="fas fa-window-close"></i></i>
+              <% end %>
+      </small>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="messages">
       <ul class="list-unstyled">
         <% classroom.messages.each do |message| %>
           <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'replies' : 'sent' %>">
@@ -23,7 +30,7 @@
               <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
             </i>
             <p><%= message.content %></p>
-            
+
           </li>
         <% end %>
       </ul>

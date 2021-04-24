@@ -68,11 +68,13 @@ class ClassroomsController < ApplicationController
   def show_chat
     if current_user.role == 'teacher'
       @classrooms = current_user.classrooms
+
     else
       @classrooms = current_user.student_classrooms
     end
     @classroom = Classroom.find(params[:classroom_id])
-    authorize(@classroom)
+    @classroom_announcements = @classroom.classroom_announcements.where("created_at >= ?", 3.days.ago)
+    authorize @classroom_announcements
     @message = Message.new
   end
 

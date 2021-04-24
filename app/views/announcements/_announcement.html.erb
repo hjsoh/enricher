@@ -1,25 +1,30 @@
-<% announcements.each do |anc| %>
+<% announcements.each do |announcement| %>
   <div class="card mt-2 mb-2">
     <div class="card-body">
       <div class="row">
         <div class="col-12 col-lg-8">
-          <h5 class="card-title"><%= anc.title %></h5>
+          <h5 class="card-title"><%= announcement.title %></h5>
         </div>
         <div class="col-12 col-lg-4 text-right">
-          <small class="text-muted">Posted at <%= anc.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
+          <small class="text-muted">Posted at <%= announcement.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
         </div>
       </div>
-        <p class="card-text"><%= anc.content %></p>
+        <p class="card-text"><%= announcement.content %></p>
     </div>
     <div class="card-footer">
       <small class="text-muted">Posted in:
-        <% anc.classroom_announcements.each do |x| %>
-          <li class="list-inline-item"><%= x.classroom.name %></li>
+        <% announcement.classroom_announcements.each do |x| %>
+          <li class="list-inline-item badge badge-primary"><%= x.classroom.name %></li>
         <% end %>
       </small>
       <small class="text-muted">
-        <%= link_to announcement_path(anc), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <%= link_to announcement_path(announcement), method: :delete, data: { confirm: "Are you sure?" } do %>
           <i class="fas fa-trash"></i>
+        <% end %>
+      </small>
+      <small class="text-muted">
+        <%= link_to announcement_path(anc), data: { confirm: "Are you sure you want to hide this?" } do %>
+          <i class="fas fa-window-close"></i></i>
         <% end %>
       </small>
     </div>
