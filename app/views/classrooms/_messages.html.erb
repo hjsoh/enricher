@@ -24,7 +24,7 @@
     <div class="messages">
       <ul class="list-unstyled">
         <% classroom.messages.each do |message| %>
-          <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'sent' : 'replies'  %>">
+          <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'sent' : 'replies'  %> text-break">
             <div>
               <i class="author">
                 <strong><%= message.user.name %></strong>
