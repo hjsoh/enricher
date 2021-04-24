@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_133957) do
     t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "nickname"
     t.string "name"
     t.boolean "admin", default: false
     t.string "authentication_token", limit: 30
