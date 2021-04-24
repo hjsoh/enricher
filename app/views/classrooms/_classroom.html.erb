@@ -4,6 +4,7 @@
       <div class="card-body">
         <h5 class="card-title"><%= link_to classroom.name, classroom_path(classroom) %></h5>
         <p class="card-text"><%= classroom.academic_year %></p>
+        <%= current_user.role == 'parent' classroom.name : '' %>
       </div>
     </div>
   <% end %>

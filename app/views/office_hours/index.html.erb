@@ -2,22 +2,13 @@
 <div class="container-fluid p-3">
   <!-- teacher selection bar for parents to find office hours -->
   <% if current_user.role=="parent" %>
-    <%#= form_tag(office_hours_path), method:'get' do %>
-<!--       <select name="search" id=""></select>
-        <%# current_user.student_teachers.each do |teacher| %>
-          <option value="#{ teacher.name }"></option> -->
-        <%# end %>
-    <%= simple_form_for office_hours_path, method: :get do |f| %>
+    <%= simple_form_for :filter, url: office_hours_path, method: :get do |f| %>
       <%= f.input :user,
-          label: "Select class / teacher",
+          label: "Select teacher",
           prompt: 'Filter here',
           collection: current_user.student_teachers.all
-          # text_field_tag :query,
-
         %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-    <%# simple_form_for :new_office_hour do |f| %>
-      <%# f.input :filter, label: 'Select class / teacher', prompt: 'Filter here', collection: current_user.student_teachers.all %>
+        <%= submit_tag "Search", class: "btn btn-primary", name: nil %>
     <% end %>
   <% else %>
     <!-- dont show anything for teachers -->
