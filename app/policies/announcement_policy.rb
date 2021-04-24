@@ -24,6 +24,7 @@ class AnnouncementPolicy < ApplicationPolicy
   end
 
   def destroy?
-     user.classroom_ids.any? { |id| record.classroom_ids.include?(id) }
+    user.classroom_ids.any? { |id| record.classroom_ids.include?(id) }
   end
+
 end
