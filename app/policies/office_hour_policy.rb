@@ -5,10 +5,8 @@ class OfficeHourPolicy < ApplicationPolicy
         scope.all
       # if teacher, show only own office hours
       elsif user.role == 'teacher'
-        # scope.where(user:user)
         user.office_hours
       # if parent, show office hours of teacher of students' classses
-      # office_hour.user == current_user.student_classrooms
       else
         user.student_office_hours
       end

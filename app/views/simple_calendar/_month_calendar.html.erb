@@ -6,7 +6,7 @@
       <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: 'btn btn-outline-primary' %>
     </div>
     <% if current_user.role=="teacher" %>
-      <%= link_to 'Create new office hour slot', new_office_hour_path, class: 'btn btn-outline-secondary' %>
+      <%= link_to 'Create new office hour slot', new_office_hour_path, class: 'btn btn-outline-success' %>
     <% else %>
         <!-- dont show anything for parents -->
     <% end %>

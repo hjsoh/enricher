@@ -1,43 +1,44 @@
 <!-- Collapsed below, remove d-none and add d-flex to show -->
-<div class="d-flex p-3 flex-column bg-dark text-white sticky-top vh-100" id="sidebar-sm" style="width: 4.5rem;">
+<div class="d-flex p-3 flex-column sticky-top vh-100 <%= current_user.role == "teacher" ? "bg-dark" : "bg-white" %>"
+  id="sidebar-sm" style="width: 4.5rem;">
 
   <div class="btn btn-secondary expand-action"><i class="fas fa-bars align-self-center"></i></div>
 
   <hr>
 
   <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-    <li class="nav-item">
+    <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to classrooms_path, class:"nav-link text-white #{current_page?('/classrooms') && 'active'}" do %>
-         <i class="far fa-address-book mr-3"></i>
+        <%= link_to classrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"}  #{current_page?('/classrooms') && 'active'}" do %>
+         <i class="far fa-address-book"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to office_hours_path, class:"nav-link text-white #{current_page?('/office_hours') && 'active'}" do %>
-         <i class="far fa-calendar mr-3"></i>
+        <%= link_to office_hours_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/office_hours') && 'active'}" do %>
+         <i class="far fa-calendar"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to tickets_path, class:"nav-link text-white #{current_page?('/tickets') && 'active'}" do %>
-         <i class="far fa-hand-paper mr-3"></i>
+        <%= link_to tickets_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/tickets') && 'active'}" do %>
+         <i class="far fa-hand-paper"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to announcements_path, class:"nav-link text-white #{current_page?('/announcements') && 'active'}" do %>
-         <i class="far fa-clipboard mr-3"></i>
+        <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
+         <i class="far fa-clipboard"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to chatrooms_path, class:"nav-link text-white #{current_page?('/chatrooms') && 'active'}" do %>
-         <i class="far fa-comments mr-2"></i>
+        <%= link_to chatrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/chatrooms') && 'active'}" do %>
+         <i class="far fa-comments"></i>
         <% end %>
       </div>
     </li>
@@ -57,45 +58,45 @@
 </div>
 
 <!-- Collapsed below, add d-none and remove d-flex to hide -->
-<div class="flex-column p-3 bg-dark d-none text-white sticky-top vh-100" id="sidebar-lg" style="width: 280px;">
+<div class="flex-column p-3 d-none sticky-top vh-100 <%= current_user.role == "teacher" ? "bg-dark" : "bg-white" %>" id="sidebar-lg" style="width: 280px;">
 
   <div class="btn btn-secondary collapse-action"><i class="fas fa-bars"></i></div>
 
   <hr>
 
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
+    <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to classrooms_path, class:"nav-link text-white #{current_page?('/classrooms') && 'active'}" do %>
+        <%= link_to classrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/classrooms') && 'active'}" do %>
          <i class="far fa-address-book mr-3"></i>Classrooms
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to office_hours_path, class:"nav-link text-white #{current_page?('/office_hours') && 'active'}" do %>
+        <%= link_to office_hours_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/office_hours') && 'active'}" do %>
          <i class="far fa-calendar mr-3"></i>Office Hours
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to tickets_path, class:"nav-link text-white #{current_page?('/tickets') && 'active'}" do %>
-         <i class="far fa-hand-paper mr-3"></i>Classrooms
+        <%= link_to tickets_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/tickets') && 'active'}" do %>
+         <i class="far fa-hand-paper mr-3"></i>Tickets
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to announcements_path, class:"nav-link text-white #{current_page?('/announcements') && 'active'}" do %>
+        <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
          <i class="far fa-clipboard mr-3"></i>Announcements
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
-        <%= link_to chatrooms_path, class:"nav-link text-white #{current_page?('/chatrooms') && 'active'}" do %>
-         <i class="far fa-comments mr-2"></i>Chatrooms
+        <%= link_to chatrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/chatrooms') && 'active'}" do %>
+         <i class="far fa-comments mr-3"></i>Chatrooms
         <% end %>
       </div>
     </li>
@@ -120,7 +121,7 @@
       <a style="font-size:0.7rem"><%= current_user.name %></a>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <%= link_to 'Settings', tickets_path, class:"dropdown-item" %>
+      <%= link_to 'Settings', edit_user_registration_path, class:"dropdown-item" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
     </div>
   </div>
