@@ -2,8 +2,13 @@
   <% @classrooms.each do |classroom| %>
     <div class="card card-select">
       <div class="card-body">
-        <h5 class="card-title"><%= link_to classroom.name, classroom_path(classroom) %></h5>
-        <p class="card-text"><%= classroom.academic_year %></p>
+        <div class="d-inline-flex justify-content-between w-50">
+          <h5 class="card-title"><%= link_to classroom.name, classroom_path(classroom) %></h5>
+          <small class="card-text"><%= classroom.academic_year %></small>
+        </div>
+        <% if current_user.role == 'parent' %>
+          <p class="card-text">Teacher: <%= classroom.user.name %></p>
+        <% end %>
       </div>
     </div>
   <% end %>
