@@ -29,10 +29,10 @@ class AnnouncementsController < ApplicationController
     end
   end
 
-  # def show
-  #   @announcement = Announcement.find(params[:id])
-  #   authorize @announcement
-  # end
+  def show
+    @announcement = Announcement.find(params[:id])
+    authorize @announcement
+  end
 
   def destroy
     @announcement = Announcement.find(params[:id])
