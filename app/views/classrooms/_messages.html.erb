@@ -5,16 +5,33 @@
     <div class="contact-profile container">
       <p><%= classroom.name %></p>
     </div>
+
+    <div class="announcements">
+      <ul class="list-unstyled">
+        <% classroom_announcements.each do |c| %>
+        <div class="collapse show" id="announcement-<%= c.announcement.id %>">
+          <li id="announcement-<%= c.announcement.id %>" >
+              <strong><%= c.announcement.title %></strong>
+              <small><%= c.announcement.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              <small class="text-muted"><!--  -->
+                <i class="fas fa-window-close" data-toggle="collapse" data-target="#announcement-<%= c.announcement.id %>"></i>
+              </small>
+          </li>
+        </div>
+        <% end %>
+      </ul>
+    </div>
     <div class="messages">
       <ul class="list-unstyled">
         <% classroom.messages.each do |message| %>
-          <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'replies' : 'sent' %>">
-            <i class="author">
-              <strong><%= message.user.name %></strong>
-              <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-            </i>
-            <p><%= message.content %></p>
-            
+          <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'sent' : 'replies'  %> text-break">
+            <div>
+              <i class="author">
+                <strong><%= message.user.name %></strong>
+                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              </i>
+            </div>
+            <div><p><%= message.content %></p></div>
           </li>
         <% end %>
       </ul>

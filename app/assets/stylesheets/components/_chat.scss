@@ -29,8 +29,12 @@
   height: calc(100vh - 1.5em - 2rem - 2px);
 }
 
+.announcement_container {
+  
+}
+
 #frame {
-  height: 85vh;
+  height: 95vh;
   display: flex;
   background: #E6EAEA;
 }
@@ -605,6 +609,8 @@
   height: 60px;
   line-height: 60px;
   background: #f5f5f5;
+  position: fixed;
+  top: 24px;
 }
 
 #frame .content .contact-profile img {
@@ -659,6 +665,18 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+
+
+#frame .content .messages ul li.replies img {
+  // float: right;
+  margin: 6px 0 0 8px;
+}
+
+#frame .content .messages ul li.replies p {
+  background: #f5f5f5;
+  // float: right;
+}
+
 #frame .content .messages ul li {
   clear: both;
   float: left;
@@ -680,15 +698,10 @@
   color: #f5f5f5;
 }
 
-#frame .content .messages ul li.replies img {
-  float: right;
-  margin: 6px 0 0 8px;
+#frame .content .messages ul li.sent {
+  text-align: end;
 }
 
-#frame .content .messages ul li.replies p {
-  background: #f5f5f5;
-  float: right;
-}
 
 #frame .content .messages ul li img {
   width: 22px;
@@ -700,7 +713,7 @@
   display: inline-block;
   padding: 10px 15px;
   border-radius: 20px;
-  max-width: 205px;
+  max-width: 400px;
   line-height: 130%;
 }
 
@@ -787,8 +800,9 @@
 .message-container {
   height: 86%;
   overflow-y: auto;
-  color: 1B1E1B;
+  color: #1B1E1B;
 }
+
 
 #message_content {
   height: 38px;
@@ -797,4 +811,16 @@
 .replies {
   display: flex;
   flex-direction: column;
+}
+
+.sent {
+  display: flex;
+  flex-direction: column;
+}
+
+.announcements {
+  position: fixed;
+  width: 100%;
+  top: 83px;
+  background: #f5f5f5;
 }
