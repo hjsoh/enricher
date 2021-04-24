@@ -27,7 +27,4 @@ class AnnouncementPolicy < ApplicationPolicy
     user.classroom_ids.any? { |id| record.classroom_ids.include?(id) }
   end
 
-  def show_chat?
-    true
-  end
 end
