@@ -1,21 +1,21 @@
 <div class="container p-2">
   <% if current_user.role == "parent" %>
-    <%= render "new", locals: { ticket: @ticket } %>
+    <%= render partial: 'tickets/new', locals: { ticket: @ticket } %>
   <% end %>
-  <div class="card p-4 mt-2">
-    <div class="container">
-      <h1 class=text-primary>View all your tickets</h1>
-    </div>
+</div>
 
-    <div class="container">
-      <%= form_tag tickets_path, method: :get do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Search tickets"
-        %>
-      <% end %>
-        <%= render 'ticket', locals: { tickets: @tickets } %>
-    </div>
+<div class="container p-2">
+  <div class="card p-4 py-2">
+    <h1 class=text-primary>View all your tickets</h1>
+
+    <%= form_tag tickets_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Search tickets"
+      %>
+    <% end %>
+
+    <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
   </div>
 </div>

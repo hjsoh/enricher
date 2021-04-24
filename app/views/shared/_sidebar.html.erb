@@ -1,44 +1,123 @@
-<div class="container d-flex flex-column p-3 text-white bg-dark sticky-top vh-100" style="width: 20%; min-width: 200px;">
-  <div class="d-flex justify-content-center">
-    <%= link_to image_tag('enricher_logo.png', height: 80, crop: :fill, class: "img-style"), root_path %>
-  </div>
+<!-- Collapsed below, remove d-none and add d-flex to show -->
+<div class="d-flex p-3 flex-column bg-dark text-white sticky-top vh-100" id="sidebar-sm" style="width: 4.5rem;">
+
+  <div class="btn btn-secondary expand-action"><i class="fas fa-bars align-self-center"></i></div>
+
   <hr>
-    <ul class="nav nav-pills flex-column mb-auto" id="sidebar-nav">
-      <li class="nav-item">
+
+  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+    <li class="nav-item">
+      <div class="py-3 nav-item border-bottom">
         <%= link_to classrooms_path, class:"nav-link text-white #{current_page?('/classrooms') && 'active'}" do %>
-         <i class="far fa-address-book mr-3"></i> Classrooms
+         <i class="far fa-address-book mr-3"></i>
         <% end %>
-      </li>
-      <li class="nav-item">
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
         <%= link_to office_hours_path, class:"nav-link text-white #{current_page?('/office_hours') && 'active'}" do %>
-          <i class="far fa-calendar mr-3"></i> Office Hours
+         <i class="far fa-calendar mr-3"></i>
         <% end %>
-      </li>
-      <li class="nav-item">
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
         <%= link_to tickets_path, class:"nav-link text-white #{current_page?('/tickets') && 'active'}" do %>
-         <i class="far fa-hand-paper mr-3"></i> Tickets
+         <i class="far fa-hand-paper mr-3"></i>
         <% end %>
-      </li>
-      <li class="nav-item">
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
         <%= link_to announcements_path, class:"nav-link text-white #{current_page?('/announcements') && 'active'}" do %>
-          <i class="far fa-clipboard mr-3"></i> Announcements
+         <i class="far fa-clipboard mr-3"></i>
         <% end %>
-      </li>
-      <li class="nav-item">
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
         <%= link_to chatrooms_path, class:"nav-link text-white #{current_page?('/chatrooms') && 'active'}" do %>
-          <i class="far fa-comments mr-2"></i> Chatroom
+         <i class="far fa-comments mr-2"></i>
         <% end %>
-      </li>
-    </ul>
+      </div>
+    </li>
+  </ul>
+
   <hr>
+
+  <div class="d-flex justify-content-center">
+    <%= link_to image_tag('enricher_logo.png', height: 40, crop: :fill, class: "rounded-circle my-1"), root_path %>
+  </div>
+
+  <% if current_user.role == "teacher" %>
+    <span class="badge badge-primary" style="font-size:0.5rem">Teacher</span>
+  <% elsif current_user.role == "parent" %>
+    <span class="badge badge-success" style="font-size:0.5rem">Parent</span>
+  <% end %>
+</div>
+
+<!-- Collapsed below, add d-none and remove d-flex to hide -->
+<div class="flex-column p-3 bg-dark d-none text-white sticky-top vh-100" id="sidebar-lg" style="width: 280px;">
+
+  <div class="btn btn-secondary collapse-action"><i class="fas fa-bars"></i></div>
+
+  <hr>
+
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <div class="py-3 nav-item border-bottom">
+        <%= link_to classrooms_path, class:"nav-link text-white #{current_page?('/classrooms') && 'active'}" do %>
+         <i class="far fa-address-book mr-3"></i>Classrooms
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
+        <%= link_to office_hours_path, class:"nav-link text-white #{current_page?('/office_hours') && 'active'}" do %>
+         <i class="far fa-calendar mr-3"></i>Office Hours
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
+        <%= link_to tickets_path, class:"nav-link text-white #{current_page?('/tickets') && 'active'}" do %>
+         <i class="far fa-hand-paper mr-3"></i>Classrooms
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
+        <%= link_to announcements_path, class:"nav-link text-white #{current_page?('/announcements') && 'active'}" do %>
+         <i class="far fa-clipboard mr-3"></i>Announcements
+        <% end %>
+      </div>
+    </li>
+    <li>
+      <div class="py-3 nav-item border-bottom">
+        <%= link_to chatrooms_path, class:"nav-link text-white #{current_page?('/chatrooms') && 'active'}" do %>
+         <i class="far fa-comments mr-2"></i>Chatrooms
+        <% end %>
+      </div>
+    </li>
+  </ul>
+
+  <hr>
+
+  <div class="d-flex justify-content-center">
+    <%= link_to image_tag('enricher_logo.png', height: 80, crop: :fill, class: "img-style my-1"), root_path %>
+  </div>
+
+  <% if current_user.role == "teacher" %>
+    <span class="badge badge-primary" style="font-size:0.5rem">Teacher</span>
+  <% elsif current_user.role == "parent" %>
+    <span class="badge badge-success" style="font-size:0.5rem">Parent</span>
+  <% end %>
+
+  <hr>
+
   <div class="dropdown">
     <button class="btn btn-block btn-secondary dropdown-toggle text-wrap" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <% if current_user.role == "teacher" %>
-        <span class="badge badge-primary" style="font-size:0.5rem">Teacher</span>
-      <% elsif current_user.role == "parent" %>
-        <span class="badge badge-success" style="font-size:0.5rem">Parent</span>
-      <% end %>
-        <a style="font-size:0.7rem"><%= current_user.name %></a>
+      <a style="font-size:0.7rem"><%= current_user.name %></a>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <%= link_to 'Settings', edit_user_registration_path, class:"dropdown-item" %>

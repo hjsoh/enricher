@@ -1,13 +1,15 @@
-<% @tickets.each do |ticket| %>
+<% tickets.each do |ticket| %>
   <%= link_to ticket_path(ticket), class: 'cardlink' do %>
     <div class="card mt-2 mb-2 card-select">
       <div class="card-body">
         <div class="row">
-          <div class="col-12 col-lg-8">
-              <h5 class="card-title"><%= ticket.question %></h5>
+          <div class="col-12 col-lg-8 align-self-center">
+            <h5 class="card-title"><%= ticket.question %></h5>
+            <p class="card-text">Asked by: <%= ticket.user.name %></p>
           </div>
-          <div class="col-12 col-lg-4 text-right">
-          <small class="text-muted">Created on <%= ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
+          <div class="col-12 col-lg-4 text-right align-self-center">
+          <small class="text-muted">Created on <%= ticket.created_at.strftime('%-d %b %y') %></small>
+          <small class="text-muted"><%= ticket.created_at.strftime('%-H:%M%p') %></small>
           </div>
         </div>
         <div class="d-flex">
