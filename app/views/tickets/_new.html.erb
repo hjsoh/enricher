@@ -3,7 +3,6 @@
 
   <%= simple_form_for @ticket do |f| %>
     <%= f.input :question, label: 'What would you like to ask?', error: 'A question is mandatory, please specify one' %>
-    <%#= f.input :is_private, label: 'Is this question private?', as: :boolean, input_html: { class: "toggle" } %>
     <%= f.input :category_name,
                       label: 'Category:',
                       collection: ['Attendance', 'Enrollment', 'Adhoc', 'Homework', 'Syllabus', 'Timetable', 'Welfare'].sort,
