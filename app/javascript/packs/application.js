@@ -35,6 +35,7 @@ import { initSidebars } from './../plugins/init_sidebars.js';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+ 
   initClassroomCable();
   initSidebars();
 });
