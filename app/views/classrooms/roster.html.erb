@@ -1,25 +1,27 @@
+<div class="vh-100 p-3">
+  <h1 class="text-primary">Class <%= @classroom.name %></h1>
 
-<h1>This is the classroom's roster</h1>
-<h1><%= @classroom.name %></h1>
+  <h3>Current enrollment of students</h3>
 
-<h1>Teacher</h1>
-<%= @classroom.user.name %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Student name</th>
+        <th scope="col">Admission year</th>
+        <th scope="col">Parent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @classroom.students.each_with_index do |student, index| %>
+        <tr>
+          <th scope="row"><%= index+1 %></th>
+          <td><%= student.name %></td>
+          <td><%= student.admission_year %></td>
+          <td><%= student.parents.first.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<h1>Here is the current enrollment of students</h1>
-<%= @classroom.enrollment %>
-<h1>Students</h1>
-
-<%#= simple_form_for [ @classroom, @enrollments ] do |f| %>
-
-  <%#= f.association :students %>
-  <%#= f.button :submit %>
-  <%#= f.input :content %>
-  <%#= f.submit "Submit review", class: "btn btn-primary" %>
-<%# end %>
-
-<%# @enrollments.each do |enrollment| %>
-  <%#= simple_form_for enrollment do |f| %>
-    <%#= f.association :students %>
-    <%#= f.button :submit %>
-  <%# end %>
-<%# end %>

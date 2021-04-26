@@ -1,4 +1,4 @@
-<div class="container-fluid p-3" style="height: 100vh;">
+<div class="container-fluid p-3">
   <div class="row">
     <div class="col-sm-6">
       <div class="row card p-3 mb-1" style="height: 35vh;">
@@ -49,29 +49,27 @@
         <% end %>
       </div>
     </div>
-    <div class="col-sm-6 card p-3 mb-2" style="height: 95vh">
-      <h5 class="info-header">Comments</h5>
-      <div class="col">
-      <div class="row custom-scroll" style="height: 70vh;">
-        <% @ticket.comments.each do |comment| %>
-           <div class="card w-100 p-3 mb-2">
-            <div class="d-flex justify-content-between">
-              <p class="card-text author"><%= comment.author.name %></p>
-              <small class="card-text"><%= comment.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
-            </div>
-           <p class="card-text"><%= comment.content %></p>
-           </div>
-        <% end %>
+    <div class="col-sm-6 card p-3 mb-2 d-flex flex-column justify-content-between" style="height: 95vh;">
+      <div>
+        <h5 class="info-header">Comments</h5>
+        <div class="row custom-scroll" style="height: 65vh;">
+          <% @ticket.comments.each do |comment| %>
+             <div class="card w-100 p-3 mb-2">
+              <div class="d-flex justify-content-between">
+                <p class="card-text author"><%= comment.author.name %></p>
+                <small class="card-text"><%= comment.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
+              </div>
+             <p class="card-text"><%= comment.content %></p>
+             </div>
+          <% end %>
+        </div>
       </div>
       <div class="row p-2" style="height: 25vh">
         <%= simple_form_for [ @ticket, @comment ] do |f| %>
           <%= f.input :content, label: false %>
-          <%= f.submit "Add a comment", class: "btn btn-primary my-2", "data-disable-with" => "Commenting.." %>
+          <%= f.submit "Add a comment", class: "btn btn-primary btn-block", "data-disable-with" => "Commenting.." %>
         <% end %>
-      </div>
       </div>
     </div>
   </div>
 </div>
-
-
