@@ -56,10 +56,17 @@
           <% @ticket.comments.each do |comment| %>
              <div class="card w-100 p-3 mb-2">
               <div class="d-flex justify-content-between">
-                <p class="card-text author"><%= comment.author.name %></p>
+                <div class="d-flex">
+                <% if comment.author.photo.attached? %>
+                  <%= cl_image_tag comment.author.photo.key, class: "avatar-small" %>
+                <% else %>
+                  <%= image_tag('default_avatar.png', class:"avatar-small") %>
+                <% end %>
+                <p class="card-text author ml-2"><%= comment.author.name %>  </p>
+                </div>
                 <small class="card-text"><%= comment.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
               </div>
-             <p class="card-text"><%= comment.content %></p>
+             <p class="card-text p-1"><%= comment.content %></p>
              </div>
           <% end %>
         </div>
