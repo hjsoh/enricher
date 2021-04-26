@@ -31,7 +31,7 @@ class ClassroomsController < ApplicationController
     @message = Message.new()
     @announcements = @classroom.announcements
     @tickets = @classroom.tickets.where.not(status: 'Completed').order(created_at: :desc)
-    @students = @classroom.students.where(is_active: true)
+    @students = @classroom.students.where(is_active: true).order('name ASC')
     @class_roster = @classroom.students.where(is_active: true).order('name ASC')
   end
 

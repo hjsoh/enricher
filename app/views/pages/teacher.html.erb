@@ -4,7 +4,7 @@
 
   <!-- aggregated teacher info -->
   <div class="row mb-1">
-    <%= render partial: 'info' %>
+    <%= render partial: 'info', locals: { classrooms: @teacher_classrooms, tickets: @teacher_tickets, appointments: @teacher_appointments } %>
   </div>
 
   <!-- announcements section -->

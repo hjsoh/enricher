@@ -50,11 +50,11 @@
       <div class="card h-100 p-3">
         <h4 class="info-header">Class Roster:</h4>
         <div class="section-scroll border border-sold rounded-lg h-100">
-          <% if @class_roster.empty? %>
+          <% if @students.empty? %>
             <h4>--no students in class--</h4>
           <% else %>
             <ol>
-            <% @class_roster.each do |student| %>
+            <% @students.each do |student| %>
               <li><%= student.name %></li>
               <% end %>
             </ol>

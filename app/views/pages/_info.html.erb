@@ -9,11 +9,7 @@
         <div class="col">
           <div class="row">
             <h4>
-              <% if current_user.role == 'teacher' %>
-                <%= @teacher_classrooms.count %>
-              <% else %>
-                <%= @parent_classrooms.count %>
-              <% end %>
+              <%= classrooms.count %>
             </h4>
           </div>
           <div class="row">
@@ -38,11 +34,7 @@
         <div class="col">
           <div class="row">
             <h4>
-              <% if current_user.role == 'teacher' %>
-                <%= @teacher_tickets.count %>
-              <% else %>
-                <%= @parent_tickets.count %>
-              <% end %>
+              <%= tickets.count %>
             </h4>
           </div>
           <div class="row">
@@ -67,11 +59,7 @@
         <div class="col">
           <div class="row">
             <h4>
-              <% if current_user.role == 'teacher' %>
-                <%= @teacher_appointments.count %>
-              <% else %>
-                <%= @parent_appointments.count %>
-              <% end %>
+              <%= appointments.count %>
             </h4>
           </div>
           <div class="row">
