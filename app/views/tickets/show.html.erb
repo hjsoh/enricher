@@ -1,69 +1,71 @@
-<div class="container-fluid p-3">
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="row card p-3 mb-1" style="height: 35vh;">
-        <h5 class="info-header">Details</h5>
-        <div class="row">
-          <div class="col-4 mb-1"><strong>Asked by: </strong></div>
-          <div class="col-8"><%= @ticket.user.name %></div>
-          <div class="col-4 mb-1"><strong>Student:</strong></div>
-          <div class="col-8"><% @names_array.each do |name| %><%= name %>
-            <% end %></div>
-          <div class="col-4 mb-1"><strong>Created on: </strong></div>
-          <div class="col-8"><%= @ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></div>
-          <div class="col-4 mb-1"><strong>Category: </strong></div>
-          <div class="col-8"><%= @ticket.category_name %></div>
-          <div class="col-4 mb-1"><strong>Status: </strong></div>
-          <div class="col-8">
-            <% if @ticket.status == "Not yet started" %>
-              <span class="badge badge-danger">Not started</span>
-            <% elsif @ticket.status == "In progress" %>
-              <span class="badge badge-primary">In progress</span>
-            <% elsif @ticket.status == "Completed" %>
-              <span class="badge badge-success">Completed</span>
-            <% end %>
+<div class="vh-100 p-3">
+  <div class="row h-100">
+    <div class="col-6 h-100">
+      <!-- Details segment -->
+      <div class="row px-3 pb-1" style="height:35%;">
+        <div class="card p-3 h-100 w-100">
+          <h5 class="info-header">Details</h5>
+          <div class="row">
+            <div class="col-4 mb-1"><strong>Asked by: </strong></div>
+            <div class="col-8"><%= @ticket.user.name %></div>
+            <div class="col-4 mb-1"><strong>Student:</strong></div>
+            <div class="col-8"><%= @students %></div>
+            <div class="col-4 mb-1"><strong>Created on: </strong></div>
+            <div class="col-8"><%= @ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></div>
+            <div class="col-4 mb-1"><strong>Category: </strong></div>
+            <div class="col-8"><%= @ticket.category_name %></div>
+            <div class="col-4 mb-1"><strong>Status: </strong></div>
+            <div class="col-8">
+              <% if @ticket.status == "Not yet started" %>
+                <span class="badge badge-danger">Not started</span>
+              <% elsif @ticket.status == "In progress" %>
+                <span class="badge badge-primary">In progress</span>
+              <% elsif @ticket.status == "Completed" %>
+                <span class="badge badge-success">Completed</span>
+              <% end %>
+            </div>
+            <div class="col-4 mb-1"><strong>Privacy: </strong></div>
+            <div class="col-8">
+              <% if @ticket.is_private? %>
+                <span class="badge badge-dark">Private</span>
+              <% else %>
+                <span class="badge badge-light">Public</span>
+              <% end %>
+            </div>
           </div>
-          <div class="col-4 mb-1"><strong>Privacy: </strong></div>
-          <div class="col-8">
-            <% if @ticket.is_private? %>
-              <span class="badge badge-dark">Private</span>
-            <% else %>
-              <span class="badge badge-light">Public</span>
-            <% end %></div>
         </div>
       </div>
-      <div class="row card p-3 mt-1 d-flex flex-column justify-content-between" style="height: 60vh;">
-        <div>
+      <!-- Question segment -->
+      <div class="row px-3 pt-1" style="height:65%;">
+        <div class="card p-3 h-100 w-100">
           <h5 class="info-header">Question</h5>
           <p class="card-text"><%= @ticket.question %></p>
         </div>
-        <div>
-          <%= link_to ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary btn-block"  do %>
-            <i class="fas fa-trash" style="color:white"></i> Delete this ticket
-          <% end %>
-        </div>
       </div>
     </div>
-    <div class="col-sm-6 card p-3 mb-2 d-flex flex-column justify-content-between" style="height: 95vh;">
-      <div>
-        <h5 class="info-header">Comments</h5>
-        <div class="row custom-scroll" style="height: 65vh;">
-          <% @ticket.comments.each do |comment| %>
-             <div class="card w-100 p-3 mb-2">
-              <div class="d-flex justify-content-between">
-                <p class="card-text author"><%= comment.author.name %></p>
-                <small class="card-text"><%= comment.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
-              </div>
-             <p class="card-text"><%= comment.content %></p>
-             </div>
+    <!-- Comments segment -->
+    <div class="col-6 h-100">
+      <div class="card p-3 h-100">
+        <div>
+          <h5 class="info-header">Comments</h5>
+          <div class="section-scroll" style="height: 85%;">
+            <% @ticket.comments.each do |comment| %>
+               <div class="card p-3 mb-1">
+                <div class="d-flex justify-content-between">
+                  <p class="card-text author"><%= comment.author.name %></p>
+                  <small class="card-text"><%= comment.created_at.strftime('%-d %b %y,  %-H:%M%p') %></small>
+                </div>
+                <p class="card-text"><%= comment.content %></p>
+               </div>
+            <% end %>
+          </div>
+        </div>
+        <div style="height: 25%">
+          <%= simple_form_for [ @ticket, @comment ] do |f| %>
+            <%= f.input :content, label: false %>
+            <%= f.submit "Add a comment", class: "btn btn-primary btn-block", "data-disable-with" => "Commenting.." %>
           <% end %>
         </div>
-      </div>
-      <div class="row p-2" style="height: 25vh">
-        <%= simple_form_for [ @ticket, @comment ] do |f| %>
-          <%= f.input :content, label: false %>
-          <%= f.submit "Add a comment", class: "btn btn-primary btn-block", "data-disable-with" => "Commenting.." %>
-        <% end %>
       </div>
     </div>
   </div>

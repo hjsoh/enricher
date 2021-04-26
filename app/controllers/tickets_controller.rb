@@ -41,10 +41,8 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.find(params[:id])
     authorize @ticket
-    students = @ticket.user.students
-    @names_array = []
-    students.each { |s| @names_array << s.name }
-
+    students = @ticket.user.students.map(&:name)
+    @students = students.join(', ')
     @comment = Comment.new
   end
 
