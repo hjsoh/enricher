@@ -10,7 +10,7 @@ class User < ApplicationRecord
   # for the parent ticket
   # attr_accessor :email, :password, :password_confirmation
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }
