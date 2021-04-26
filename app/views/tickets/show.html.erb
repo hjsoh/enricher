@@ -45,10 +45,10 @@
     </div>
     <!-- Comments segment -->
     <div class="col-6 h-100">
-      <div class="card p-3 h-100">
+      <div class="card p-3 h-100" style="position: relative;">
         <div>
           <h5 class="info-header">Comments</h5>
-          <div class="section-scroll" style="height: 85%;">
+          <div class="section-scroll" style="height: 70%;">
             <% @ticket.comments.each do |comment| %>
                <div class="card p-3 mb-1">
                 <div class="d-flex justify-content-between">
@@ -60,7 +60,7 @@
             <% end %>
           </div>
         </div>
-        <div style="height: 25%">
+        <div style="height: 20%; width: 100%; position: absolute; bottom: 0%;">
           <%= simple_form_for [ @ticket, @comment ] do |f| %>
             <%= f.input :content, label: false %>
             <%= f.submit "Add a comment", class: "btn btn-primary btn-block", "data-disable-with" => "Commenting.." %>
