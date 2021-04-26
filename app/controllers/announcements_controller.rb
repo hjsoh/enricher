@@ -2,13 +2,8 @@ class AnnouncementsController < ApplicationController
   include Pundit
 
   def index
-    session[:just_created_announcements] = false if URI(request.referer).path != "/announcements"
-    binding.pry
+    check_for_path
     @announcement = Announcement.new
-    unless session[:just_created_announcements] == true
-      current_user.last_sign_in_at = Time.now
-      current_user.save
-    end
     if params[:search].present?
       @announcements = policy_scope(Announcement).order(created_at: :desc).search_by_title_and_contents(params[:search])
     else
@@ -49,8 +44,16 @@ class AnnouncementsController < ApplicationController
 
   private
 
+  def check_for_path
+    session[:just_created_announcements] = true if URI(request.referer).path == "/announcements"
+
+    unless session[:just_created_announcements] == true
+      current_user.last_sign_in_at = Time.now
+      current_user.save
+    end
+  end
+
   def announcement_params
     params.require(:announcement).permit(:title, :content, classroom_ids: [])
   end
-
 end

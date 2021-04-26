@@ -22,6 +22,7 @@ module ApplicationHelper
       unread_announcements = filtered_announcements.reject{ |announcement| announcement.created_at <= user.last_sign_in_at }
       # raise
     else
+      #for parent
       #TODO
       'nothing'
     end
@@ -29,5 +30,30 @@ module ApplicationHelper
     if unread_announcements.length > 0
       content_tag(:span, "#{unread_announcements.length}", class: 'badge-primary')
     end
+  end
+
+  def get_unread_tickets(user)
+    if user.role == "teacher"
+      classrooms = user.classrooms
+      classroom_tickets = []
+      classrooms.each do |classroom|
+        if !classroom.tickets.empty?
+          classroom.tickets.each do |ticket|
+            if ticket.status != "Completed"
+              classroom_tickets << ticket
+            end
+          end
+        end
+      end
+    end
+    classroom_tickets = classroom_tickets.reject{ |ticket| ticket.created_at <= user.last_sign_in_at }
+
+    if classroom_tickets.length > 0
+      content_tag(:span, "#{classroom_tickets.length}", class: 'badge-primary')
+    end
+  end
+
+  def get_unread_appointments(user)
+    #for teacher
   end
 end

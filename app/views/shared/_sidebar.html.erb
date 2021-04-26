@@ -26,6 +26,7 @@
         <%= link_to tickets_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/tickets') && 'active'}" do %>
          <i class="fas fa-hand-paper"></i>
         <% end %>
+        <%= get_unread_tickets(current_user) %>
       </div>
     </li>
     <li>
