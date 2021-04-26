@@ -3,11 +3,10 @@
 <!-- initial chatroom landing page -->
 <div class="rounded chat-wrapper px-3 py-4">
   <div id="frame">
-    <div id="sidepanel">
+    <div id="sidepanel"> 
       <div id="search">
-        <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-        <input type="text" placeholder="Search classrooms" />
-      </div>
+        <label for=""><i class= aria-hidden="true"></i></label>
+      </div> 
       <div id="contacts">
         <ul class="list-unstyled">
           <% @classrooms.each do |c|%>
@@ -27,7 +26,9 @@
          </ul>
       </div>
     </div>
-    <%= render "messages", classroom: @classroom, classroom_announcements: @classroom_announcements %>
+    <% if !@message.nil? %>
+     <%= render "messages", classroom: @classroom, classroom_announcements: @classroom_announcements %>
+    <% end %>
   </div>
 </div>
 
