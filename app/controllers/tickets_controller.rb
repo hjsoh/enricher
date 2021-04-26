@@ -48,6 +48,11 @@ class TicketsController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+  end
+
   def update
     @ticket = Ticket.find(params[:id])
     authorize @ticket

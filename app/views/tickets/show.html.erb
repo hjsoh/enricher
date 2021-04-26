@@ -32,16 +32,21 @@
             <% end %></div>
         </div>
       </div>
-      <div class="row card p-3 mt-1 d-flex flex-column justify-content-between" style="height: 60vh;">
-        <div>
-          <h5 class="info-header">Question</h5>
-          <p class="card-text"><%= @ticket.question %></p>
-        </div>
-        <div>
-          <%= link_to ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary btn-block"  do %>
+      <div class="row card p-3 mt-1" style="height: 60vh;">
+        <h5 class="info-header">Question</h5>
+        <h5 class="card-text"><%= @ticket.question %></h5>
+        <% if current_user.role == "teacher" %>
+          <%= simple_form_for @ticket do |f| %>
+            <%= f.input :status,
+                              label: 'Change status:',
+                              collection: ['Not yet started', 'In progress', 'Completed'] %>
+            <%= f.input :is_private, label: 'Is this question private?', as: :boolean, input_html: { class: "toggle" } %>
+            <%= f.button :submit, "Update Ticket", class: "btn btn-primary btn-block" %>
+          <% end %>
+          <%= link_to ticket_path(@ticket), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary mt-1"  do %>
             <i class="fas fa-trash" style="color:white"></i> Delete this ticket
           <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
     <div class="col-sm-6 card p-3 mb-2 d-flex flex-column justify-content-between" style="height: 95vh;">
