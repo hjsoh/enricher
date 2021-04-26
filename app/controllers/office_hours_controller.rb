@@ -8,6 +8,11 @@ class OfficeHoursController < ApplicationController
     else
       @office_hours = OfficeHour.all
     end
+
+    if params[:filter].present?
+      @selected_user = User.find(params[:filter][:user])
+      # {filter: {user: 112 }}
+    end
   end
 
   def new

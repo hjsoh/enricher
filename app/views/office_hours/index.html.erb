@@ -5,10 +5,10 @@
     <%= simple_form_for :filter, url: office_hours_path, method: :get do |f| %>
       <%= f.input :user,
           label: "Select teacher",
-          prompt: 'Filter here',
-          collection: current_user.student_teachers.all
+          prompt: "#{ @selected_user ? @selected_user.name : 'Filter here' }",
+          collection: current_user.student_teachers.all,
+          input_html: { onchange: 'this.form.submit();' }
         %>
-        <%= submit_tag "Search", class: "btn btn-primary", name: nil %>
     <% end %>
   <% else %>
     <!-- dont show anything for teachers -->

@@ -10,35 +10,35 @@
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to classrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"}  #{current_page?('/classrooms') && 'active'}" do %>
-         <i class="far fa-address-book"></i>
+         <i class="fas fa-chalkboard-teacher"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to office_hours_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/office_hours') && 'active'}" do %>
-         <i class="far fa-calendar"></i>
+         <i class="fas fa-calendar-day"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to tickets_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/tickets') && 'active'}" do %>
-         <i class="far fa-hand-paper"></i>
+         <i class="fas fa-hand-paper"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
-         <i class="far fa-clipboard"></i>
+         <i class="fas fa-bullhorn"></i>
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to chatrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/chatrooms') && 'active'}" do %>
-         <i class="far fa-comments"></i>
+         <i class="fas fa-comment"></i>
         <% end %>
       </div>
     </li>
@@ -68,35 +68,35 @@
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to classrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/classrooms') && 'active'}" do %>
-         <i class="far fa-address-book mr-3"></i>Classrooms
+         <i class="fas fa-chalkboard-teacher mr-3"></i>Classrooms
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to office_hours_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/office_hours') && 'active'}" do %>
-         <i class="far fa-calendar mr-3"></i>Office Hours
+         <i class="fas fa-calendar-day mr-3"></i>Office Hours
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to tickets_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/tickets') && 'active'}" do %>
-         <i class="far fa-hand-paper mr-3"></i>Tickets
+         <i class="fas fa-hand-paper mr-3"></i>Tickets
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
-         <i class="far fa-clipboard mr-3"></i>Announcements
+         <i class="fas fa-bullhorn mr-3"></i>Announcements
         <% end %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to chatrooms_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/chatrooms') && 'active'}" do %>
-         <i class="far fa-comments mr-3"></i>Chatrooms
+         <i class="fas fa-comment mr-3"></i>Chatrooms
         <% end %>
       </div>
     </li>
