@@ -16,6 +16,8 @@
         <p class="card-text">Asked by:
         <% if ticket.user.photo.attached? %>
           <%= cl_image_tag ticket.user.photo.key, class: "avatar-small" %>
+        <% else %>
+          <%= image_tag('default_avatar.png', class:"avatar-small") %>
         <% end %>
         <%= ticket.user.name %>
         </p>

@@ -8,6 +8,8 @@
               <h5 class="card-title">
                 <% if appointment.parent.photo.attached? %>
                   <%= cl_image_tag appointment.parent.photo.key, class: "avatar-small mr-1" %>
+                <% else %>
+                  <%= image_tag('default_avatar.png', class:"avatar-small mr-1") %>
                 <% end %>
                 <%= appointment.parent.name %>
               </h5>
@@ -15,6 +17,8 @@
               <h5 class="card-title">
                 <% if appointment.teacher.photo.attached? %>
                   <%= cl_image_tag appointment.teacher.photo.key, class: "avatar-small mr-1" %>
+                <% else %>
+                  <%= image_tag('default_avatar.png', class:"avatar-small mr-1") %>
                 <% end %>
                 <%= appointment.teacher.name %>
               </h5>

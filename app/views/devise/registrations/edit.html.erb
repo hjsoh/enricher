@@ -40,6 +40,8 @@
           <div class="col-sm-1">
             <% if resource.photo.attached? %>
             <%= cl_image_tag resource.photo.key, class: "avatar-bordered" %>
+            <% else %>
+            <%= image_tag('default_avatar.png', class:"avatar-bordered") %>
             <% end %>
           </div>
           <div class="col-auto">
