@@ -1,44 +1,48 @@
-<div class="container py-3">
+<div class="container-fluid p-3">
   <div class="row p-2">
     <div class="col">
-      <h1 class=text-primary><%= @user.name %>'s Dashboard</h1>
+      <h1 class=text-primary><%= @teacher.name %>'s Dashboard</h1>
     </div>
   </div>
   <!-- CLASSROOM INFO -->
-  <div class="row p-2">
+  <div class="row">
     <%= render partial: 'info' %>
   </div>
   <!-- ANNOUNCEMENTS -->
-  <div class="row p-2">
-    <div class="col">
+  <div class="row p-3">
+    <div class="col card">
       <h4 class="p-2 info-header">Latest Announcements:</h4>
-      <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
+      <div class="section-scroll">
+        <% if @teacher_announcements.empty? %>
+          <h3>--no announcements--</h3>
+        <% else %>
+          <%= render partial: 'announcements/announcement', locals: { announcements: @teacher_announcements } %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="row p-2">
+  <div class="row px-3">
   <!-- TICKETS -->
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-sm-6 card py-2">
       <h4 class="p-2 info-header">Latest Tickets:</h4>
-      <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
+      <div class="section-scroll">
+        <% if @teacher_tickets.empty? %>
+          <h3>--no outstanding tickets--</h3>
+        <% else %>
+          <%= render partial: 'tickets/ticket', locals: { tickets: @teacher_tickets } %>
+        <% end %>
+      </div>
     </div>
   <!-- APPOINTMENTS -->
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-sm-6 card py-2">
       <h4 class="p-2 info-header">Upcoming Appointments:</h4>
-      <% @appointments.each do |appointment| %>
-        <div class="card mt-2 mb-2 card-select">
-          <div class="card-body row">
-            <div class="col">
-              <%= appointment.user.name %>
-            </div>
-            <div class="col text-center">
-              <%= appointment.start_time.strftime('%F') %>
-            </div>
-            <div class="col text-center">
-             <%= appointment.start_time.strftime('%H:%M') %> - <%= appointment.office_hour.end_time.strftime('%H:%M') %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <div class="section-scroll">
+        <% if @teacher_appointments.empty? %>
+          <h3>--no upcoming appointments--</h3>
+        <% else %>
+          <%= render partial: 'appointments/appointment', locals: { appointments: @teacher_appointments } %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -31,6 +31,7 @@ class ClassroomsController < ApplicationController
     @message = Message.new()
     @announcements = @classroom.announcements
     @tickets = @classroom.tickets
+    @class_roster = @classroom.students.order('name ASC')
   end
 
   def edit
