@@ -4,7 +4,7 @@ class Ticket < ApplicationRecord
   belongs_to :classroom
   has_many :comments, dependent: :destroy
 
-  validetes :classroom, presence: true
+  validates :classroom, presence: true
 
   pg_search_scope :global_search,
     against: [:question, :category_name],

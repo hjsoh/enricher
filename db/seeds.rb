@@ -48,10 +48,12 @@ puts "Creating 10 test classrooms for teacher_test"
 puts "Creating 50 students"
 
 50.times do
-  student = Student.create!(
+  student = Student.new(
     name: Faker::Name.unique.name,
+    is_active: [true, false].sample,
     admission_year: (2018..2021).to_a.sample
   )
+  student.save!
 end
 
 puts "Successfully created 50 students"

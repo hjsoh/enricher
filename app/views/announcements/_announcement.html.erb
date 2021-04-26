@@ -18,13 +18,11 @@
         <% end %>
       </small>
       <small class="text-muted">
-        <%= link_to announcement_path(announcement), method: :delete, data: { confirm: "Are you sure?" } do %>
-          <i class="fas fa-trash"></i>
-        <% end %>
-      </small>
-      <small class="text-muted">
-        <%= link_to announcement_path(announcement), data: { confirm: "Are you sure you want to hide this?" } do %>
-          <i class="fas fa-window-close"></i></i>
+        <% if current_user.role == 'teacher' %>
+          <%= link_to announcement_path(announcement), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
+        <% else %>
         <% end %>
       </small>
     </div>
