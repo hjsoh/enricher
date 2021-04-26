@@ -23,7 +23,7 @@
       <h4 class="info-header">Latest Announcements</h4>
       <div class="section-scroll">
         <% if @announcements.empty? %>
-          <h3>--no announcements--</h3>
+          <h4>--no announcements--</h4>
         <% else %>
           <%= render partial: 'announcements/announcement', locals: { announcements: @announcements } %>
         <% end %>
@@ -39,7 +39,7 @@
         <h4 class="info-header">Latest Tickets:</h4>
         <div class="section-scroll">
           <% if @tickets.empty? %>
-            <h3>--no outstanding tickets--</h3>
+            <h4>--no outstanding tickets--</h4>
           <% else %>
             <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
           <% end %>
@@ -51,7 +51,7 @@
         <h4 class="info-header">Class Roster:</h4>
         <div class="section-scroll border border-sold rounded-lg h-100">
           <% if @class_roster.empty? %>
-            <h3>--no students in class--</h3>
+            <h4>--no students in class--</h4>
           <% else %>
             <ol>
             <% @class_roster.each do |student| %>
