@@ -37,14 +37,13 @@
     <div class="col-6 px-3 h-100">
       <div class="card h-100 p-3">
         <h4 class="info-header">Latest Tickets:</h4>
-        <class class="section-scroll">
+        <div class="section-scroll">
           <% if @tickets.empty? %>
             <h3>--no outstanding tickets--</h3>
           <% else %>
             <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
           <% end %>
-        </class>
-
+        </div>
       </div>
     </div>
     <div class="col-6 px-3 h-100">

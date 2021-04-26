@@ -1,17 +1,16 @@
-<div class="container-fluid p-3">
-  <div class="row p-2">
-    <div class="col">
-      <h1 class=text-primary><%= @parent.name %>'s Dashboard</h1>
-    </div>
-  </div>
-  <!-- CLASSROOM INFO -->
-  <div class="row">
+<div class="vh-100 p-3">
+  <!-- name of parent -->
+  <h1 class=text-primary><%= @parent.name %>'s Dashboard</h1>
+
+  <!-- aggregated teacher info -->
+  <div class="row mb-1">
     <%= render partial: 'info', locals: { announcements: @parent_announcements, tickets: @parent_tickets, appointments: @parent_appointments} %>
   </div>
-  <!-- ANNOUNCEMENTS -->
-  <div class="row p-3">
-    <div class="col card">
-      <h4 class="p-2 info-header">Latest Announcements:</h4>
+
+  <!-- announcements section -->
+  <div class="row my-1 px-3" style="height: 35%;">
+    <div class="col card p-3 h-100">
+      <h4 class="info-header">Latest Announcements</h4>
       <div class="section-scroll">
         <% if @parent_announcements.empty? %>
           <h3>--no announcements--</h3>
@@ -21,27 +20,32 @@
       </div>
     </div>
   </div>
-  <div class="row px-3">
-  <!-- TICKETS -->
-    <div class="col-sm-6 card py-2">
-      <h4 class="p-2 info-header">Latest Tickets:</h4>
-      <div class="section-scroll">
-        <% if @parent_tickets.empty? %>
-          <h3>--no outstanding tickets--</h3>
-        <% else %>
-          <%= render partial: 'tickets/ticket', locals: { tickets: @parent_tickets } %>
-        <% end %>
+  <!-- bottom segment -->
+  <div class="row"></div>
+  <!-- tickets section -->
+  <div class="row mt-1 d-flex" style="height:40%;">
+    <div class="col-6 px-3 h-100">
+      <div class="card h-100 p-3">
+        <h4 class="info-header">Latest Tickets</h4>
+        <div class="section-scroll">
+          <% if @parent_tickets.empty? %>
+            <h3>--no outstanding tickets--</h3>
+          <% else %>
+            <%= render partial: 'tickets/ticket', locals: { tickets: @parent_tickets } %>
+          <% end %>
+        </div>
       </div>
     </div>
-  <!-- APPOINTMENTS -->
-    <div class="col-sm-6 card py-2">
-      <h4 class="p-2 info-header">Upcoming Appointments:</h4>
-      <div class="section-scroll">
-        <% if @parent_appointments.empty? %>
-          <h3>--no upcoming appointments--</h3>
-        <% else %>
-          <%= render partial: 'appointments/appointment', locals: { appointments: @parent_appointments } %>
-        <% end %>
+    <div class="col-6 px-3 h-100">
+      <div class="card h-100 p-3">
+        <h4 class="info-header">Upcoming Appointments</h4>
+        <div class="section-scroll h-100">
+          <% if @parent_appointments.empty? %>
+            <h3>--no upcoming appointments--</h3>
+          <% else %>
+            <%= render partial: 'appointments/appointment', locals: { appointments: @parent_appointments } %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
