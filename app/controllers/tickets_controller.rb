@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
   include Pundit
 
   def index
+    # check_for_ticket_path
     @ticket = Ticket.new
 
     if params[:query].present?
@@ -46,6 +47,11 @@ class TicketsController < ApplicationController
     @comment = Comment.new
   end
 
+  def edit
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+  end
+
   def update
     @ticket = Ticket.find(params[:id])
     authorize @ticket
@@ -72,6 +78,17 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def check_for_ticket_path
+    # Ticket shows for 10 seconds before last_sign_in_at is called???
+
+    session[:just_created_tickets] = true if URI(request.referer).path == "/tickets"
+
+    unless session[:just_created_tickets] == true
+      current_user.last_sign_in_at = Time.now
+      current_user.save
+    end
+  end
 
   def ticket_params
     params.require(:ticket).permit(:question, :academic_year, :user_id, :category_name, :is_private, :status, :classroom_id)

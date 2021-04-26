@@ -10,7 +10,7 @@ class PagesController < ApplicationController
         @footer = true
 
         @parent = current_user
-        @unread_announcements = @parent.student_announcements.where("created_at >= ?", @user.last_sign_in_at)
+
         @parent_classrooms = current_user.student_classrooms.where(is_active: true).order(name: :asc)
         @parent_announcements = current_user.student_announcements.order(created_at: :desc)
         @parent_tickets = current_user.tickets.where.not(status: 'Completed').order(created_at: :desc)
