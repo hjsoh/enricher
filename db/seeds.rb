@@ -50,6 +50,7 @@ puts "Creating 50 students"
 50.times do
   student = Student.create!(
     name: Faker::Name.unique.name,
+    is_active: [true, false].sample,
     admission_year: (2018..2021).to_a.sample
   )
 end

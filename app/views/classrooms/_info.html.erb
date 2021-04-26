@@ -52,7 +52,7 @@
         </div>
         <div class="col">
           <div class="row">
-            <h4><%= @classroom.enrollments.count %></h4>
+            <h4><%= @classroom.students.where(is_active: true).count %></h4>
           </div>
           <div class="row">
             <small>Students</small>
