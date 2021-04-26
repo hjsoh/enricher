@@ -1,8 +1,8 @@
 <div class="cards">
-  <% @classrooms.each do |classroom| %>
+  <% classrooms.each do |classroom| %>
     <div class="card card-select">
       <div class="card-body">
-        <div class="d-inline-flex justify-content-between w-50">
+        <div class="d-inline-flex justify-content-between w-100">
           <h5 class="card-title"><%= link_to classroom.name, classroom_path(classroom) %></h5>
           <small class="card-text"><%= classroom.academic_year %></small>
         </div>

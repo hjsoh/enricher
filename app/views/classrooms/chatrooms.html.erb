@@ -1,22 +1,19 @@
-<div class="container-fluid p-3">
-  <div id="frame">
-    <div id="sidepanel">
-      <div id="search" class="container-fluid">
-        <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-        <input type="text" placeholder="Search classrooms">
-      </div>
-      <div id="contacts">
+<div class="vh-100 p-3">
+  <div id="frame" class='d-flex h-100 bg-light border border-solid rounded shadow'>
+    <!-- sidepanel section -->
+    <div id="sidepanel" class="section-scroll" style="width: 20%; height: 100%; background: #2c3e50;">
+      <div id="contacts" class="my-2">
         <ul class="list-unstyled">
-          <% @classrooms.each do |c|%>
-            <li class="contact">
+          <% @classrooms.each do |classroom|%>
+            <li class="contact py-2">
               <div class="wrap">
                 <div class="meta">
-                  <% if !c.messages.empty? %>
-                     <p class="name"><%= link_to "#{c.name}", show_chat_url(c, anchor: "message-#{c.messages.last.id}" ), data: { turbolinks: false } %></p>
+                  <% if !classroom.messages.empty? %>
+                     <p class="name"><%= link_to "#{classroom.name}", show_chat_url(classroom, anchor: "message-#{classroom.messages.last.id}" ), data: { turbolinks: false } %></p>
                   <% else %>
-                    <p class="name"><%= link_to "#{c.name}", show_chat_url(c), data: { turbolinks: false } %></p>
+                    <p class="name"><%= link_to "#{classroom.name}", show_chat_url(classroom), data: { turbolinks: false } %></p>
                   <% end %>
-                  <%= c.messages.empty? ? '' : c.messages.last.content %>
+                  <%= classroom.messages.empty? ? '' : classroom.messages.last.content %>
                 </div>
               </div>
             </li>
@@ -24,11 +21,10 @@
          </ul>
       </div>
     </div>
-    <div class="content">
-      <div class="contact-profile container">
-        <p>Select a classroom to begin</p>
-      </div>
-      <div class="messages">
+    <!-- main chat section -->
+    <div class="content" style="width: 80%">
+      <div class="contact-profile p-3 bg-secondary w-100" style="height: 10%;">
+        <h4 class="text-white">Select a classroom to begin</h4>
       </div>
     </div>
   </div>

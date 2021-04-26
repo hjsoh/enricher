@@ -59,9 +59,9 @@ class ClassroomsController < ApplicationController
   def chatrooms
     # find all classrooms by this user
     if current_user.role == 'teacher'
-      @classrooms = current_user.classrooms
+      @classrooms = current_user.classrooms.order('name ASC')
     else
-      @classrooms = current_user.student_classrooms
+      @classrooms = current_user.student_classrooms.order('name ASC')
     end
     authorize(@classrooms)
     @message = Message.new
