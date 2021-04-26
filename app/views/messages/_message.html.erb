@@ -1,4 +1,4 @@
-<li id="message-<%=message.id%>" class="<%= message.user.role == 'teacher' ? 'sent' : 'replies' %>">
+<li id="message-<%=message.id%>" class="<%= message.user == current_user ? 'sent' : 'replies' %>">
   <div>
     <i class="author">
       <strong><%= message.user.name%></strong>
