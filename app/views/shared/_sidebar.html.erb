@@ -31,8 +31,9 @@
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
-         <i class="fas fa-bullhorn"></i>
+         <i class="fas fa-bullhorn">   </i>
         <% end %>
+        <%= get_unread_announcements(current_user) %>
       </div>
     </li>
     <li>
@@ -91,6 +92,7 @@
         <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
          <i class="fas fa-bullhorn mr-3"></i>Announcements
         <% end %>
+
       </div>
     </li>
     <li>
