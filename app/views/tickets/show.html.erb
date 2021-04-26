@@ -2,13 +2,13 @@
   <div class="row h-100">
     <div class="col-6 h-100">
       <!-- Details segment -->
-      <div class="row px-3 pb-1" style="height:35%;">
+      <div class="row px-3 pb-1" style="height:45%;">
         <div class="card p-3 h-100 w-100">
           <h5 class="info-header">Details</h5>
           <div class="row">
             <div class="col-4 mb-1"><strong>Asked by: </strong></div>
             <div class="col-8"><%= @ticket.user.name %></div>
-            <div class="col-4 mb-1"><strong>Student:</strong></div>
+            <div class="col-4 mb-1"><strong>Parent of:</strong></div>
             <div class="col-8"><%= @students %></div>
             <div class="col-4 mb-1"><strong>Created on: </strong></div>
             <div class="col-8"><%= @ticket.created_at.strftime('%-d %b %y,  %-H:%M%p') %></div>
@@ -32,11 +32,27 @@
                 <span class="badge badge-light">Public</span>
               <% end %>
             </div>
+              <% if current_user.role == "teacher" %>
+                <div class="container">
+                  <%= simple_form_for @ticket,  html: { class: "border border-solid p-2 rounded bg-light" }  do |f| %>
+                    <div class="w-100 d-flex justify-content-between align-items-end">
+                      <%= f.input :status,
+                                  label: 'Edit ticket properties:',
+                                  collection: ['Not yet started', 'In progress', 'Completed'],
+                                  input_html: { style: "width: 100%;" } %>
+                      <%= f.input :is_private, label: 'Ticket is private', as: :boolean,
+                                  input_html: { class: "toggle" } %>
+                    </div>
+                    <%= f.button :submit, "Update Ticket", class: "btn btn-primary btn-block" %>
+                  <% end %>
+
+                </div>
+              <% end %>
           </div>
         </div>
       </div>
       <!-- Question segment -->
-      <div class="row px-3 pt-1" style="height:65%;">
+      <div class="row px-3 pt-1" style="height:55%;">
         <div class="card p-3 h-100 w-100">
           <h5 class="info-header">Question</h5>
           <p class="card-text"><%= @ticket.question %></p>
@@ -45,10 +61,10 @@
     </div>
     <!-- Comments segment -->
     <div class="col-6 h-100">
-      <div class="card p-3 h-100" style="position: relative;">
-        <div>
+      <div class="card p-3 h-100">
+        <div class="h-100">
           <h5 class="info-header">Comments</h5>
-          <div class="section-scroll" style="height: 70%;">
+          <div class="section-scroll" style="height: 80%;">
             <% @ticket.comments.each do |comment| %>
                <div class="card p-3 mb-1">
                 <div class="d-flex justify-content-between">
@@ -59,12 +75,13 @@
                </div>
             <% end %>
           </div>
-        </div>
-        <div style="height: 20%; width: 100%; position: absolute; bottom: 0%;">
-          <%= simple_form_for [ @ticket, @comment ] do |f| %>
-            <%= f.input :content, label: false %>
-            <%= f.submit "Add a comment", class: "btn btn-primary btn-block", "data-disable-with" => "Commenting.." %>
-          <% end %>
+          <div style="height: 20%;">
+            <%= simple_form_for [ @ticket, @comment ] do |f| %>
+              <%= f.input :content,
+                          label: false %>
+              <%= f.submit "Add a comment", class: "btn btn-primary btn-block", "data-disable-with" => "Commenting.." %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
