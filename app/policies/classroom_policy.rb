@@ -7,7 +7,7 @@ class ClassroomPolicy < ApplicationPolicy
         user.classrooms.where(is_active: true)
         # scope.where(user: user)
       elsif user.role == 'parent'
-        user.student_classrooms
+        user.student_classrooms.where(is_active: true)
       end
     end
   end
@@ -21,11 +21,7 @@ class ClassroomPolicy < ApplicationPolicy
   end
 
   def show?
-    # parent of student in this classroom can see
-    # teacher of this classroom can see
-    # raise
     record.user == user || record.parents.any? { |parent| parent == user }
-    # raise
   end
 
   def edit?
@@ -55,12 +51,10 @@ class ClassroomPolicy < ApplicationPolicy
   end
 
   def show_chat?
-    # i am a teacher
     if user.role == 'teacher'
       user.classrooms.include? record
     else
       user.student_classrooms.include? record
     end
-    # or i'm a parent
   end
 end

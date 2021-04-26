@@ -31,6 +31,7 @@ import { initFlatpickr } from "../plugins/flatpickr";
 // Internal imports, e.g:
 import { initClassroomCable } from '../channels/classroom_channel.js';
 import { initSidebars } from './../plugins/init_sidebars.js';
+import { initDashboardPopups } from './../plugins/init_dashboardpopups.js';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -38,6 +39,7 @@ document.addEventListener('turbolinks:load', () => {
  
   initClassroomCable();
   initSidebars();
+  initDashboardPopups();
 });
 
 document.addEventListener('turbolinks:render', (e) => {

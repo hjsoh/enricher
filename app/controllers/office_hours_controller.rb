@@ -2,6 +2,17 @@ class OfficeHoursController < ApplicationController
   def index
     start_date = params.fetch(:start_time, Date.today).to_date
     @office_hours = policy_scope(OfficeHour)
+    if params["/office_hours"].present? && params["/office_hours"][:user].present?
+      searched_user = User.find(params["/office_hours"][:user].to_i)
+      @office_hours = OfficeHour.where(user: searched_user)
+    else
+      @office_hours = OfficeHour.all
+    end
+
+    if params[:filter].present?
+      @selected_user = User.find(params[:filter][:user])
+      # {filter: {user: 112 }}
+    end
   end
 
   def new
@@ -43,6 +54,6 @@ class OfficeHoursController < ApplicationController
   private
 
   def office_hour_params
-    params.require(:office_hour).permit(:start_time)
+    params.require(:office_hour).permit(:start_time, :user)
   end
 end

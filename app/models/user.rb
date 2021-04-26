@@ -3,18 +3,21 @@ class User < ApplicationRecord
   acts_as_token_authenticatable
 
   attr_accessor :allow_blank_password
-
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   # for the parent ticket
   # attr_accessor :email, :password, :password_confirmation
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   validates :role, presence: true, inclusion: { in: ['teacher', 'parent'] }
   validates :name, presence: true
+
+  # for avatar upload
+  has_one_attached :photo
 
   # for the teacher r/s
   has_many :classrooms

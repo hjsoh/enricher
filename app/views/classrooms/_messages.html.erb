@@ -24,7 +24,17 @@
     <div class="messages" data-classroom="<%= @classroom.id %>">
       <!-- data-classroom="<%= @classroom.id %>"> -->
       <ul class="list-unstyled">
-        <%= render @classroom.messages %>
+        <% classroom.messages.each do |message| %>
+          <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'sent' : 'replies'  %> text-break">
+            <div>
+              <i class="author">
+                <strong><%= message.user.name %></strong>
+                <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              </i>
+            </div>
+            <div><p><%= message.content %></p></div>
+          </li>
+        <% end %>
       </ul>
     </div>
     <div class="message-input">
