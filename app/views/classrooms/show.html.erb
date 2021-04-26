@@ -1,23 +1,26 @@
-<div class="container-fluid p-3">
-  <div class="row p-2">
-    <div class="col text-left rounded">
+<div class="vh-100 p-3">
+  <!-- class and teacher identifier -->
+  <div class="row">
+    <div class="col rounded text-left">
       <h2><span class="badge badge-logo"><%= @classroom.name %></span></h2>
     </div>
     <% if current_user.role == 'parent' %>
       <div class="col text-right">
-        <h3>Taught by: <%= @classroom.user.name %></h3>
+        <h4>Taught by: <%= @classroom.user.name %></h4>
       </div>
     <% else %>
     <% end %>
   </div>
-  <!-- CLASSROOM INFO -->
-  <div class="row">
+
+  <!-- classroom info -->
+  <div class="row mb-1">
     <%= render partial: 'info', locals: { announcements: @announcements, tickets: @tickets, appointments: @appointments} %>
   </div>
-  <!-- ANNOUNCEMENTS -->
-  <div class="row p-3">
-    <div class="col card">
-      <h4 class="p-2 info-header">Latest Announcements:</h4>
+
+  <!-- announcements section -->
+  <div class="row my-1 px-3" style="height: 35%;">
+    <div class="col card p-3 h-100">
+      <h4 class="info-header">Latest Announcements</h4>
       <div class="section-scroll">
         <% if @announcements.empty? %>
           <h3>--no announcements--</h3>
@@ -27,31 +30,37 @@
       </div>
     </div>
   </div>
-  <div class="row px-3">
-  <!-- TICKETS -->
-    <div class="col-sm-6 card py-2">
-      <h4 class="p-2 info-header">Latest Tickets:</h4>
-      <class class="section-scroll">
-        <% if @tickets.empty? %>
-          <h3>--no outstanding tickets--</h3>
-        <% else %>
-          <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
-        <% end %>
-      </class>
+  <!-- bottom segment -->
+  <div class="row"></div>
+  <!-- tickets section -->
+  <div class="row mt-1 d-flex" style="height:40%;">
+    <div class="col-6 px-3 h-100">
+      <div class="card h-100 p-3">
+        <h4 class="info-header">Latest Tickets:</h4>
+        <class class="section-scroll">
+          <% if @tickets.empty? %>
+            <h3>--no outstanding tickets--</h3>
+          <% else %>
+            <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
+          <% end %>
+        </class>
+
+      </div>
     </div>
-  <!-- CLASS ROSTER -->
-    <div class="col-sm-6 card py-2">
-      <h4 class="p-2 info-header">Class Roster:</h4>
-      <div class="section-scroll">
-        <% if @class_roster.empty? %>
-          <h3>--no students in class--</h3>
-        <% else %>
-          <ol>
-          <% @class_roster.each do |student| %>
-            <li><%= student.name %></li>
-            <% end %>
-          </ol>
-        <% end %>
+    <div class="col-6 px-3 h-100">
+      <div class="card h-100 p-3">
+        <h4 class="info-header">Class Roster:</h4>
+        <div class="section-scroll border border-sold rounded-lg h-100">
+          <% if @class_roster.empty? %>
+            <h3>--no students in class--</h3>
+          <% else %>
+            <ol>
+            <% @class_roster.each do |student| %>
+              <li><%= student.name %></li>
+              <% end %>
+            </ol>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
