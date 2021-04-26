@@ -30,7 +30,7 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find(params[:id])
     @message = Message.new()
     @announcements = @classroom.announcements
-    @tickets = @classroom.tickets.where.not(status: 'Completed').order(created_at: :desc) #show only current user tickets for parents
+    @tickets = @classroom.tickets.where.not(status: 'Completed').order(created_at: :desc)
     @class_roster = @classroom.students.where(is_active: true).order('name ASC')
   end
 
