@@ -4,8 +4,6 @@
 
   <div class="btn btn-secondary expand-action"><i class="fas fa-bars align-self-center"></i></div>
 
-  <hr>
-
   <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
     <li>
       <div class="py-3 nav-item border-bottom">
@@ -45,6 +43,18 @@
         <% end %>
       </div>
     </li>
+    <% if current_user.admin == true %>
+      <li>
+        <div class="py-3 nav-item border-bottom">
+           <i class="fas fa-book-open nav-link <%= current_user.role == "teacher" ? "text-light" : "text-dark" %>"></i>
+        </div>
+      </li>
+      <li>
+        <div class="py-3 nav-item border-bottom">
+           <i class="fas fa-credit-card nav-link <%= current_user.role == "teacher" ? "text-light" : "text-dark" %>"></i>
+        </div>
+      </li>
+    <% end %>
   </ul>
 
   <hr>
@@ -64,8 +74,6 @@
 <div class="flex-column p-3 d-none sticky-top vh-100 <%= current_user.role == "teacher" ? "bg-dark" : "bg-white" %>" id="sidebar-lg" style="width: 280px;">
 
   <div class="btn btn-secondary collapse-action"><i class="fas fa-bars"></i></div>
-
-  <hr>
 
   <ul class="nav nav-pills flex-column mb-auto">
     <li>
@@ -107,21 +115,30 @@
         <% end %>
       </div>
     </li>
+    <% if current_user.admin == true %>
+      <li>
+        <div class="py-3 nav-item border-bottom">
+          <i class="fas fa-book-open nav-link mr-3 <%= current_user.role == "teacher" ? "text-light" : "text-dark" %>"></i>Report Cards
+        </div>
+      </li>
+      <li>
+        <div class="py-3 nav-item border-bottom">
+          <i class="fas fa-credit-card nav-link mr-3 <%= current_user.role == "teacher" ? "text-light" : "text-dark" %>"></i>Payments
+        </div>
+      </li>
+    <% end %>
   </ul>
 
   <hr>
 
-  <div class="d-flex justify-content-center">
-    <%= link_to image_tag('enricher_logo.png', height: 80, crop: :fill, class: "img-style my-1"), root_path %>
+  <div class="d-flex flex-column align-items-center mb-2">
+    <%= link_to image_tag('enricher_logo.png', height: 40, crop: :fill, class: "rounded-circle my-1"), root_path %>
+    <% if current_user.role == "teacher" %>
+        <span class="badge badge-primary badge-pill" style="font-size:0.5rem">Teacher</span>
+      <% else current_user.role == "parent" %>
+        <span class="badge badge-success badge-pill" style="font-size:0.5rem">Parent</span>
+    <% end %>
   </div>
-
-  <% if current_user.role == "teacher" %>
-      <span class="badge badge-primary badge-pill" style="font-size:0.5rem">Teacher</span>
-    <% else current_user.role == "parent" %>
-      <span class="badge badge-success badge-pill" style="font-size:0.5rem">Parent</span>
-  <% end %>
-
-  <hr>
 
   <div class="dropdown">
     <button class="btn btn-block btn-secondary dropdown-toggle text-wrap" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
