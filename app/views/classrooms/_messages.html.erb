@@ -29,7 +29,7 @@
     </div>
   <% end %>
   <!-- messages show section -->
-  <div class="messages p-3" style="height:70%">
+  <div class="messages p-3" style="height:80%;">
     <ul class="list-unstyled h-100">
       <% classroom.messages.each do |message| %>
         <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'sent' : 'replies'  %> text-break">
