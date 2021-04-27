@@ -18,3 +18,14 @@
 .lh-tight { line-height: 1.25; }
 
 .img-style { border-radius: 2px }
+
+.announcement-icon {
+  position: relative;
+}
+
+.nav-item .announcement-notification {
+  position: absolute;
+  right: 4px;
+  top: 11px;
+}
+

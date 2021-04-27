@@ -1,7 +1,7 @@
 <div class="vh-100 p-3">
   <div id="frame" class='d-flex h-100 bg-light border border-solid rounded shadow'>
     <!-- sidepanel section -->
-    <div id="sidepanel" class="section-scroll" style="width: 20%; height: 100%; background: #2c3e50;">
+    <div id="sidepanel" class="section-scroll p-3">
       <div id="contacts" class="my-2">
         <ul class="list-unstyled">
           <% @classrooms.each do |classroom|%>
@@ -9,11 +9,11 @@
               <div class="wrap">
                 <div class="meta">
                   <% if !classroom.messages.empty? %>
-                     <p class="name"><%= link_to "#{classroom.name}", show_chat_url(classroom, anchor: "message-#{classroom.messages.last.id}" ), data: { turbolinks: false } %></p>
+                    <p class="mb-0"><strong><%= link_to "#{classroom.name}", show_chat_url(classroom, anchor: "message-#{classroom.messages.last.id}" ), data: { turbolinks: false } %></strong></p>
                   <% else %>
-                    <p class="name"><%= link_to "#{classroom.name}", show_chat_url(classroom), data: { turbolinks: false } %></p>
+                    <p class="mb-0"><strong><%= link_to "#{classroom.name}", show_chat_url(classroom), data: { turbolinks: false } %></strong></p>
                   <% end %>
-                  <%= classroom.messages.empty? ? '' : classroom.messages.last.content %>
+                  <small class="mb-0 text-white"><%= classroom.messages.empty? ? '' : classroom.messages.last.content %></small>
                 </div>
               </div>
             </li>

@@ -29,12 +29,12 @@
       </div>
     </li>
     <li>
-      <div class="py-3 nav-item border-bottom">
+      <div class="py-3 nav-item border-bottom announcement-icon">
         <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
          <i class="fas fa-bullhorn"></i>
-        <% end %>
-        <% if current_user.role == 'parent' && get_unread_announcements(current_user) > 0 %>
-          <span class="badge badge-danger badge-pill"><%= get_unread_announcements(current_user) %></span>
+          <% if current_user.role == 'parent' && get_unread_announcements(current_user) > 0 %>
+            <span class="badge badge-danger badge-pill announcement-notification"><%= get_unread_announcements(current_user) %></span>
+          <% end %>
         <% end %>
       </div>
     </li>
