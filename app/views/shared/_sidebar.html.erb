@@ -53,9 +53,9 @@
   </div>
 
   <% if current_user.role == "teacher" %>
-    <span class="badge badge-primary" style="font-size:0.5rem">Teacher</span>
+    <span class="badge badge-primary badge-pill" style="font-size:0.5rem">Teacher</span>
   <% elsif current_user.role == "parent" %>
-    <span class="badge badge-success" style="font-size:0.5rem">Parent</span>
+    <span class="badge badge-success badge-pill" style="font-size:0.5rem">Parent</span>
   <% end %>
 </div>
 
@@ -112,9 +112,9 @@
   </div>
 
   <% if current_user.role == "teacher" %>
-    <span class="badge badge-primary" style="font-size:0.5rem">Teacher</span>
-  <% elsif current_user.role == "parent" %>
-    <span class="badge badge-success" style="font-size:0.5rem">Parent</span>
+      <span class="badge badge-primary badge-pill" style="font-size:0.5rem">Teacher</span>
+    <% else current_user.role == "parent" %>
+      <span class="badge badge-success badge-pill" style="font-size:0.5rem">Parent</span>
   <% end %>
 
   <hr>

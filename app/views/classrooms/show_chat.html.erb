@@ -5,7 +5,7 @@
       <div id="contacts" class="my-2">
         <ul class="list-unstyled">
           <% @classrooms.each do |classroom|%>
-            <li class="contact py-2">
+            <li class="contact py-2 <%= "#{list_active(classroom, request.url)}" %>">
               <div class="wrap">
                 <div class="meta">
                   <% if !classroom.messages.empty? %>

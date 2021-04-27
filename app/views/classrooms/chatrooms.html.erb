@@ -9,11 +9,11 @@
               <div class="wrap">
                 <div class="meta">
                   <% if !classroom.messages.empty? %>
-                     <p class="name"><%= link_to "#{classroom.name}", show_chat_url(classroom, anchor: "message-#{classroom.messages.last.id}" ), data: { turbolinks: false } %></p>
+                     <p class="name mb-0"><%= link_to "#{classroom.name}", show_chat_url(classroom, anchor: "message-#{classroom.messages.last.id}" ), data: { turbolinks: false } %></p>
                   <% else %>
-                    <p class="name"><%= link_to "#{classroom.name}", show_chat_url(classroom), data: { turbolinks: false } %></p>
+                    <p class="name mb-0"><%= link_to "#{classroom.name}", show_chat_url(classroom), data: { turbolinks: false } %></p>
                   <% end %>
-                  <%= classroom.messages.empty? ? '' : classroom.messages.last.content %>
+                  <small class="text-white mb-0"><%= classroom.messages.empty? ? '' : classroom.messages.last.content %></small>
                 </div>
               </div>
             </li>
