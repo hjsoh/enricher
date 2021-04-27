@@ -2,7 +2,7 @@
   <div class="row h-100">
     <div class="col-6 h-100">
       <!-- Details segment -->
-      <div class="row px-3 pb-1" style="height:45%;">
+      <div class="row px-3 pb-1" style="height:55%;">
         <div class="card p-3 h-100 w-100">
           <h5 class="info-header">Details</h5>
           <div class="row">
@@ -53,7 +53,7 @@
       </div>
 
       <!-- Question segment -->
-      <div class="row px-3 pt-1" style="height:55%;">
+      <div class="row px-3 pt-1" style="height:45%;">
         <div class="card p-3 h-100 w-100">
           <h5 class="info-header">Question</h5>
           <p class="card-text"><%= @ticket.question %></p>
@@ -63,9 +63,9 @@
     <!-- Comments segment -->
     <div class="col-6 h-100">
       <div class="card p-3 h-100">
-        <div class="h-100">
+        <div class="h-100 comments-container">
           <h5 class="info-header">Comments</h5>
-          <div class="section-scroll" style="height: 80%;">
+          <div class="section-scroll" style="height: 70%;">
             <% @ticket.comments.each do |comment| %>
                <div class="card p-3 mb-1">
                 <div class="d-flex justify-content-between">
@@ -76,14 +76,13 @@
                </div>
             <% end %>
           </div>
-          <div style="height: 20%;">
+          <div class="comments-input">
             <%= simple_form_for [ @ticket, @comment ] do |f| %>
               <%= f.input :content,
                           label: false %>
               <%= f.submit "Add a comment", class: "btn btn-primary btn-block", "data-disable-with" => "Commenting.." %>
             <% end %>
           </div>
-
         </div>
       </div>
     </div>
