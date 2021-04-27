@@ -3,7 +3,7 @@
     <%= render partial: 'tickets/new', locals: { ticket: @ticket } %>
   <% end %>
 
-  <div class="card p-4 py-2">
+  <div class="card p-4 py-2 mt-2">
     <h1 class=text-primary>View all your tickets</h1>
 
     <%= form_tag tickets_path, method: :get do %>
@@ -14,7 +14,11 @@
       %>
     <% end %>
 
-    <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
+    <% if @tickets.empty? %>
+      <h4>You have no tickets</h4>
+    <% else %>
+      <%= render partial: 'tickets/ticket', locals: { tickets: @tickets } %>
+    <% end %>
   </div>
 
 

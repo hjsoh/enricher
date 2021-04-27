@@ -9,21 +9,21 @@
     <div class="px-3" style="background: #f5f5f5; z-index: 3;">
       <ul class="list-unstyled mb-0">
         <% classroom_announcements.each do |c| %>
-        <div class="collapse show border-bottom" id="announcement-<%= c.announcement.id %>">
-          <li id="announcement-<%= c.announcement.id %>">
-            <div class="d-flex justify-content-between">
-              <div>
-                <strong class="text-danger"><%= c.announcement.title %></strong>
-                <small><%= c.announcement.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+          <div class="collapse show border-bottom" id="announcement-<%= c.announcement.id %>">
+            <li id="announcement-<%= c.announcement.id %>">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <strong class="text-danger"><%= c.announcement.title %></strong>
+                  <small><%= c.announcement.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+                </div>
+                <div>
+                  <small class="text-muted">
+                    <i class="fas fa-window-close" data-toggle="collapse" data-target="#announcement-<%= c.announcement.id %>"></i>
+                  </small>
+                </div>
               </div>
-              <div>
-                <small class="text-muted">
-                  <i class="fas fa-window-close" data-toggle="collapse" data-target="#announcement-<%= c.announcement.id %>"></i>
-                </small>
-              </div>
-            </div>
-          </li>
-        </div>
+            </li>
+          </div>
         <% end %>
       </ul>
     </div>

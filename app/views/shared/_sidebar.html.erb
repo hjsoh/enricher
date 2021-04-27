@@ -26,15 +26,16 @@
         <%= link_to tickets_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/tickets') && 'active'}" do %>
          <i class="fas fa-hand-paper"></i>
         <% end %>
-        <%= get_unread_tickets(current_user) %>
       </div>
     </li>
     <li>
       <div class="py-3 nav-item border-bottom">
         <%= link_to announcements_path, class:"nav-link #{current_user.role == "teacher" ? "text-light" : "text-dark"} #{current_page?('/announcements') && 'active'}" do %>
-         <i class="fas fa-bullhorn">   </i>
+         <i class="fas fa-bullhorn"></i>
         <% end %>
-        <%= get_unread_announcements(current_user) %>
+        <% if current_user.role == 'parent' && get_unread_announcements(current_user) > 0 %>
+          <span class="badge badge-danger badge-pill"><%= get_unread_announcements(current_user) %></span>
+        <% end %>
       </div>
     </li>
     <li>
