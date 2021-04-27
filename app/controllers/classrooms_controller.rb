@@ -75,6 +75,7 @@ class ClassroomsController < ApplicationController
     end
     @classroom = Classroom.find(params[:classroom_id])
     @classroom_announcements = @classroom.classroom_announcements.where("created_at >= ?", 1.days.ago)
+    @parents = @classroom.parents.map(&:name).join(', ')
     authorize @classroom_announcements
     @message = Message.new
   end
