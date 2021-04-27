@@ -1,15 +1,13 @@
 <div class="content" style="width: 80%; height: 100%;">
   <!-- Class identifier -->
-  <div class="p-3 bg-secondary w-100" style="height: 10%;">
-    <div class="d-flex justify-content-between align-items-center">
-      <h4 class="text-white"><%= classroom.name %></h4>
-      <small class="badge badge-primary badge-pill" id="chat-participants" data-toggle="tooltip" data-placement="bottom" title="<%= parents %>"><%= classroom.parents.count %> parents in chat</small>
-    </div>
+  <div class="p-3 bg-secondary w-100 d-flex justify-content-between align-items-center" style="height: 10%;">
+    <h4 class="text-white mb-0"><%= classroom.name %></h4>
+    <small class="badge badge-primary badge-pill" id="chat-participants" data-toggle="tooltip" data-placement="bottom" title="<%= parents %>"><%= classroom.parents.count %> parents in chat</small>
   </div>
   <!-- announcement section -->
   <% if !classroom_announcements.empty? %>
-    <div class="px-3" style="background: #f5f5f5;">
-      <ul class="list-unstyled">
+    <div class="px-3" style="background: #f5f5f5; z-index: 3;">
+      <ul class="list-unstyled mb-0">
         <% classroom_announcements.each do |c| %>
         <div class="collapse show border-bottom" id="announcement-<%= c.announcement.id %>">
           <li id="announcement-<%= c.announcement.id %>">
@@ -30,9 +28,9 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="messages">
-    <ul class="list-unstyled">
+  <!-- messages section -->
+  <div class="messages p-3" style="height:70%">
+    <ul class="list-unstyled h-100">
       <% classroom.messages.each do |message| %>
         <li id="message-<%= message.id %>" class="<%= message.user == current_user ? 'sent' : 'replies'  %> text-break">
           <div>

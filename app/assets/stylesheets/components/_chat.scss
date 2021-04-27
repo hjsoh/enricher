@@ -190,16 +190,8 @@
 }
 
 #frame .content .messages {
-  height: 100%;
-  width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-}
-
-@media screen and (max-width: 735px) {
-  #frame .content .messages {
-    max-height: calc(100% - 105px);
-  }
 }
 
 #frame .content .messages::-webkit-scrollbar {
@@ -330,11 +322,6 @@
   color: #f5f5f5;
 }
 
-@media screen and (max-width: 735px) {
-  #frame .content .message-input .wrap button {
-    padding: 16px 0;
-  }
-}
 #frame .content .message-input .wrap button:hover {
   background: #435f7a;
 }
