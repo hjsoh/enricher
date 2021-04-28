@@ -13,6 +13,8 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # Config ngrok for app
+  config.hosts << /[a-z0-9]+\.ngrok\.io/
 
   # configure local host
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
