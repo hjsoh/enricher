@@ -12,7 +12,7 @@
                       error: 'Category is mandatory, please specify one' %>
     <%= f.input :classroom_id,
                       label: 'Select a classroom to post this into',
-                      collection: current_user.student_classrooms,
+                      collection: current_user.student_classrooms.sort,
                       as: :radio_buttons,
                       input_html: { class: "tag-selector" },
                       item_wrapper_class: 'tag-item' %>
