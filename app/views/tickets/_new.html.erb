@@ -6,14 +6,14 @@
     <%= f.input :category_name,
                       label: 'Category:',
                       collection: ['Attendance', 'Enrollment', 'Adhoc', 'Homework', 'Syllabus', 'Timetable', 'Welfare'].sort,
-                      as: :check_boxes,
+                      as: :radio_buttons,
                       input_html: { class: "tag-selector" },
                       item_wrapper_class: 'tag-item',
                       error: 'Category is mandatory, please specify one' %>
     <%= f.input :classroom_id,
                       label: 'Select a classroom to post this into',
                       collection: current_user.student_classrooms.sort,
-                      as: :check_boxes,
+                      as: :radio_buttons,
                       input_html: { class: "tag-selector" },
                       item_wrapper_class: 'tag-item' %>
     <%= f.button :submit, "Create Ticket", class: "btn btn-primary btn-block" %>

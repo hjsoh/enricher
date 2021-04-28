@@ -25,7 +25,6 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-    @classroom_ids = ticket_params[:classroom_ids]
     @ticket.user = current_user
     @ticket.status = 'Not yet started'
 
@@ -91,6 +90,6 @@ class TicketsController < ApplicationController
   end
 
   def ticket_params
-    params.require(:ticket).permit(:question, :academic_year, :user_id, :category_name, :is_private, :status, :classroom_id)
+    params.require(:ticket).permit(:question, :user_id, :category_name, :is_private, :status, :classroom_id)
   end
 end
