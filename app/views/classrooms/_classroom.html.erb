@@ -15,7 +15,7 @@
         <% end %>
       </div>
     <% end %>
-<% elsif current_user.role == "teacher" %>
+<% else %>
   <div class="cards">
     <% classrooms.each do |classroom| %>
         <div class="card card-select">
