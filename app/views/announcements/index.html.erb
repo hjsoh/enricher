@@ -1,20 +1,14 @@
 <!-- new announcement -->
-<% if current_user.role == "teacher" %>
-  <div class="container-fluid p-3">
-    <%= render "new" %>
-  </div>
-<% end %>
 
 <div class="container-fluid p-3">
+  <% if current_user.role == "teacher" %>
+    <%= render "new" %>
+  <% end %>
+
   <div class="card p-4 mt-2">
     <h1 class='text-primary'>View all my announcements</h1>
-
-      <!-- filter -->
     <%= render "filter" %>
-
-    <div class="container-fluid">
-      <!-- list all -->
-      <%= render partial: "announcements/announcement", locals: { announcements: @announcements} %>
-    </div>
+    <%= render partial: "announcements/announcement", locals: { announcements: @announcements} %>
   </div>
 </div>
+

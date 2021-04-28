@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
-  
+  skip_before_action :verify_authenticity_token
+
   def create
     @classroom = Classroom.find(params[:classroom_id])
     @message = Message.new(message_params)

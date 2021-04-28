@@ -1,0 +1,9 @@
+.card .comments-container {
+  position: relative;
+}
+
+.card .comments-container .comments-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%
+}

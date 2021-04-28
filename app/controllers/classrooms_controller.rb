@@ -59,9 +59,9 @@ class ClassroomsController < ApplicationController
   def chatrooms
     # find all classrooms by this user
     if current_user.role == 'teacher'
-      @classrooms = current_user.classrooms
+      @classrooms = current_user.classrooms.order('name ASC')
     else
-      @classrooms = current_user.student_classrooms
+      @classrooms = current_user.student_classrooms.order('name ASC')
     end
     authorize(@classrooms)
     @message = Message.new
@@ -69,13 +69,13 @@ class ClassroomsController < ApplicationController
 
   def show_chat
     if current_user.role == 'teacher'
-      @classrooms = current_user.classrooms
-
+      @classrooms = current_user.classrooms.order('name ASC')
     else
-      @classrooms = current_user.student_classrooms
+      @classrooms = current_user.student_classrooms.order('name ASC')
     end
     @classroom = Classroom.find(params[:classroom_id])
     @classroom_announcements = @classroom.classroom_announcements.where("created_at >= ?", 1.days.ago)
+    @parents = @classroom.parents.map(&:name).join(', ')
     authorize @classroom_announcements
     @message = Message.new
   end
