@@ -5,6 +5,7 @@ class ClassroomsController < ApplicationController
 
   def index
     @classrooms = policy_scope(Classroom).order(name: :asc)
+    @students = current_user.students
   end
 
   def new

@@ -1,15 +1,31 @@
-<div class="cards">
-  <% classrooms.each do |classroom| %>
-    <div class="card card-select">
-      <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center w-100">
-          <h5 class="card-title tex-left"><%= link_to classroom.name, classroom_path(classroom) %></h5>
-          <span class="badge badge-pill badge-secondary text-right"><%= classroom.academic_year %></span>
-        </div>
-        <% if current_user.role == 'parent' %>
-          <p class="card-text">Teacher: <%= classroom.user.name %></p>
+<% if current_user.role == "parent" %>
+  <% students.each do |s| %>
+    <h4 class="m-2"><%= s.name %></h4>
+    <div class="cards">
+      <% s.classrooms.each do |classroom| %>
+          <div class="card card-select">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center w-100">
+                <h5 class="card-title tex-left"><%= link_to classroom.name, classroom_path(classroom) %></h5>
+                <span class="badge badge-pill badge-secondary text-right"><%= classroom.academic_year %></span>
+              </div>
+              <p class="card-text">Teacher: <%= classroom.user.name %></p>
+            </div>
+          </div>
         <% end %>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+<% else %>
+  <div class="cards">
+    <% classrooms.each do |classroom| %>
+        <div class="card card-select">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <h5 class="card-title tex-left"><%= link_to classroom.name, classroom_path(classroom) %></h5>
+              <span class="badge badge-pill badge-secondary text-right"><%= classroom.academic_year %></span>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+<% end %>
