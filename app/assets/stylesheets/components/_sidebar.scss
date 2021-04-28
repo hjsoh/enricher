@@ -23,9 +23,20 @@
   position: relative;
 }
 
-.nav-item .announcement-notification {
+.announcement-notification {
   position: absolute;
   right: 4px;
   top: 11px;
+}
+
+.beta-prod {
+  position: relative;
+}
+
+.beta-tag {
+  position: absolute;
+  right: 4px;
+  top: 11px;
+  font-size: 50%;
 }
 
