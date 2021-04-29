@@ -1,7 +1,10 @@
-<div class="message-container" id="message-<%= message.id %>">
+
+<li id="message-<%= message.id %>" class="<%= cookies.encrypted[:user_id] ? 'sent' : 'replies'  %> text-break">
+  <div>
     <i class="author">
-      <span><%= message.user.name %></span>
+      <strong><%= message.user.name %></strong>
       <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
     </i>
-    <p><%= message.content %></p>
   </div>
+  <div><p><%= message.content %></p></div>
+</li>

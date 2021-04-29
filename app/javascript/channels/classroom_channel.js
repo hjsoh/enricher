@@ -4,7 +4,6 @@ const initClassroomCable = () => {
   const messagesContainer = document.querySelector('.messages');
   if (messagesContainer) {
     const id = messagesContainer.dataset.classroom;
-    console.log('id', id);
 
     consumer.subscriptions.create({ channel: "ClassroomChannel", id: id }, {
       received(data) {
