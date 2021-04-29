@@ -8,7 +8,7 @@ const initClassroomCable = () => {
     consumer.subscriptions.create({ channel: "ClassroomChannel", id: id }, {
       received(data) {
         console.log(data); // called when data is broadcast in the cable
-        messagesContainer.querySelector('.list-unstyled').insertAdjacentHTML('beforeend', data);
+        messagesContainer.querySelector('.list-unstyled h-100').insertAdjacentHTML('beforeend', data);
       },
     });
   }
