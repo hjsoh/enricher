@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @classroom.students.each_with_index do |student, index| %>
+      <% @students.each_with_index do |student, index| %>
         <tr>
           <th scope="row"><%= index+1 %></th>
           <td><%= student.name %></td>
