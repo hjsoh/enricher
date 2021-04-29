@@ -53,7 +53,7 @@ class ClassroomsController < ApplicationController
 
   def roster
     @enrollments = Enrollment.where(classroom_id: @classroom.id)
-
+    @students = @classroom.students.where(is_active:true)
     authorize @enrollments
   end
 
