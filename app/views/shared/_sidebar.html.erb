@@ -127,6 +127,14 @@
     <% if current_user.admin == true %>
       <li>
         <div class="py-2 nav-item border-bottom beta-prod">
+          <%= link_to rails_admin_path, class:"nav-link text-light" do %>
+           <i class="fas fa-tools mr-3"></i>Admin
+           <span class="badge badge-success badge-pill text-info beta-tag">admin</span>
+          <% end %>
+        </div>
+      </li>
+      <li>
+        <div class="py-2 nav-item border-bottom beta-prod">
           <%= link_to root_path, class:"nav-link text-light" do %>
            <i class="fas fa-book-open mr-3"></i>Report Cards
            <span class="badge badge-success badge-pill beta-tag">beta</span>
