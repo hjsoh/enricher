@@ -12,21 +12,28 @@
       </div>
     </div>
     <% if resource.role == "parent" %>
-      <div class="row p-2">
-        <div class="col-sm-2">
-          <strong>Students enrolled & Year of Admission</strong>
-        </div>
-
-        <div class="col-sm-10">
-          <% resource.students.each do |s| %>
-            <div class="row w-25 justify-content-between">
-              <p><%= s.name %></p>
-              <p><%= s.admission_year %></p>
-              <p><%= s.classrooms.count %> <%= s.classrooms.count == 1 ? "class" : "classes" %></p>
-            </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student name</th>
+            <th scope="col">Admission year</th>
+            <th scope="col">Number of classes</th>
+            <th scope="col">Classes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% resource.students.each_with_index do |student, index| %>
+            <tr>
+              <th scope="row"><%= index+1 %></th>
+              <td><%= student.name %></td>
+              <td><%= student.admission_year %></td>
+              <td><%= student.classrooms.count %></td>
+              <td><%= student.classrooms.map(&:name).join(', ') %></td>
+            </tr>
           <% end %>
-        </div>
-      </div>
+        </tbody>
+      </table>
     <% end %>
   </div>
   <div class="card p-4 mt-2">
