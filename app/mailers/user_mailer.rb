@@ -18,6 +18,7 @@ class UserMailer < Devise::Mailer
     @user = user
     @token = create_reset_password_token(@user)
     mail(from: 'enricher@enri-cher.com', to: @user.email, subject: 'Welcome to Enri\'cher')
+
     # raise
     # from = Email.new(email: 'enricher@enri-cher.com')
     # subject = 'Welcome to Enri\'cher'
